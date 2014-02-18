@@ -1,0 +1,4 @@
+LineLength:
+  Enabled: false
+MethodLength:
+  Max: 15
