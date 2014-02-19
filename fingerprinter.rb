@@ -2,13 +2,6 @@
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
 
-require 'uri'
-require 'dm-core'
-require 'dm-migrations'
-require 'dm-constraints'
-require 'nokogiri'
-require 'typhoeus'
-
 require 'helper'
 require 'fingerprinter'
 require 'fingerprinters/wordpress'
@@ -17,11 +10,20 @@ require 'fingerprinters/fckeditor'
 begin
   require 'cli_options'
 
-  url = 'http://downloads.sourceforge.net/project/fckeditor/FCKeditor/1.3/FCKeditor_1.3.zip'
-  # url = 'http://downloads.sourceforge.net/project/fckeditor/FCKeditor/2.6.10/FCKeditor_2.6.10.zip'
-  file = '/tmp/fckeditor-1.3.zip'
-  download_archive(url, file)
-  extract_archive(file, '/tmp/fckeditor-1.3')
+  fail 'No app-name supplied' unless @options[:app]
+
+  f = Object.const_get(@options[:app].capitalize).new(@options[:db], @options[:db_verbose])
+
+  f.update if @options[:update]
+
+  f.show_unique_fingerprints(@options[:version]) if @options[:version]
+
+  f.search_hash(@options[:hash]) if @options[:hash]
+
+  f.search_file(@options[:file]) if @options[:file]
+
+  f.fingerprint(@options[:app_url], @options) if @options[:app_url]
 rescue => e
   puts e.message
+  puts e.backtrace.join("\n")
 end

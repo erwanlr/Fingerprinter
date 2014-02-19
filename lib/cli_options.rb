@@ -1,51 +1,55 @@
 
 require 'optparse'
 
-@db_verbose = false
-@update     = false
-@verbose    = false
-@unique     = false
+@options = {
+  verbose:    false,
+  db_verbose: false,
+  update:     false
+}
 
 OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
-  opts.on('--db PATH-TO-DB', '-d', 'Path to the db') do |db|
-    @db = db
+  opts.on('--app-name APPLICATION', '-a', 'The application to fingerprint. Currently supported: wordpress') do |app|
+    if %w(wordpress).include?(app.downcase)
+      @options[:app] = app.downcase
+    else
+      fail "The application #{app} is not supported"
+    end
   end
 
-  opts.on('--db-verbose', '--dbv', 'databse Verbose Mode') do
-    @db_verbose = true
+  opts.on('--db PATH-TO-DB', '-d', 'Path to the db of the app-name') do |db|
+    @options[:db] = db
   end
 
-  opts.on('--update', '-u', 'Update the db') do
-    @update = true
+  opts.on('--update', '-u', 'Update the db of the app-name') do
+    @options[:update] = true
+  end
+
+  opts.on('--show-unique-fingerprints VERSION', '--suf', 'Output the unique file hashes for the given version of the app-name') do |version|
+    @options[:version] = version
+  end
+
+  opts.on('--search-hash HASH', '--sh', 'Search the hash and output the app-name versions & file') do |hash|
+    @options[:hash] = hash
+  end
+
+  opts.on('--search-file RELATIVE-FILE-PATH', '--sf', 'Search the file and output the app-name versions & hashes') do |file|
+    @options[:file] = file
+  end
+
+  opts.on('--fingerprint URL', 'Fingerprint the app-name at the given URL using all fingerprints') do |url|
+    @options[:app_url] = url
+  end
+
+  opts.on('--unique-fingerprint URL', '--uf' 'Fingerprint the app-name at the given URL using unique fingerprints') do |url|
+    @options[:app_url] = url
+    @options[:unique]  = true
+  end
+
+  opts.on('--db-verbose', '--dbv', 'Database Verbose Mode') do
+    @options[:db_verbose] = true
   end
 
   opts.on('--verbose', '-v', 'Verbose Mode') do
-    @verbose = true
-  end
-
-  opts.on('--service SERVICE', '-s', 'The service to fingerprint') do |service|
-    @service = service.downcase
-  end
-
-  opts.on('--show-unique-fingerprints VERSION', '--suf', 'Output the unique file hashes for the given version of the service') do |version|
-    @version = version
-  end
-
-  opts.on('--search-hash HASH', '--sh', 'Search the hash and output the Service versions & file') do |hash|
-    @hash = hash
-  end
-
-  opts.on('--search-file RELATIVE-FILE-PATH', '--sf', 'Search the file and output the Service versions & hashes') do |file|
-    @file = file
-  end
-
-  opts.on('--fingerprint URL', 'Fingerprint the service using all fingerprints') do |url|
-    @target_url = url
-    # @target_url += '/' if @target_url[-1, 1] != '/'
-  end
-
-  opts.on('--unique-fingerprint URL', '--uf' 'Fingerprint the service using unique fingerprints') do |url|
-    @target_url = url
-    @unique     = true
+    @options[:verbose] = true
   end
 end.parse!

@@ -1,4 +1,4 @@
 
 # FCKeditor
-class FCKeditor < Fingerprinter
+class Fckeditor < Fingerprinter
 end
