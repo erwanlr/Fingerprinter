@@ -11,9 +11,8 @@ require 'db'
 class Fingerprinter
   include DB
 
-  # @param [ Hash ] options
-  #   :db
-  #
+  # @param [ String ] db
+  # @param [ Boolean ] db_verbose
   def initialize(db = nil, db_verbose = false)
     db ||= File.join(DB_DIR, "#{app_name}.db")
 
@@ -24,9 +23,14 @@ class Fingerprinter
     Object.const_get(self.class.to_s).to_s.downcase
   end
 
-  # @return [ Hash ] The versions and their download link
+  # @return [ Hash ] The versions and their download urls
   def downloadable_versions
     fail NotImplementedError
+  end
+
+  # @return [ String ] The directory path where the version has been extracted
+  def download_and_extract(version_number, download_url)
+    # TODO
   end
 
   # TODO: Maybe less LOC ?
@@ -34,15 +38,16 @@ class Fingerprinter
     remote_versions = downloadable_versions
     puts "#{remote_versions.size} remote versions number retrieved"
 
-    remote_versions.each do |version, download_url|
-      if !Version.first(number: version)
-        db_version   = Version.create(number: version)
-        archive_dir  = "/tmp/#{app_name}-#{version}/"
-        archive_path = "/tmp/#{app_name}-#{version}.#{archive_extension}"
+    remote_versions.each do |version_number, download_url|
+      if !Version.first(number: version_number)
+        archive_dir  = "/tmp/#{app_name}-#{version_number}/"
+        archive_path = "/tmp/#{app_name}-#{version_number}.#{archive_extension}"
 
-        puts "Downloading and extracting v#{version} to #{archive_dir}"
+        puts "Downloading and extracting v#{version_number} to #{archive_dir}"
         download_archive(download_url, archive_path)
         extract_archive(archive_path, archive_dir)
+
+        db_version = Version.create(number: version_number)
 
         puts 'Processing Fingerprints'
         Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exists?(f) }.each do |filename|
