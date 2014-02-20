@@ -1,4 +1,4 @@
 LineLength:
   Enabled: false
 MethodLength:
-  Max: 30
+  Max: 20

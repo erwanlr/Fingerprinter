@@ -3,9 +3,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
 
 require 'helper'
-require 'fingerprinter'
-require 'fingerprinters/wordpress'
-require 'fingerprinters/fckeditor'
+require 'fingerprinters'
 
 begin
   require 'cli_options'

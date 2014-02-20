@@ -1,3 +1,7 @@
+require 'dm-core'
+require 'dm-migrations'
+require 'dm-constraints'
+
 # Version
 class Version
   include DataMapper::Resource
