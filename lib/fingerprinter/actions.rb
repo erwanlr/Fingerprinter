@@ -38,13 +38,6 @@ class Fingerprinter
     FileUtils.rm_rf(archive_dir, secure: true)
   end
 
-  # @param [ String ] filename
-  # @param [ String ] archive_dir
-  # @return [ String ] The file path w/o the archive_dir
-  def clean_filename(filename, archive_dir)
-    filename.gsub(archive_dir, '')
-  end
-
   # @param [ String ] version_number
   def show_unique_fingerprints(version_number)
     version = Version.first(number: version_number)
