@@ -38,11 +38,15 @@ class Fingerprinter
     # If the archive had a directory containing the files
     # we move all the files at the root of dest
     dirs = Dir[File.join(dest, '**')]
-    if dirs.size == 1
-      FileUtils.mv(dirs.first, "#{dest.chomp('/')}-new")
-      FileUtils.rm_rf(dest, secure: true)
-      FileUtils.mv("#{dest.chomp('/')}-new", dest)
-    end
+    rebase(dirs.first, dest) if dirs.size == 1
+  end
+
+  # Move the directory src to dest
+  # It's not a simple mv because src and dest have the same root directory (i.e the version directory)
+  def rebase(src, dest)
+    FileUtils.mv(src, "#{dest.chomp('/')}-new")
+    FileUtils.rm_rf(dest, secure: true)
+    FileUtils.mv("#{dest.chomp('/')}-new", dest)
   end
 
   def file_md5(file_path)

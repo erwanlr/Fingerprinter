@@ -27,15 +27,22 @@ class Fingerprinter
 
     puts 'Processing Fingerprints'
     Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exists?(f) }.each do |filename|
-      hash = Digest::MD5.file(filename).hexdigest
-      file_path = filename.gsub(archive_dir, '')
-      db_path = Path.first_or_create(value: file_path)
+      hash        = Digest::MD5.file(filename).hexdigest
+      file_path   = filename.gsub(archive_dir, '')
+      db_path     = Path.first_or_create(value: file_path)
       fingerprint = Fingerprint.create(path_id: db_path.id, md5_hash: hash)
 
       db_version.fingerprints << fingerprint
     end
     db_version.save
     FileUtils.rm_rf(archive_dir, secure: true)
+  end
+
+  # @param [ String ] filename
+  # @param [ String ] archive_dir
+  # @return [ String ] The file path w/o the archive_dir
+  def clean_filename(filename, archive_dir)
+    filename.gsub(archive_dir, '')
   end
 
   # @param [ String ] version_number

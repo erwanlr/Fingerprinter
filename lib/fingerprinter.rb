@@ -25,4 +25,10 @@ class Fingerprinter
   def downloadable_versions
     fail NotImplementedError
   end
+
+  # Pattern to ignore files during the creation of the fingerprints
+  # Default: no file ignored
+  def ignore_pattern
+    nil
+  end
 end
