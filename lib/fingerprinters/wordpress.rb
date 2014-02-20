@@ -17,6 +17,6 @@ class Wordpress < Fingerprinter
   end
 
   def ignore_pattern
-    /^*.php$/
+    /\A*.php\z/
   end
 end

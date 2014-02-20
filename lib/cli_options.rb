@@ -7,12 +7,14 @@ require 'optparse'
   update:     false
 }
 
+SUPPORTED_APPS = %w{wordpress fckeditor}
+
 OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
-  opts.on('--app-name APPLICATION', '-a', 'The application to fingerprint. Currently supported: wordpress') do |app|
-    if %w(wordpress).include?(app.downcase)
+  opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(',')}") do |app|
+    if SUPPORTED_APPS.include?(app.downcase)
       @options[:app] = app.downcase
     else
-      fail "The application #{app} is not supported"
+      fail "The application #{app} is not supported. Currently supported: #{SUPPORTED_APPS.join(',')}"
     end
   end
 

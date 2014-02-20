@@ -21,7 +21,7 @@ class Fingerprinter
     Object.const_get(self.class.to_s).to_s.downcase
   end
 
-  # @return [ Hash ] The versions and their download urls
+  # @return [ Hash ] The versions and their download urls (should be DESC sorted)
   def downloadable_versions
     fail NotImplementedError
   end
