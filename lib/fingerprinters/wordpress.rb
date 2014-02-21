@@ -12,10 +12,6 @@ class Wordpress < Fingerprinter
     Hash[versions.to_a.reverse]
   end
 
-  def archive_extension
-    'zip'
-  end
-
   def ignore_pattern
     /\A*.php\z/
   end

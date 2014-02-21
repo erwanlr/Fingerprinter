@@ -7,9 +7,13 @@ require 'optparse'
   update:     false
 }
 
-SUPPORTED_APPS = %w{wordpress fckeditor apacheicons}
+SUPPORTED_APPS = %w{wordpress fckeditor apacheicons phpmyadmin}
 
 OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
+  # opts.on('--proxy PROXY', '-p' 'Proxy to use during the fingerprinting') do |proxy|
+  #  @options[:proxy] = proxy
+  # end
+
   opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(',')}") do |app|
     if SUPPORTED_APPS.include?(app.downcase)
       @options[:app] = app.downcase

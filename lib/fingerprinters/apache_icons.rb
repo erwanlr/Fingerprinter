@@ -17,10 +17,6 @@ class Apacheicons < Fingerprinter
     Hash[versions.to_a.reverse]
   end
 
-  def archive_extension
-    'tar.gz'
-  end
-
   def extract_archive(archive_path, dest)
     super(archive_path, dest)
     # Apache >= 2.0 uses docs/icons, < 2.0 uses icons

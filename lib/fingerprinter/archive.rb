@@ -7,7 +7,7 @@ class Fingerprinter
   # @return [ String ] The directory path where the version has been extracted
   def download_and_extract(version_number, download_url)
     archive_dir  = "/tmp/#{app_name}-#{version_number}/"
-    archive_path = "/tmp/#{app_name}-#{version_number}.#{archive_extension}"
+    archive_path = "/tmp/#{app_name}-#{version_number}#{archive_extension(download_url)}"
 
     puts "Downloading and extracting v#{version_number} to #{archive_dir}"
 
@@ -33,6 +33,7 @@ class Fingerprinter
     FileUtils.mkdir_p(dest)
 
     a = Dearchiver.new(filename: archive_path)
+    fail 'CRC Error' unless a.crc_ok?
     a.extract_to(dest)
 
     # If the archive had a directory containing the files

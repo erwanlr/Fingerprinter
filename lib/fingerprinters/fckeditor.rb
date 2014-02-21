@@ -15,10 +15,6 @@ class Fckeditor < Fingerprinter
     versions
   end
 
-  def archive_extension
-    'zip'
-  end
-
   def ignore_pattern
     /\A*.(php|aspx|cfm|asp|cfc|lasso|pl|py)\z/
   end

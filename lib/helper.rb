@@ -5,3 +5,9 @@ DB_DIR     = File.join(SCRIPT_DIR, 'db')
 def absolute_path?(path)
   path[0, 1] == '/'
 end
+
+def archive_extension(path)
+  ext = File.extname(path)
+  ext = ".tar#{ext}" if path =~ /\A*\.tar\.(?:gz|bz2)\z/
+  ext
+end
