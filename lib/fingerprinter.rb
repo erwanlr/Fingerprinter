@@ -39,7 +39,19 @@ class Fingerprinter
   end
 
   def web_page_md5(url)
+    Digest::MD5.hexdigest(Typhoeus.get(url, request_options).body)
+  end
+
+  protected
+
+  def request_options
+    opts = {
+      proxy: @proxy,
+      ssl_verifypeer: false,
+      ssl_verifyhost: 2
+    }
     # The option cookiefile of Typhoeus does not work, so we use the cookie one
-    Digest::MD5.hexdigest(Typhoeus.get(url, cookie: File.read(@cookies_file), proxy: @proxy).body)
+    opts.merge!(cookie: File.read(@cookies_file)) if @cookies_file
+    opts
   end
 end
