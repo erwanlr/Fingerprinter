@@ -10,7 +10,7 @@ begin
 
   fail 'No app-name supplied' unless @options[:app]
 
-  f = Object.const_get(@options[:app].capitalize).new(@options[:db], @options[:db_verbose])
+  f = Object.const_get(@options[:app].capitalize).new(@options)
 
   f.update if @options[:update]
 

@@ -10,9 +10,13 @@ require 'optparse'
 SUPPORTED_APPS = %w{wordpress fckeditor apacheicons phpmyadmin tinymce}
 
 OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
-  # opts.on('--proxy PROXY', '-p' 'Proxy to use during the fingerprinting') do |proxy|
-  #  @options[:proxy] = proxy
-  # end
+  opts.on('--proxy PROXY', '-p' 'Proxy to use during the fingerprinting') do |proxy|
+    @options[:proxy] = proxy
+  end
+
+  opts.on('--cookies-file FILE-PATH', '--cf', 'The cookies file to use during the fingerprinting') do |file_path|
+    @options[:cookies_file] = file_path
+  end
 
   opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(',')}") do |app|
     if SUPPORTED_APPS.include?(app.downcase)

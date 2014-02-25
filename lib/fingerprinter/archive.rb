@@ -1,6 +1,5 @@
 require 'dearchiver'
 require 'fileutils'
-require 'typhoeus'
 
 # Fingerprinter Archive methods
 class Fingerprinter
@@ -52,9 +51,5 @@ class Fingerprinter
 
   def file_md5(file_path)
     Digest::MD5.file(file_path).hexdigest
-  end
-
-  def web_page_md5(url)
-    Digest::MD5.hexdigest(Typhoeus.get(url).body)
   end
 end
