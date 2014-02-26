@@ -43,3 +43,19 @@ Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 ./fingerprinter.rb -a wordpress --suf 3.8.1
 ```
 
+#### --help
+```
+Usage: ruby ./fingerprinter.rb [options]
+    -p, --proxy PROXY                                  Proxy to use during the fingerprinting
+        --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apacheicons, phpmyadmin, tinymce
+    -d, --db PATH-TO-DB                                Path to the db of the app-name
+    -u, --update                                       Update the db of the app-name
+        --show-unique-fingerprints, --suf VERSION      Output the unique file hashes for the given version of the app-name
+        --search-hash, --sh HASH                       Search the hash and output the app-name versions & file
+        --search-file, --sf RELATIVE-FILE-PATH         Search the file and output the app-name versions & hashes
+        --fingerprint URL                              Fingerprint the app-name at the given URL using all fingerprints
+        --unique-fingerprint, --uf URL                 Fingerprint the app-name at the given URL using unique fingerprints
+        --db-verbose, --dbv                            Database Verbose Mode
+    -v, --verbose                                      Verbose Mode
+```

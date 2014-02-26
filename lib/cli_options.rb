@@ -10,7 +10,7 @@ require 'optparse'
 SUPPORTED_APPS = %w{wordpress fckeditor apacheicons phpmyadmin tinymce}
 
 OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
-  opts.on('--proxy PROXY', '-p' 'Proxy to use during the fingerprinting') do |proxy|
+  opts.on('--proxy PROXY', '-p', 'Proxy to use during the fingerprinting') do |proxy|
     @options[:proxy] = proxy
   end
 
@@ -18,7 +18,7 @@ OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
     @options[:cookies_file] = file_path
   end
 
-  opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(',')}") do |app|
+  opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(', ')}") do |app|
     if SUPPORTED_APPS.include?(app.downcase)
       @options[:app] = app.downcase
     else
@@ -50,7 +50,7 @@ OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
     @options[:app_url] = url
   end
 
-  opts.on('--unique-fingerprint URL', '--uf' 'Fingerprint the app-name at the given URL using unique fingerprints') do |url|
+  opts.on('--unique-fingerprint URL', '--uf', 'Fingerprint the app-name at the given URL using unique fingerprints') do |url|
     @options[:app_url] = url
     @options[:unique]  = true
   end
