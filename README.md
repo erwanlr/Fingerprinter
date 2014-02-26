@@ -5,6 +5,7 @@ This script goal is to try to find the version of the remote application/third p
 
 #### Currently Supported Apps
 - Apache Icons
+- Drupal
 - FCKeditor
 - TinyMCE
 - PHPMyAdmin (currentlly only the manual installation versions)
@@ -48,7 +49,7 @@ Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 Usage: ruby ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apacheicons, phpmyadmin, tinymce
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apacheicons, phpmyadmin, tinymce, drupal
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --show-unique-fingerprints, --suf VERSION      Output the unique file hashes for the given version of the app-name
