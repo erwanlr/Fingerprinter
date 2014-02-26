@@ -1,4 +1,5 @@
 require 'uri'
+require 'readline'
 require 'nokogiri'
 
 # Fingerprinter Actions
@@ -111,6 +112,11 @@ class Fingerprinter
       end
 
       puts if total_urls > 0 # Avoiding the new line if the version has no fingerprints (can happen with unique fingerprints)
+
+      if options[:unique] && matches > 0
+        puts "The version is very likely to be #{version.number}. Do you still want to continue anyway ? [y/N]"
+        break unless Readline.readline =~ /\Ay/i
+      end
     end
   end
 end
