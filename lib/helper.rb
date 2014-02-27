@@ -11,3 +11,7 @@ def archive_extension(path)
   ext = ".tar#{ext}" if path =~ /\A*\.tar\.(?:gz|bz2)\z/
   ext
 end
+
+def compare_version(a, b)
+  Gem::Version.new(b) <=> Gem::Version.new(a)
+end

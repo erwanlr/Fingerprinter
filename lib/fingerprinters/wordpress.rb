@@ -9,7 +9,8 @@ class Wordpress < Fingerprinter
       version = node.text.strip
       versions[version] = "http://wordpress.org/wordpress-#{version}.zip"
     end
-    Hash[versions.to_a.reverse]
+
+    versions
   end
 
   def ignore_pattern

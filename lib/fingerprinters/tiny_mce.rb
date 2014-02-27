@@ -2,7 +2,7 @@
 # Tiny MCE
 class Tinymce < Fingerprinter
   def downloadable_versions
-    Hash[moxiecode_versions.merge(github_versions).to_a.sort.reverse]
+    moxiecode_versions.merge(github_versions)
   end
 
   # Versions from MoxieCode (latest to 3.5.9)

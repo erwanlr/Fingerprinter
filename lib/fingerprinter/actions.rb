@@ -4,8 +4,11 @@ require 'nokogiri'
 
 # Fingerprinter Actions
 class Fingerprinter
+  UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC'
+
   def update
-    remote_versions = downloadable_versions
+    remote_versions = Hash[downloadable_versions.to_a.sort { |a, b| compare_version(a.first, b.first) }]
+
     puts "#{remote_versions.size} remote versions number retrieved"
 
     remote_versions.each do |version_number, download_url|
@@ -44,7 +47,7 @@ class Fingerprinter
     version = Version.first(number: version_number)
 
     if version
-      repository(:default).adapter.select('SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC', version.id).each do |f|
+      repository(:default).adapter.select(UNIQUE_FINGERPRINTS, version.id).each do |f|
         puts "#{f.md5_hash} #{f.path}" if f.version_id == version.id
       end
     else
@@ -55,7 +58,7 @@ class Fingerprinter
   def search_hash(hash)
     puts "Results for #{hash}:"
 
-    Fingerprint.order_by_version(:desc).all(md5_hash: hash).each do |f|
+    Fingerprint.all(md5_hash: hash).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
       puts "  #{f.version.number} #{f.path.value}"
     end
   end
@@ -66,7 +69,7 @@ class Fingerprinter
     puts "Results for #{file}:"
 
     if path
-      Fingerprint.order_by_version(:desc).all(path_id: path.id).each do |f|
+      Fingerprint.all(path_id: path.id).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
         puts "  #{f.md5_hash} #{f.version.number}"
       end
     else
@@ -77,7 +80,7 @@ class Fingerprinter
   # @param [ Version ] version
   def fingerprints(version, unique = false)
     if unique
-      return repository(:default).adapter.select('SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC', version.id)
+      return repository(:default).adapter.select(UNIQUE_FINGERPRINTS, version.id)
     else
       return version.fingerprints
     end
@@ -91,7 +94,7 @@ class Fingerprinter
     url += '/' if url[-1, 1] != '/'
     uri = URI.parse(url)
 
-    Version.all(order: [:number.desc]).each do |version|
+    Version.all.sort { |a, b| compare_version(a.number, b.number) }.each do |version|
       fingerprints = fingerprints(version, options[:unique])
       total_urls   = fingerprints.count
       matches      = 0

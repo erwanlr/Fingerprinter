@@ -30,16 +30,6 @@ class Fingerprint
   belongs_to :path, key: true
 
   property :md5_hash, String, required: true, length: 32
-
-  # DataMapper does not seem to support ordering by a column in a joining model
-  # Solution found on StackOverflow ("DataMapper: Sorting results though association")
-  def self.order_by_version(direction = :asc)
-    order = DataMapper::Query::Direction.new(version.number, direction)
-    query = all.query
-    query.instance_variable_set('@order', [order])
-    query.instance_variable_set('@links', [relationships['version'].inverse])
-    all(query)
-  end
 end
 
 # Database Module

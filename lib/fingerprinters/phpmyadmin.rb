@@ -2,8 +2,8 @@
 # PHPMyAdmin
 class Phpmyadmin < Fingerprinter
   def downloadable_versions
-    # Hash[manual_installation_versions.merge(debian_versions).to_a.sort.reverse]
-    Hash[manual_installation_versions.to_a.sort.reverse]
+    # manual_installation_versions.merge(debian_versions)
+    manual_installation_versions
   end
 
   #

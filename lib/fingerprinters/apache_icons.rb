@@ -14,7 +14,7 @@ class Apacheicons < Fingerprinter
       end
     end
 
-    Hash[versions.to_a.reverse]
+    versions
   end
 
   def extract_archive(archive_path, dest)

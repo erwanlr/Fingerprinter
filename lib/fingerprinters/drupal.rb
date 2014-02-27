@@ -21,7 +21,7 @@ class Drupal < Fingerprinter
       page_id += 1
     end
 
-    Hash[versions.to_a.sort.reverse]
+    versions
   end
 
   def ignore_pattern
