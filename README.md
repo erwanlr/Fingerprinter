@@ -7,8 +7,9 @@ This script goal is to try to find the version of the remote application/third p
 - Apache Icons
 - Drupal
 - FCKeditor
-- TinyMCE
 - PHPMyAdmin (currentlly only the manual installation versions)
+- TinyMCE
+- Umbraco [Experimental]
 - WordPress
 
 #### Basic Usage Examples
