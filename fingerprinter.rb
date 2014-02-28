@@ -12,6 +12,13 @@ begin
 
   f = Object.const_get(@options[:app].capitalize).new(@options)
 
+  if f.respond_to?(:experimental?)
+    puts
+    puts 'This Fingerprinter has not been tested on a real target yet.'
+    puts 'Please report any working options or issues'
+    puts
+  end
+
   f.update if @options[:update]
 
   f.show_unique_fingerprints(@options[:version]) if @options[:version]
