@@ -1,6 +1,8 @@
 
 # Drupal
 class Drupal < Fingerprinter
+  include IgnorePattern::PHP
+
   def downloadable_versions
     base_url = 'https://drupal.org/node/3060/release?&page=%i'
     page_id  = 0
@@ -22,9 +24,5 @@ class Drupal < Fingerprinter
     end
 
     versions
-  end
-
-  def ignore_pattern
-    /\A*.php\z/
   end
 end

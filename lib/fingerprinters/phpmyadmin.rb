@@ -1,6 +1,8 @@
 
 # PHPMyAdmin
 class Phpmyadmin < Fingerprinter
+  include IgnorePattern::PHP
+
   def downloadable_versions
     # manual_installation_versions.merge(debian_versions)
     manual_installation_versions
@@ -31,7 +33,6 @@ class Phpmyadmin < Fingerprinter
   #
   ## Manual Installation Versions
   #
-
   def manual_installation_versions
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get('http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/').body)
@@ -54,9 +55,5 @@ class Phpmyadmin < Fingerprinter
       '2.0.1-all' => 'http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/2.1.0/phpMyAdmin-2.1.0-php3.tar.gz',
       '2.0.5-all' => 'http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/2.0.5/phpMyAdmin-2.0.5-php3.tar.gz'
     }
-  end
-
-  def ignore_pattern
-    /\A*.php\z/
   end
 end

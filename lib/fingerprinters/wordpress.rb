@@ -1,6 +1,8 @@
 
 # WordPress
 class Wordpress < Fingerprinter
+  include IgnorePattern::PHP
+
   def downloadable_versions
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get('http://wordpress.org/download/release-archive/').body)
@@ -11,9 +13,5 @@ class Wordpress < Fingerprinter
     end
 
     versions
-  end
-
-  def ignore_pattern
-    /\A*.php\z/
   end
 end

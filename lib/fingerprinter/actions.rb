@@ -1,9 +1,12 @@
 require 'uri'
 require 'readline'
 require 'nokogiri'
+require 'ignore_pattern'
 
 # Fingerprinter Actions
 class Fingerprinter
+  include IgnorePattern::None
+
   UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC'
 
   def update

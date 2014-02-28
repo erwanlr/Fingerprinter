@@ -32,12 +32,6 @@ class Fingerprinter
     fail NotImplementedError
   end
 
-  # Pattern to ignore files during the creation of the fingerprints
-  # Default: no file ignored
-  def ignore_pattern
-    nil
-  end
-
   def web_page_md5(url)
     Digest::MD5.hexdigest(Typhoeus.get(url, request_options).body)
   end
