@@ -1,4 +1,5 @@
 require 'db'
+require 'json'
 require 'typhoeus'
 require 'experimental'
 require 'fingerprinter/archive'

@@ -2,7 +2,7 @@ module IgnorePattern
   # PHP
   module PHP
     def ignore_pattern
-      /\A*.php\z/
+      /\A*.php\z/i
     end
   end
 end

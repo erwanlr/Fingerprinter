@@ -16,10 +16,14 @@ class Fingerprinter
 
     remote_versions.each do |version_number, download_url|
       if !Version.first(number: version_number)
-        compute_fingerprints(
-          version_number,
-          download_and_extract(version_number, download_url)
-        )
+        begin
+          compute_fingerprints(
+            version_number,
+            download_and_extract(version_number, download_url)
+          )
+        rescue => e
+          puts "An error occured: #{e.message}, skipping the version"
+        end
       else
         puts "Version #{version_number} already in DB, skipping"
       end
