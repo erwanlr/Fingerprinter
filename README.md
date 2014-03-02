@@ -5,6 +5,7 @@ This script goal is to try to find the version of the remote application/third p
 
 #### Currently Supported Apps
 - Apache Icons
+- CMS Made Simple [Experimental]
 - Drupal
 - FCKeditor
 - PHPMyAdmin (currentlly only the manual installation versions)
