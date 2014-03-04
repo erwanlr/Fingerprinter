@@ -1,6 +1,6 @@
 
 # Apache Icons
-class Apacheicons < Fingerprinter
+class ApacheIcons < Fingerprinter
   def downloadable_versions
     versions = {}
     page = Nokogiri::HTML(Typhoeus.get('http://archive.apache.org/dist/httpd/').body)

@@ -1,6 +1,6 @@
 
 # CMS Made Simple
-class Cmsmadesimple < Fingerprinter
+class CmsMadeSimple < Fingerprinter
   include Experimental
   include IgnorePattern::PHP
 

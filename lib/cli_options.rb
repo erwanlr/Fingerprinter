@@ -1,4 +1,3 @@
-
 require 'optparse'
 
 @options = {
@@ -7,9 +6,9 @@ require 'optparse'
   update:     false
 }
 
-SUPPORTED_APPS = %w{wordpress fckeditor apacheicons phpmyadmin tinymce drupal umbraco cmsmadesimple}
+SUPPORTED_APPS = %w{wordpress fckeditor apache-icons phpmyadmin tinymce drupal umbraco cms-made-simple}
 
-OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
+OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   opts.on('--proxy PROXY', '-p', 'Proxy to use during the fingerprinting') do |proxy|
     @options[:proxy] = proxy
   end
@@ -20,9 +19,9 @@ OptionParser.new("Usage: ruby #{$PROGRAM_NAME} [options]", 50) do |opts|
 
   opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(', ')}") do |app|
     if SUPPORTED_APPS.include?(app.downcase)
-      @options[:app] = app.downcase
+      @options[:app] = app.downcase.gsub(/-/, '_').camelize
     else
-      fail "The application #{app} is not supported. Currently supported: #{SUPPORTED_APPS.join(',')}"
+      fail "The application #{app} is not supported. Currently supported: #{SUPPORTED_APPS.join(', ')}"
     end
   end
 

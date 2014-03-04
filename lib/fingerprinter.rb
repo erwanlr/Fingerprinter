@@ -1,6 +1,7 @@
 require 'db'
 require 'json'
 require 'typhoeus'
+require 'active_support/inflector'
 require 'experimental'
 require 'fingerprinter/archive'
 require 'fingerprinter/actions'
@@ -26,7 +27,7 @@ class Fingerprinter
   end
 
   def app_name
-    Object.const_get(self.class.to_s).to_s.downcase
+    Object.const_get(self.class.to_s).to_s.underscore
   end
 
   # @return [ Hash ] The versions and their download urls

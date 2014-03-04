@@ -10,7 +10,7 @@ begin
 
   fail 'No app-name supplied' unless @options[:app]
 
-  f = Object.const_get(@options[:app].capitalize).new(@options)
+  f = Object.const_get(@options[:app]).new(@options)
 
   if f.respond_to?(:experimental?)
     puts
