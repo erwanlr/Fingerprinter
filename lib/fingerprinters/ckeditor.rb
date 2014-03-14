@@ -1,8 +1,6 @@
 
 # CKEditor
 class Ckeditor < Fingerprinter
-  include Experimental
-
   def downloadable_versions
     versions = {}
     page = Nokogiri::HTML(Typhoeus.get('http://ckeditor.com/download/releases').body)
