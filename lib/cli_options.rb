@@ -42,7 +42,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:hash] = hash
   end
 
-  opts.on('--search-file RELATIVE-FILE-PATH', '--sf', 'Search the file and output the app-name versions & hashes') do |file|
+  opts.on('--search-file FILE', '--sf', 'Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes') do |file|
     @options[:file] = file
   end
 
