@@ -32,6 +32,7 @@ This mode is faster than the previous one, and more reliable. However it is poss
     --cookies-file, --cf FILE-PATH  The cookies file to use during the fingerprinting
 -d, --db PATH-TO-DB                 Path to the db of the app-name (default is db/<app-name>.db)
 -u, --update                        Update the db of the app-name
+    --update-all, --ua                             Update all the apps
     --db-verbose, --dbv             Database Verbose Mode
 -v, --verbose                       Verbose Mode
 ```
@@ -40,7 +41,7 @@ Along with the --app-name option (or -a), the database can be searched:
 ```
 --show-unique-fingerprints, --suf VERSION  Output the unique file hashes for the given version of the app-name
 --search-hash, --sh HASH                   Search the hash and output the app-name versions & file
---search-file, --sf RELATIVE-FILE-PATH     Search the file and output the app-name versions & hashes
+--search-file, --sf FILE                   Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
 ```
 Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 ```
@@ -52,14 +53,16 @@ Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apache-icons, phpmyadmin, tinymce, drupal, umbraco, cms-made-simple
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apache-icons, phpmyadmin, tinymce, drupal, umbraco, cms-made-simple, ckeditor
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
+        --update-all, --ua                             Update all the apps
         --show-unique-fingerprints, --suf VERSION      Output the unique file hashes for the given version of the app-name
         --search-hash, --sh HASH                       Search the hash and output the app-name versions & file
-        --search-file, --sf RELATIVE-FILE-PATH         Search the file and output the app-name versions & hashes
+        --search-file, --sf FILE                       Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
         --fingerprint URL                              Fingerprint the app-name at the given URL using all fingerprints
         --unique-fingerprint, --uf URL                 Fingerprint the app-name at the given URL using unique fingerprints
         --db-verbose, --dbv                            Database Verbose Mode
     -v, --verbose                                      Verbose Mode
+
 ```
