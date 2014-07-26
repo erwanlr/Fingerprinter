@@ -3,10 +3,11 @@ require 'optparse'
 @options = {
   verbose:    false,
   db_verbose: false,
-  update:     false
+  update:     false,
+  update_all: false
 }
 
-SUPPORTED_APPS = %w{wordpress fckeditor apache-icons phpmyadmin tinymce drupal umbraco cms-made-simple ckeditor}
+SUPPORTED_APPS = %w(wordpress fckeditor apache-icons phpmyadmin tinymce drupal umbraco cms-made-simple ckeditor)
 
 OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   opts.on('--proxy PROXY', '-p', 'Proxy to use during the fingerprinting') do |proxy|
@@ -31,6 +32,10 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
 
   opts.on('--update', '-u', 'Update the db of the app-name') do
     @options[:update] = true
+  end
+
+  opts.on('--update-all', '--ua', 'Update all the apps') do
+    @options[:update_all] = true
   end
 
   opts.on('--show-unique-fingerprints VERSION', '--suf', 'Output the unique file hashes for the given version of the app-name') do |version|
