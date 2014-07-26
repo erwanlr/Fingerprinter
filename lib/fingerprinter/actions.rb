@@ -73,17 +73,17 @@ class Fingerprinter
   end
 
   def search_file(file)
-    path = Path.first(value: file)
+    paths = Path.all(:value.like => file)
 
-    puts "Results for #{file}:"
+    paths.each do |path|
+      puts "Results for #{path.value}:"
 
-    if path
       Fingerprint.all(path_id: path.id).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
         puts "  #{f.md5_hash} #{f.version.number}"
       end
-    else
-      puts 'File not found (the argument must be a relative file path. e.g: wp-admin/css/widgets.css)'
     end
+
+    puts 'No Results' if paths.empty?
   end
 
   # @param [ Version ] version
