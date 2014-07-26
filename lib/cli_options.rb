@@ -19,11 +19,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   end
 
   opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(', ')}") do |app|
-    if SUPPORTED_APPS.include?(app.downcase)
-      @options[:app] = app.downcase.gsub(/-/, '_').camelize
-    else
-      fail "The application #{app} is not supported. Currently supported: #{SUPPORTED_APPS.join(', ')}"
-    end
+    @options[:app] = app
   end
 
   opts.on('--db PATH-TO-DB', '-d', 'Path to the db of the app-name') do |db|

@@ -10,6 +10,18 @@ require 'fingerprinter/actions'
 class Fingerprinter
   include DB
 
+  # @param [ String ] app_name
+  # @param [ Hash ] options See #new
+  #
+  # @return [ Fingerprinter ]
+  def self.load(app_name, options = {})
+    if SUPPORTED_APPS.include?(app_name.downcase)
+      Object.const_get(app_name.downcase.gsub(/-/, '_').camelize).new(options)
+    else
+      fail "The application #{app_name} is not supported. Currently supported: #{SUPPORTED_APPS.join(', ')}"
+    end
+  end
+
   # @param [ Hash ] options
   #   :db
   #   :db_verbose

@@ -10,14 +10,15 @@ begin
 
   if @options[:update_all]
     SUPPORTED_APPS.each do|app|
-      Object.const_get(app).new(@options).update
+      puts "Updating #{app}:"
+      Fingerprinter.load(app, @options).update
     end
     exit(1)
   end
 
   fail 'No app-name supplied' unless @options[:app]
 
-  f = Object.const_get(@options[:app]).new(@options)
+  f = Fingerprinter.load(@options[:app], @options)
 
   if f.respond_to?(:experimental?)
     puts
