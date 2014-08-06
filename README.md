@@ -32,7 +32,7 @@ This mode is faster than the previous one, and more reliable. However it is poss
     --cookies-file, --cf FILE-PATH  The cookies file to use during the fingerprinting
 -d, --db PATH-TO-DB                 Path to the db of the app-name (default is db/<app-name>.db)
 -u, --update                        Update the db of the app-name
-    --update-all, --ua                             Update all the apps
+    --update-all, --ua              Update all the apps
     --db-verbose, --dbv             Database Verbose Mode
 -v, --verbose                       Verbose Mode
 ```
