@@ -34,8 +34,9 @@ class Fingerprinter
 
     init_db(db, options[:db_verbose])
 
-    @proxy        = options[:proxy]
-    @cookies_file = options[:cookies_file]
+    @proxy          = options[:proxy]
+    @cookies_file   = options[:cookies_file]
+    @cookies_string = options[:cookies_string]
   end
 
   def app_name
@@ -57,7 +58,8 @@ class Fingerprinter
     opts = {
       proxy: @proxy,
       ssl_verifypeer: false,
-      ssl_verifyhost: 2
+      ssl_verifyhost: 2,
+      cookie: @cookies_string
     }
     # The option cookiefile of Typhoeus does not work, so we use the cookie one
     opts.merge!(cookie: File.read(@cookies_file)) if @cookies_file

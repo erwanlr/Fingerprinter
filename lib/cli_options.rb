@@ -18,6 +18,10 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:cookies_file] = file_path
   end
 
+  opts.on('--cookies-string COOKIE/S', '--cs', 'The cookies string to use in requests') do |string|
+    @options[:cookies_string] = string
+  end
+
   opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(', ')}") do |app|
     @options[:app] = app
   end
