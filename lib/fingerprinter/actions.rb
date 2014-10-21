@@ -111,7 +111,7 @@ class Fingerprinter
 
       fingerprints.each do |f|
         path = f.path.respond_to?(:value) ? f.path.value : f.path
-        url  = uri.merge(path).to_s
+        url  = uri.merge(URI.encode(path)).to_s
 
         if web_page_md5(url) == f.md5_hash
           matches += 1
