@@ -1,10 +1,11 @@
 require 'optparse'
 
 @options = {
-  verbose:    false,
-  db_verbose: false,
-  update:     false,
-  update_all: false
+  verbose:       false,
+  db_verbose:    false,
+  update:        false,
+  update_all:    false,
+  list_versions: false
 }
 
 SUPPORTED_APPS = %w(wordpress fckeditor apache-icons phpmyadmin tinymce drupal umbraco cms-made-simple ckeditor)
@@ -36,6 +37,10 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
 
   opts.on('--update-all', '--ua', 'Update all the apps') do
     @options[:update_all] = true
+  end
+
+  opts.on('--list-versions', '--lv', 'List all the known versions in the DB for the given app') do
+    @options[:list_versions] = true
   end
 
   opts.on('--show-unique-fingerprints VERSION', '--suf', 'Output the unique file hashes for the given version of the app-name') do |version|

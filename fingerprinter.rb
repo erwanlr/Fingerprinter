@@ -29,6 +29,11 @@ begin
 
   f.update if @options[:update]
 
+  if @options[:list_versions]
+    f.list_versions
+    exit(1)
+  end
+
   f.show_unique_fingerprints(@options[:version]) if @options[:version]
 
   f.search_hash(@options[:hash]) if @options[:hash]

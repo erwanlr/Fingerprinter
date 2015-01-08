@@ -30,6 +30,12 @@ class Fingerprinter
     end
   end
 
+  def list_versions
+    Version.all.sort { |a, b| compare_version(a.number, b.number) }.each do |version|
+      puts version.number
+    end
+  end
+
   # @param [ String ] version_number
   # @param [ String ] archive_dir
   # @return [ Void ]
