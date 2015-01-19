@@ -26,21 +26,18 @@ class Fingerprinter
   end
 
   def process_version(version_number, directory)
-    compute_fingerprints(version_number,directory)
-    rescue => e
-      puts "An error occured: #{e.message}, skipping the version"
-    end
+    compute_fingerprints(version_number, directory)
+  rescue => e
+    puts "An error occured: #{e.message}, skipping the version"
   end
 
   def manual_update(opts = {})
-    if opts[:manual_version]
-      if !Version.first(number: opts[:manual_version])
-        process_version(@opts[:manual_version], @opts[:manual])
-      else
-        puts "Version #{opts[:manual_version]} already in DB, skipping"
-      end
+    fail 'The --version option has to be supplied' unless opts[:manual_version]
+
+    if !Version.first(number: opts[:manual_version])
+      process_version(opts[:manual_version], opts[:manual])
     else
-      puts 'todo'
+      puts "Version #{opts[:manual_version]} already in DB, skipping"
     end
   end
 

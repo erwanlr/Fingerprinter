@@ -8,8 +8,6 @@ require 'fingerprinters'
 begin
   require 'cli_options'
 
-  p @options
-
   if @options[:update_all]
     SUPPORTED_APPS.each do|app|
       puts "Updating #{app}:"
@@ -35,7 +33,6 @@ begin
     else
       f.auto_update
     end
-    exit
   end
 
   if @options[:list_versions]
