@@ -8,7 +8,7 @@ class Fingerprinter
     archive_dir  = "/tmp/#{app_name}-#{version_number}/"
     archive_path = "/tmp/#{app_name}-#{version_number}#{archive_extension(download_url)}"
 
-    puts "Downloading and extracting v#{version_number} to #{archive_dir}"
+    puts "Downloading and extracting v#{version_number} to #{archive_dir} (#{archive_path})"
 
     download_archive(download_url, archive_path)
     extract_archive(archive_path, archive_dir)

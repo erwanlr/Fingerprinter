@@ -10,9 +10,11 @@ class Fingerprinter
   UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC'
 
   def update
+    puts 'Retrieving remote version numbers ...'
+
     remote_versions = Hash[downloadable_versions.to_a.sort { |a, b| compare_version(a.first, b.first) }]
 
-    puts "#{remote_versions.size} remote versions number retrieved"
+    puts "#{remote_versions.size} remote version numbers retrieved"
 
     remote_versions.each do |version_number, download_url|
       if !Version.first(number: version_number)
