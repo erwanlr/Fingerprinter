@@ -9,7 +9,7 @@ class Fingerprinter
 
   UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC'
 
-  def update
+  def auto_update
     puts 'Retrieving remote version numbers ...'
 
     remote_versions = Hash[downloadable_versions.to_a.sort { |a, b| compare_version(a.first, b.first) }]
@@ -29,6 +29,22 @@ class Fingerprinter
       else
         puts "Version #{version_number} already in DB, skipping"
       end
+    end
+  end
+
+  def manual_update(opts = {})
+    if opts[:manual_version]
+      if !Version.first(number: opts[:manual_version])
+        begin
+          compute_fingerprints(opts[:manual_version], opts[:manual])
+        rescue => e
+          puts "An error occured: #{e.message}, skipping the version"
+        end
+      else
+        puts "Version #{opts[:manual_version]} already in DB, skipping"
+      end
+    else
+      puts 'todo'
     end
   end
 

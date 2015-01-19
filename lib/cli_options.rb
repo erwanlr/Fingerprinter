@@ -35,6 +35,14 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:update] = true
   end
 
+  opts.on('--manual DIRECTORY-PATH', 'To be used along with the --update option. Process the DIRECTORY-PATH for fingerprints') do |path|
+    @options[:manual] = path
+  end
+
+  opts.on('--version VERSION', 'Used with --manual to set the version of the processed fingerprints') do |version|
+    @options[:manual_version] = version
+  end
+
   opts.on('--update-all', '--ua', 'Update all the apps') do
     @options[:update_all] = true
   end

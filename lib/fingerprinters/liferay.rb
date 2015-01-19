@@ -31,7 +31,7 @@ class Liferay < Fingerprinter
         next unless file =~ /tomcat\-.*\.zip\z/i
 
         versions[version.gsub(/\s+/, '-')] = download_url(version, file)
-        p "#{version} => #{download_url(version, file)}"
+        # p "#{version} => #{download_url(version, file)}"
         break
       end
     end
