@@ -18,24 +18,26 @@ class Fingerprinter
 
     remote_versions.each do |version_number, download_url|
       if !Version.first(number: version_number)
-        process_version(version_number, download_and_extract(version_number, download_url))
+        begin
+          compute_fingerprints(version_number, download_and_extract(version_number, download_url))
+        rescue => e
+          puts "An error occured: #{e.message}, skipping the version"
+        end
       else
         puts "Version #{version_number} already in DB, skipping"
       end
     end
   end
 
-  def process_version(version_number, directory)
-    compute_fingerprints(version_number, directory)
-  rescue => e
-    puts "An error occured: #{e.message}, skipping the version"
-  end
-
   def manual_update(opts = {})
     fail 'The --version option has to be supplied' unless opts[:manual_version]
 
     if !Version.first(number: opts[:manual_version])
-      process_version(opts[:manual_version], opts[:manual])
+      begin
+        compute_fingerprints(opts[:manual_version], opts[:manual])
+      rescue => e
+        puts "An error occured: #{e.message}, skipping the version"
+      end
     else
       puts "Version #{opts[:manual_version]} already in DB, skipping"
     end

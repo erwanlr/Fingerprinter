@@ -43,10 +43,11 @@ class Liferay < Fingerprinter
     super(archive_path, dest)
 
     Dir[File.join(dest, '**/')].each do |entry|
-      next unless entry =~ /webapps/i
-      return rebase(File.join(entry, 'ROOT'), dest)
+      [/webapps\/ROOT/i, /liferay\-portal\.war/, /ROOT\.war/i].each do |pattern|
+        return rebase(entry, dest) if entry =~ pattern
+      end
     end
 
-    fail "Unable to locate webapps/ROOT folder in #{dest}"
+    fail "Unable to locate web folder in #{dest}"
   end
 end
