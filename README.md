@@ -62,10 +62,14 @@ Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apache-icons, phpmyadmin, tinymce, drupal, umbraco, cms-made-simple, ckeditor
+        --cookies-string, --cs COOKIE/S                The cookies string to use in requests
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apache-icons, phpmyadmin, tinymce, drupal, umbraco, cms-made-simple, ckeditor, liferay
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
+        --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
+        --version VERSION                              Used with --manual to set the version of the processed fingerprints
         --update-all, --ua                             Update all the apps
+        --list-versions, --lv                          List all the known versions in the DB for the given app
         --show-unique-fingerprints, --suf VERSION      Output the unique file hashes for the given version of the app-name
         --search-hash, --sh HASH                       Search the hash and output the app-name versions & file
         --search-file, --sf FILE                       Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
@@ -73,5 +77,4 @@ Usage: ./fingerprinter.rb [options]
         --unique-fingerprint, --uf URL                 Fingerprint the app-name at the given URL using unique fingerprints
         --db-verbose, --dbv                            Database Verbose Mode
     -v, --verbose                                      Verbose Mode
-
 ```
