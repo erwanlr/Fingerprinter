@@ -11,7 +11,7 @@ begin
   if @options[:update_all]
     SUPPORTED_APPS.each do|app|
       puts "Updating #{app}:"
-      Fingerprinter.load(app, @options).update
+      Fingerprinter.load(app, @options).auto_update
     end
     exit(1)
   end
