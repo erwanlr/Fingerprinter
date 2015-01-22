@@ -9,7 +9,7 @@ This script goal is to try to find the version of the remote application/third p
 - CMS Made Simple [Experimental]
 - Drupal
 - FCKeditor
-- Liferay [Experimental]
+- Liferay
 - PHPMyAdmin (currentlly only the manual installation versions)
 - TinyMCE
 - Umbraco [Experimental]
