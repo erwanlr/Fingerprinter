@@ -1,7 +1,6 @@
 
 # LifeRay (http://sourceforge.net/projects/lportal/ & https://www.liferay.com/)
 class Liferay < Fingerprinter
-  include Experimental
   include IgnorePattern::JAVA
 
   def root_url
