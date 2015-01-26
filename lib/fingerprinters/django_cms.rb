@@ -2,7 +2,6 @@
 # Django CMS
 class DjangoCms < Fingerprinter
   include Experimental
-  include IgnorePattern::Python
 
   def downloadable_versions
     versions = {}
@@ -23,5 +22,9 @@ class DjangoCms < Fingerprinter
     super(archive_path, dest)
 
     rebase(File.join(dest, 'cms'), dest)
+  end
+
+  def ignore_pattern
+    /\A*.(py|pyc|html|po|mo)\z/i
   end
 end
