@@ -1,8 +1,6 @@
 
 # Django CMS
 class DjangoCms < Fingerprinter
-  include Experimental
-
   def downloadable_versions
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get('https://github.com/divio/django-cms/releases').body)

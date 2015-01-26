@@ -7,7 +7,7 @@ This script goal is to try to find the version of the remote application/third p
 - Apache Icons
 - CKEditor
 - CMS Made Simple [Experimental]
-- Django-CMS [Experimental]
+- Django-CMS
 - Drupal
 - FCKeditor
 - Liferay
