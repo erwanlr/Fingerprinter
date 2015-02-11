@@ -9,7 +9,7 @@ class Umbraco < Fingerprinter
   end
 
   def site_url
-    'http://our.umbraco.org'
+    'https://our.umbraco.org'
   end
 
   def current_versions

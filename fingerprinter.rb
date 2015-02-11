@@ -10,8 +10,14 @@ begin
 
   if @options[:update_all]
     SUPPORTED_APPS.each do|app|
-      puts "Updating #{app}:"
-      Fingerprinter.load(app, @options).auto_update
+      begin
+        puts "Updating #{app}:"
+        Fingerprinter.load(app, @options).auto_update
+      rescue => e
+        puts "An error occured: #{e.message}, skipping the app"
+      ensure
+        puts
+      end
     end
     exit(1)
   end
