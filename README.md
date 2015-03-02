@@ -7,6 +7,7 @@ This script goal is to try to find the version of the remote application/third p
 - Apache Icons
 - CKEditor
 - CMS Made Simple [Experimental]
+- Concrete5
 - Django-CMS
 - Drupal
 - FCKeditor
@@ -64,7 +65,7 @@ Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
         --cookies-string, --cs COOKIE/S                The cookies string to use in requests
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apache-icons, phpmyadmin, tinymce, drupal, umbraco, cms-made-simple, ckeditor, liferay
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: wordpress, fckeditor, apache-icons, phpmyadmin, tinymce, drupal, umbraco, cms-made-simple, ckeditor, liferay, django-cms concrete5
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
