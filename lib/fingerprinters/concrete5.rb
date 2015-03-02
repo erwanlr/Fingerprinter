@@ -1,7 +1,6 @@
 
 # Concrete5
 class Concrete5 < Fingerprinter
-  include Experimental
   include IgnorePattern::PHP
 
   def downloadable_versions
