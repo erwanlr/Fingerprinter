@@ -2,13 +2,29 @@ require 'uri'
 require 'readline'
 require 'nokogiri'
 require 'ignore_pattern'
+require 'ruby-progressbar'
 
 # Fingerprinter Actions
 class Fingerprinter
   include IgnorePattern::None
 
-  UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC'
+  UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, ' \
+                        'versions.number AS version,' \
+                        'paths.value AS path ' \
+                        'FROM fingerprints ' \
+                        'LEFT JOIN versions ON version_id = versions.id ' \
+                        'LEFT JOIN paths on path_id = paths.id ' \
+                        'WHERE md5_hash IN ' \
+                        '(SELECT md5_hash FROM fingerprints GROUP BY md5_hash HAVING COUNT(*) = 1) ' \
+                        'ORDER BY version DESC'
 
+  ALL_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, ' \
+                     'versions.number AS version,' \
+                     'paths.value AS path ' \
+                     'FROM fingerprints ' \
+                     'LEFT JOIN versions ON version_id = versions.id ' \
+                     'LEFT JOIN paths on path_id = paths.id ' \
+                     'ORDER BY version DESC'
   def auto_update
     puts 'Retrieving remote version numbers ...'
 
@@ -75,7 +91,7 @@ class Fingerprinter
     puts "Results for #{version.number}:"
 
     if version
-      repository(:default).adapter.select(UNIQUE_FINGERPRINTS, version.id).each do |f|
+      repository(:default).adapter.select(UNIQUE_FINGERPRINTS).each do |f|
         puts "#{f.md5_hash} #{f.path}" if f.version_id == version.id
       end
     else
@@ -105,49 +121,57 @@ class Fingerprinter
     puts 'No Results' if paths.empty?
   end
 
-  # @param [ Version ] version
-  def fingerprints(version, unique = false)
-    if unique
-      return repository(:default).adapter.select(UNIQUE_FINGERPRINTS, version.id)
-    else
-      return version.fingerprints
+  # @param [ Boolean ] version
+  #
+  # @return [ Hash ]
+  def fingerprints(unique = false)
+    query   = unique ? UNIQUE_FINGERPRINTS : ALL_FINGERPRINTS
+    results = {}
+
+    repository(:default).adapter.select(query).each do |f|
+      results[f.path] ||= {}
+      results[f.path][f.md5_hash] ||= []
+      results[f.path][f.md5_hash] << f.version
     end
+
+    results
   end
 
   # @param [ String ] url
-  # @param [ Hash ] options
+  # @param [ Hash ] opts
   #   :unique
   #   :verbose
-  def fingerprint(url, options = {})
+  def fingerprint(url, opts = {})
     url += '/' if url[-1, 1] != '/'
-    uri = URI.parse(url)
 
-    Version.all.sort { |a, b| compare_version(a.number, b.number) }.each do |version|
-      fingerprints = fingerprints(version, options[:unique])
-      total_urls   = fingerprints.count
-      matches      = 0
-      percent      = 0
+    uri               = URI.parse(url)
+    detected_versions = []
+    fingerprints      = fingerprints(opts[:unique])
+    bar               = ProgressBar.create(total: fingerprints.size, title: 'Fingerprinting -', format: '%t %a <%B> (%c / %C) %P%% %e')
 
-      fingerprints.each do |f|
-        path = f.path.respond_to?(:value) ? f.path.value : f.path
-        url  = uri.merge(URI.encode(path)).to_s
+    fingerprints.each do |path, f|
+      bar.progress += 1
 
-        if web_page_md5(url) == f.md5_hash
-          matches += 1
-          puts "#{url} matches v#{version.number}" if options[:verbose]
-        end
+      url    = uri.merge(URI.encode(path)).to_s
+      md5sum = web_page_md5(url)
 
-        percent = ((matches / total_urls.to_f) * 100).round(2)
+      next unless f.key?(md5sum)
 
-        print("Version #{version.number} [#{matches}/#{total_urls} #{percent}% matches]\r")
+      versions = f[md5sum]
+
+      if versions.size == 1
+        puts
+        puts "Unique Match found for v#{versions.first}: #{url} -> #{md5sum}"
+        return
+      else
+        detected_versions << versions
       end
+    end
 
-      puts if total_urls > 0 # Avoiding the new line if the version has no fingerprints (can happen with unique fingerprints)
-
-      if options[:unique] && matches > 0
-        puts "The version is very likely to be #{version.number}. Do you still want to continue anyway ? [y/N]"
-        break unless Readline.readline =~ /\Ay/i
-      end
+    if detected_versions.empty?
+      puts 'No match found'
+    else
+      "Potential versions: #{detected_versions.sort_by(&:size).first}"
     end
   end
 end
