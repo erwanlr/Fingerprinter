@@ -161,7 +161,8 @@ class Fingerprinter
 
       if versions.size == 1
         puts
-        puts "Unique Match found for v#{versions.first}: #{url} -> #{md5sum}"
+        puts "Unique Match found for v#{versions.first}:"
+        puts " - #{url} -> #{md5sum}"
         return
       else
         detected_versions << versions
