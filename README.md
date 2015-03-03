@@ -13,6 +13,7 @@ This script goal is to try to find the version of the remote application/third p
 - FCKeditor
 - Liferay
 - PHPMyAdmin (currentlly only the manual installation versions)
+- PunBB [Experimental]
 - TinyMCE
 - Umbraco [Experimental]
 - WordPress
