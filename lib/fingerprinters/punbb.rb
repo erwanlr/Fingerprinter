@@ -19,4 +19,13 @@ class Punbb < Fingerprinter
 
     versions
   end
+
+  def extract_archive(archive_path, dest)
+    super(archive_path, dest)
+
+    # v1.1.x & 1.2.x contain all the files in the upload directory
+    upload_dir = File.join(dest, 'upload')
+
+    rebase(upload_dir, dest) if Dir.exist?(upload_dir)
+  end
 end
