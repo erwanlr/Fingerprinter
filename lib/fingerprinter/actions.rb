@@ -24,6 +24,7 @@ class Fingerprinter
                      'FROM fingerprints ' \
                      'LEFT JOIN versions ON version_id = versions.id ' \
                      'LEFT JOIN paths on path_id = paths.id ' \
+                     'WHERE path LIKE "%themes/twentyfourteen%" ' \
                      'ORDER BY version DESC'
   def auto_update
     puts 'Retrieving remote version numbers ...'
@@ -172,7 +173,7 @@ class Fingerprinter
     if detected_versions.empty?
       puts 'No match found'
     else
-      "Potential versions: #{detected_versions.sort_by(&:size).first}"
+      puts "Potential versions: #{detected_versions.inject(:&).join(', ')}"
     end
   end
 end
