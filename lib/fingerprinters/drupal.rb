@@ -3,7 +3,6 @@
 class Drupal < Fingerprinter
   include IgnorePattern::PHP
 
-  # TODO: get the versions & DL links from http://ftp.drupal.org/files/projects/
   def downloadable_versions
     base_url = 'https://www.drupal.org/node/3060/release?&page=%i'
     page_id  = 0
