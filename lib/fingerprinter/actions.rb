@@ -24,7 +24,6 @@ class Fingerprinter
                      'FROM fingerprints ' \
                      'LEFT JOIN versions ON version_id = versions.id ' \
                      'LEFT JOIN paths on path_id = paths.id ' \
-                     'WHERE path LIKE "%themes/twentyfourteen%" ' \
                      'ORDER BY version DESC'
   def auto_update
     puts 'Retrieving remote version numbers ...'
