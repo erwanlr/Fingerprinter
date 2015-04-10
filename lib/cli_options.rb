@@ -8,7 +8,10 @@ require 'optparse'
   list_versions: false
 }
 
-SUPPORTED_APPS = %w(wordpress fckeditor apache-icons phpmyadmin tinymce drupal umbraco cms-made-simple ckeditor liferay django-cms concrete5 punbb)
+SUPPORTED_APPS = %w(
+  apache-icons ckeditor cms-made-simple concrete5 django-cms drupal fckeditor liferay
+  phpmyadmin prestashop punbb tinymce umbraco wordpress
+)
 
 OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   opts.on('--proxy PROXY', '-p', 'Proxy to use during the fingerprinting') do |proxy|
