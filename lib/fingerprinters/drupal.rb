@@ -3,13 +3,14 @@
 class Drupal < Fingerprinter
   include IgnorePattern::PHP
 
+  # TODO: get the versions & DL links from http://ftp.drupal.org/files/projects/
   def downloadable_versions
     base_url = 'https://www.drupal.org/node/3060/release?&page=%i'
     page_id  = 0
     versions = {}
 
     loop do
-      page = Nokogiri::HTML(Typhoeus.get(sprintf(base_url, page_id)).body)
+      page = Nokogiri::HTML(Typhoeus.get(format(base_url, page_id), headers: { 'User-Agent' => 'cURL' }).body)
 
       page.css('span.file a').each do |node|
         version = node.text.strip[/\Adrupal-([0-9.]+).tar.gz\z/i, 1]
