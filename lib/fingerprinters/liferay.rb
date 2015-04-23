@@ -1,8 +1,6 @@
 
 # LifeRay (http://sourceforge.net/projects/lportal/ & https://www.liferay.com/)
 class Liferay < Fingerprinter
-  include IgnorePattern::JAVA
-
   def root_url
     'http://sourceforge.net/projects/lportal/files/Liferay%20Portal/'
   end
@@ -48,5 +46,9 @@ class Liferay < Fingerprinter
     end
 
     fail "Unable to locate web folder in #{dest}"
+  end
+
+  def ignore_pattern
+    /\A*.(jspf?|jar|class|war|xsd|dtd)\z/i
   end
 end
