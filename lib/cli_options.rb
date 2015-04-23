@@ -1,11 +1,13 @@
 require 'optparse'
 
 @options = {
-  verbose:       false,
-  db_verbose:    false,
-  update:        false,
-  update_all:    false,
-  list_versions: false
+  verbose:        false,
+  db_verbose:     false,
+  update:         false,
+  update_all:     false,
+  list_versions:  false,
+  timeout:        20,
+  connecttimeout: 5
 }
 
 SUPPORTED_APPS = %w(
@@ -16,6 +18,14 @@ SUPPORTED_APPS = %w(
 OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   opts.on('--proxy PROXY', '-p', 'Proxy to use during the fingerprinting') do |proxy|
     @options[:proxy] = proxy
+  end
+
+  opts.on('--timeout SECONDS', 'The number of seconds for the request to be performed, default 20s') do |timeout|
+    @options[:timeout] = timeout
+  end
+
+  opts.on('--connect-timeout SECONDS', 'The number of seconds for the connection to be established before timeout, default 5s') do |timeout|
+    @options[:connecttimeout] = timeout
   end
 
   opts.on('--cookies-file FILE-PATH', '--cf', 'The cookies file to use during the fingerprinting') do |file_path|
