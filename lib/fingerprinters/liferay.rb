@@ -45,10 +45,11 @@ class Liferay < Fingerprinter
       end
     end
 
+    # Some versions (i.e <= 4.3.0 have a different web folder and have to be added manually)
     fail "Unable to locate web folder in #{dest}"
   end
 
   def ignore_pattern
-    %r{\A((web\-inf|.*ckeditor/plugins).*|.*.(jspf?|jar|class|war|xsd|dtd))\z}i
+    %r{\A(.*(web\-inf|ckeditor/plugins).*|.*.(jspf?|jar|class|war|xsd|dtd))\z}i
   end
 end
