@@ -49,6 +49,6 @@ class Liferay < Fingerprinter
   end
 
   def ignore_pattern
-    /\A*.(jspf?|jar|class|war|xsd|dtd)\z/i
+    %r{\A((web\-inf|.*ckeditor/plugins).*|.*.(jspf?|jar|class|war|xsd|dtd))\z}i
   end
 end
