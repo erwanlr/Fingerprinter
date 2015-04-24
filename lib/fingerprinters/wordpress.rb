@@ -14,4 +14,8 @@ class Wordpress < Fingerprinter
 
     versions
   end
+
+  def ignore_pattern
+    /\A*(wp\-content\/(plugins|themes).*|.php)\z/i
+  end
 end
