@@ -3,6 +3,14 @@ Fingerprinter
 
 This script goal is to try to find the version of the remote application/third party script etc by using a fingerprint approach.
 
+#### Installation
+Inside the cloned repo directory:
+
+```
+$ gem install bundler
+$ bundle install
+```
+
 #### Currently Supported Apps
 - Apache Icons
 - CKEditor
