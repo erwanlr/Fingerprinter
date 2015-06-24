@@ -28,7 +28,6 @@ class Liferay < Fingerprinter
         next unless file =~ /tomcat\-.*\.zip\z/i
 
         versions[version.gsub(/\s+/, '-')] = download_url(version, file)
-        # p "#{version} => #{download_url(version, file)}"
         break
       end
     end
@@ -40,7 +39,7 @@ class Liferay < Fingerprinter
     super(archive_path, dest)
 
     Dir[File.join(dest, '**/')].each do |entry|
-      [/webapps\/ROOT/i, /liferay\-portal\.war/, /ROOT\.war/i].each do |pattern|
+      [%r{webapps\/ROOT}i, /liferay\-portal\.war/, /ROOT\.war/i].each do |pattern|
         return rebase(entry, dest) if entry =~ pattern
       end
     end

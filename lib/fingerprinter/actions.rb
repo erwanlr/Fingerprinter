@@ -72,7 +72,7 @@ class Fingerprinter
     db_version  = Version.create(number: version_number)
 
     puts 'Processing Fingerprints'
-    Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exists?(f) }.each do |filename|
+    Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exist?(f) }.each do |filename|
       hash        = Digest::MD5.file(filename).hexdigest
       file_path   = filename.gsub(archive_dir, '')
       db_path     = Path.first_or_create(value: file_path)

@@ -20,9 +20,9 @@ class Fingerprinter
   # @param [ String ] archive_url
   # @param [ String ] dest
   def download_archive(archive_url, dest)
-    %x{wget -q -np -O #{dest} #{archive_url} > /dev/null}
+    `wget -q -np -O #{dest} #{archive_url} > /dev/null`
 
-    fail 'Download error' unless $CHILD_STATUS != 0 && File.exists?(dest)
+    fail 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end
 
   # @param [ String ] archive_path The archive file path

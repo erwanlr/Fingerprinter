@@ -21,7 +21,7 @@ class ApacheIcons < Fingerprinter
     super(archive_path, dest)
     # Apache >= 2.0 uses docs/icons, < 2.0 uses icons
     [File.join(dest, 'docs', 'icons'), File.join(dest, 'icons')].each do |icon_dir|
-      rebase(icon_dir, dest) if Dir.exists?(icon_dir)
+      rebase(icon_dir, dest) if Dir.exist?(icon_dir)
     end
   end
 end
