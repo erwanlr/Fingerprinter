@@ -42,7 +42,10 @@ This mode is faster than the previous one, and more reliable. However it is poss
 #### Options
 ```
 -p, --proxy PROXY                   Proxy to use during the fingerprinting
+    --timeout SECONDS               The number of seconds for the request to be performed, default 20s
+    --connect-timeout SECONDS       The number of seconds for the connection to be established before timeout, default 5s
     --cookies-file, --cf FILE-PATH  The cookies file to use during the fingerprinting
+    --cookies-string, --cs COOKIE/S The cookies string to use in requests
 -d, --db PATH-TO-DB                 Path to the db of the app-name (default is db/<app-name>.db)
 -u, --update                        Update the db of the app-name
 -m, --manual DIRECTORY-PATH         To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
