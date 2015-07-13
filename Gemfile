@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'addressable', '~> 2.3.8'
 gem 'typhoeus', '~> 0.7'
 gem 'nokogiri', '~> 1.6'
 gem 'dearchiver', '~> 0.0'

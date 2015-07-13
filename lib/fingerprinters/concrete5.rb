@@ -3,15 +3,33 @@
 class Concrete5 < Fingerprinter
   include IgnorePattern::PHP
 
+  def download_page_uri
+    @download_page_uri ||= Addressable::URI.parse('https://www.concrete5.org/developers/developer-downloads/')
+  end
+
   def downloadable_versions
+    versions = legacy_versions
+
+    # Adds the latest version (from the get started page)
+    node = Nokogiri::HTML(Typhoeus.get('https://www.concrete5.org/get-started').body).css('div.content-left p a').first
+
+    version = node.text.strip[/Download ([0-9\.]+)\z/i, 1]
+    dl_path = node['href'].strip
+
+    versions[version] = download_page_uri.join(dl_path).to_s
+
+    versions
+  end
+
+  def legacy_versions
     versions = {}
-    page = Nokogiri::HTML(Typhoeus.get('http://www.concrete5.org/developers/developer-downloads/').body)
+    page     = Nokogiri::HTML(Typhoeus.get(download_page_uri.to_s).body)
 
     page.css('div#body-content p a').each do |node|
       version = node.parent.text.strip[/\A([0-9\.]+)\s*\(/i, 1]
       dl_path = node['href'].strip
 
-      versions[version] = "http://www.concrete5.org#{dl_path}"
+      versions[version] = download_page_uri.join(dl_path).to_s
     end
 
     versions
