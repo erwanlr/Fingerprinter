@@ -33,7 +33,9 @@ class Fingerprinter
 
     a = Dearchiver.new(filename: archive_path)
     fail 'CRC Error' unless a.crc_ok?
-    a.extract_to(dest)
+
+    extracted = a.extract_to(dest).reject { |f| f.nil? || f.strip.empty? }
+    fail 'No files extracted' if extracted.empty?
 
     # If the archive had a directory containing the files
     # we move all the files at the root of dest
