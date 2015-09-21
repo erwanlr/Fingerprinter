@@ -6,6 +6,7 @@ require 'active_support/inflector'
 require 'experimental'
 require 'fingerprinter/archive'
 require 'fingerprinter/actions'
+require 'fingerprinter/github_hosted'
 
 # Fingerprinter
 class Fingerprinter
@@ -17,7 +18,7 @@ class Fingerprinter
   # @return [ Fingerprinter ]
   def self.load(app_name, options = {})
     if SUPPORTED_APPS.include?(app_name.downcase)
-      Object.const_get(app_name.downcase.gsub(/-/, '_').camelize).new(options)
+      Object.const_get(app_name.downcase.tr('-', '_').camelize).new(options)
     else
       fail "The application #{app_name} is not supported. Currently supported: #{SUPPORTED_APPS.join(', ')}"
     end
