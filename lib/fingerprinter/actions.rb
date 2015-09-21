@@ -166,6 +166,7 @@ class Fingerprinter
         return
       else
         detected_versions << versions
+        puts " - #{url} (#{md5sum}) matches #{versions.join(' ')}" if opts[:verbose]
       end
     end
 
