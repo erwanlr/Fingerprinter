@@ -21,7 +21,7 @@ class DjangoCms < Fingerprinter
     versions
   end
 
-  # @return [ Nokogiri::HTML, nil ] The next download page if any, or nil
+  # @return [ Nokogiri::HTML, nil ] The next release page if any, or nil
   def next_page(current_page)
     link = current_page.search('div.pagination a:nth-child(2)').first
 

@@ -2,37 +2,29 @@
 # Tiny MCE
 class Tinymce < Fingerprinter
   def downloadable_versions
-    moxiecode_versions.merge(github_versions)
-  end
-
-  # Versions from MoxieCode (latest to 3.5.9)
-  def moxiecode_versions
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get('https://github.com/tinymce/tinymce/releases').body)
 
-    page.css('span.tag-name').each do |node|
-      version = node.text.strip
+    loop do
+      page.css('h3 a span.tag-name').each do |node|
+        version = node.text.strip
 
-      if version =~ /\A[0-9\.]+\z/
-        versions[version] = "http://download.moxiecode.com/tinymce/tinymce_#{version}.zip"
-        break if Gem::Version.new(version) < Gem::Version.new('3.5.9')
+        next unless version =~ /\A[0-9\.]+\z/ # Only stable versions
+
+        versions[version] = "https://github.com/tinymce/tinymce/archive/#{version}.zip"
       end
+
+      page = next_page(page)
+      break unless page
     end
+
     versions
   end
 
-  # Versions from GitHub (< 3.5.9)
-  def github_versions
-    versions = {}
-    page     = Nokogiri::HTML(Typhoeus.get('https://github.com/tinymce/tinymce/downloads').body)
+  # @return [ Nokogiri::HTML, nil ] The next release page if any, or nil
+  def next_page(current_page)
+    link = current_page.search('div.pagination a:nth-child(2)').first
 
-    page.css('h4 a').each do |node|
-      version = node.text.strip[/\Atinymce_([0-9.]+).zip\z/, 1]
-
-      if version
-        versions[version] = "https://github.com/downloads/tinymce/tinymce/tinymce_#{version}.zip"
-      end
-    end
-    versions
+    link ? Nokogiri::HTML(Typhoeus.get(link['href'].strip).body) : nil
   end
 end
