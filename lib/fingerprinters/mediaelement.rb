@@ -5,7 +5,10 @@ class Mediaelement < Fingerprinter
   include Experimental
 
   def downloadable_versions
-    github_releases('johndyer/mediaelement')
+    # versions below 1.0.4 are deleted as they do not contain the JS files
+    github_releases('johndyer/mediaelement').delete_if do |key, _|
+      %w(1.0.3 1.0.2 1.0.1 1.0.0).include?(key)
+    end
   end
 
   def extract_archive(archive_path, dest)
