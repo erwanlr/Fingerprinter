@@ -21,6 +21,7 @@ $ bundle install
 - FCKeditor
 - Liferay
 - Magento Community Edition [Experimental]
+- Mediaelement [Experimental]
 - PHPMyAdmin (currentlly only the manual installation versions)
 - PrestaShop [Experimental]
 - PunBB [Experimental]
@@ -79,7 +80,7 @@ Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
         --cookies-string, --cs COOKIE/S                The cookies string to use in requests
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, drupal, fckeditor, liferay, magento-ce, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, drupal, fckeditor, liferay, magento-ce, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints

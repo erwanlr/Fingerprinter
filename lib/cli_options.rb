@@ -12,7 +12,7 @@ require 'optparse'
 
 SUPPORTED_APPS = %w(
   apache-icons ckeditor cms-made-simple concrete5 django-cms drupal fckeditor liferay
-  magento-ce phpmyadmin prestashop punbb tinymce umbraco wordpress
+  magento-ce mediaelement phpmyadmin prestashop punbb tinymce umbraco wordpress
 )
 
 OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
