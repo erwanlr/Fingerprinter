@@ -13,7 +13,7 @@ class Fingerprinter
       page     = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
 
       loop do
-        page.css('h3 a span.tag-name').each do |node|
+        page.css('h1.release-title a, h3 a span.tag-name').each do |node|
           version = node.text.strip
 
           next unless version =~ version_pattern
