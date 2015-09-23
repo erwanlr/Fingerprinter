@@ -4,19 +4,20 @@ class Fingerprinter
   # of a soft hosted on GitHub
   module GithubHosted
     # @param [ String ] repository
-    # @param [ Regexp ] version_pattern
+    # @param [ Regexp ] version_pattern Pattern to capture the version
     #
     # @yield version, release_download_url
     # @return [ Hash ] version => release_download_url
-    def github_releases(repository, version_pattern = /\A[0-9\.]+\z/)
-      versions = {}
-      page     = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
+    def github_releases(repository, version_pattern = /([0-9\.]+)\z/)
+      versions    = {}
+      page        = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
+      tag_pattern = %r{/releases/tag/#{version_pattern}}i
 
       loop do
-        page.css('h1.release-title a, h3 a span.tag-name').each do |node|
-          version = node.text.strip
+        page.css('h1.release-title a, h3 a').each do |node|
+          version = node['href'][tag_pattern, 1]
 
-          next unless version =~ version_pattern
+          next unless version
 
           versions[version] = release_download_url(repository, version)
 
