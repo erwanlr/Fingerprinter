@@ -19,7 +19,7 @@ $ bundle install
 - Django-CMS
 - Drupal
 - FCKeditor
-- Joomla! [Experimental]
+- Joomla! [Experimental] [https://docs.joomla.org/Category:Version_History]
 - Liferay
 - Magento Community Edition [Experimental]
 - Mediaelement [Experimental]
