@@ -88,9 +88,9 @@ class Fingerprinter
   def show_unique_fingerprints(version_number)
     version = Version.first(number: version_number)
 
-    puts "Results for #{version.number}:"
-
     if version
+      puts "Results for #{version.number}:"
+
       repository(:default).adapter.select(UNIQUE_FINGERPRINTS).each do |f|
         puts "#{f.md5_hash} #{f.path}" if f.version_id == version.id
       end
