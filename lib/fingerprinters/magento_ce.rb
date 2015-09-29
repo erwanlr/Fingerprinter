@@ -50,7 +50,7 @@ class MagentoCe < Fingerprinter
     # Adds the formKey to the download URL
     archive_url += form_key
 
-    `wget -q -np -O #{dest} --header='Cookie: #{cookie}' #{archive_url} > /dev/null`
+    `wget -q -np -O #{dest.shellescape} --header='Cookie: #{cookie}' #{archive_url.shellescape} > /dev/null`
 
     fail 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end

@@ -1,5 +1,6 @@
 require 'dearchiver'
 require 'fileutils'
+require 'shellwords'
 
 # Fingerprinter Archive methods
 class Fingerprinter
@@ -20,7 +21,7 @@ class Fingerprinter
   # @param [ String ] archive_url
   # @param [ String ] dest
   def download_archive(archive_url, dest)
-    `wget -q -np -O #{dest} #{archive_url} > /dev/null`
+    `wget -q -np -O #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
 
     fail 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end

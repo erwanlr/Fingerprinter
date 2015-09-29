@@ -17,9 +17,10 @@ $ bundle install
 - CMS Made Simple [Experimental]
 - Concrete5
 - Django-CMS
+- Dnn-CMS (DotNetNuke CMS) [Experimental] [[Version History](http://support.managed.com/kb/a2026/dnn-dotnetnuke-secure-and-latest-versions.aspx)]
 - Drupal
 - FCKeditor
-- Joomla! [Experimental] [https://docs.joomla.org/Category:Version_History]
+- Joomla! [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]
 - Liferay
 - Magento Community Edition [Experimental]
 - Mediaelement [Experimental]
@@ -81,7 +82,7 @@ Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
         --cookies-string, --cs COOKIE/S                The cookies string to use in requests
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, drupal, fckeditor, joomla, liferay, magento-ce, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, dnn-cms drupal, fckeditor, joomla, liferay, magento-ce, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
