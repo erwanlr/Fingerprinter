@@ -16,11 +16,11 @@ $ bundle install
 - CKEditor
 - CMS Made Simple [Experimental]
 - Concrete5
-- Django-CMS
-- Dnn-CMS (DotNetNuke CMS) [Experimental] [[Version History](http://support.managed.com/kb/a2026/dnn-dotnetnuke-secure-and-latest-versions.aspx)]
+- Django CMS
+- DNN CMS (DotNetNuke CMS) [Experimental] [[Version History](http://support.managed.com/kb/a2026/dnn-dotnetnuke-secure-and-latest-versions.aspx) | [Security Updates](http://www.dnnsoftware.com/platform/manage/security-center)]
 - Drupal
 - FCKeditor
-- Joomla! [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]
+- Joomla [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]
 - Liferay
 - Magento Community Edition [Experimental]
 - Mediaelement [Experimental]
