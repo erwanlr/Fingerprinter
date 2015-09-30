@@ -37,7 +37,7 @@ $ bundle install
 ./fingerprinter.rb --app-name wordpress --fingerprint http://target.com/blog/
 ```
 ##### Using unique Fingerprints
-With this mode, only the unique Fingerprints (accross all the application's versions files) will be tested.
+With this mode, only the unique Fingerprints (across all the application's versions files) will be tested.
 This mode is faster than the previous one, and more reliable. However it is possible that an application's version does not have any unique fingerprints (like Apache Icons, which only has 2 unique fingerprints for the version 2.4.4, and none for the others)
 ```
 ./fingerprinter.rb --app-name wordpress --unique-fingerprint http://target.com/blog/
