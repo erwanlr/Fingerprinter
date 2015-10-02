@@ -17,7 +17,7 @@ $ bundle install
 - CMS Made Simple [Experimental]
 - Concrete5
 - Django CMS
-- DNN CMS (DotNetNuke CMS) [Experimental] [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center)]
+- DNN CMS (DotNetNuke CMS) [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center)]
 - Drupal
 - FCKeditor
 - Joomla [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]

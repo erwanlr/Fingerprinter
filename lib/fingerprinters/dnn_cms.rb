@@ -1,7 +1,6 @@
 
 # DotNetNuke CMS
 class DnnCms < Fingerprinter
-  include Experimental
   include IgnorePattern::ASP
 
   def downloadable_versions
