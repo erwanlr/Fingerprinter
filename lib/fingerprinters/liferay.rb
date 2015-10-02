@@ -16,7 +16,7 @@ class Liferay < Fingerprinter
     page.css('a.name').each do |link|
       version = link.text.strip
 
-      next if version =~ /\A[0-9.]+ ?(?:RC|M|B)[0-9]?\z/i # Only keep the stables
+      next if version =~ /\A[0-9.]+ ?(?:A|B|M|RC)[0-9]?\z/i # Only keep the stables
 
       version_url = "#{root_url}#{URI.encode(version)}/"
 
