@@ -11,10 +11,9 @@ class Prestashop < Fingerprinter
     page.css('a.btn-more').each do |link|
       href = link['href'].strip
 
-      if href
-        version = href[/prestashop_([0-9.]+)\.zip$/, 1]
-        versions[version] = href
-      end
+      next unless href =~ /prestashop_([0-9.]+)\.zip$/ # Only stable releases
+
+      versions[Regexp.last_match[1]] = href
     end
 
     versions
