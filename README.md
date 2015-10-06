@@ -22,29 +22,29 @@ $ bundle install
 - Drupal [[Security Advisories](https://www.drupal.org/security) | [CVEs](http://www.cvedetails.com/product/2387/Drupal-Drupal.html?vendor_id=1367) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=drupal)]
   - Version disclosed from /CHANGELOG.txt
 - FCKeditor [[CVEs](http://www.cvedetails.com/vendor/2724/Fckeditor.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=fckeditor)]
-- Joomla [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]
-- Liferay
-- Magento Community Edition [Experimental]
-- Mediaelement [Experimental]
-- PHPMyAdmin (currentlly only the manual installation versions)
-- PrestaShop [Experimental]
-- PunBB [Experimental]
-- TinyMCE
-- Umbraco [Experimental]
-- WordPress
+- Joomla [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History) | [Security Centre](http://developer.joomla.org/security-centre.html) | [CVEs](http://www.cvedetails.com/product/6129/Joomla-Joomla.html?vendor_id=3496) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=joomla)]
+- Liferay [[CVEs](http://www.cvedetails.com/vendor/2114/Liferay.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=liferay)]
+- Magento Community Edition [Experimental] [[CVEs](http://www.cvedetails.com/vendor/15393/Magento.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=magento) | [Exploits](http://www.magentoexploit.com/)]
+- Mediaelement [Experimental] [[CVEs](http://www.cvedetails.com/product/27053/Mediaelementjs-Mediaelement.js.html?vendor_id=13110)]
+- PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
+- PrestaShop [Experimental] [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
+- PunBB [Experimental] [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)
+- TinyMCE [[CVEs](http://www.cvedetails.com/vendor/11716/Tinymce.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=tinymce)]
+- Umbraco [Experimental] [[CVEs](http://www.cvedetails.com/product/30682/Umbraco-Umbraco-Cms.html?vendor_id=15064) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=umbraco)]]
+- WordPress [[CVEs](http://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=wordpress) | [WP Vuln DB](https://wpvulndb.com/)]
   - Version disclosed from:
     - / (meta generator, stylesheet numbers: ?ver=)
     - Generator tag in /feed/, /feed/rdf/, /feed/atom/, /sitemap.xml(.gz) , /wp-links-opml.php
     - /readme.html
 
 #### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
-- ExpressionEngine - Need to be registered to download the latest free core version. No page to DL them all.
+- ExpressionEngine - Need to be registered to download the latest free core version. No page to DL them all. [[CVEs](http://www.cvedetails.com/product/12972/Expressionengine-Expressionengine.html?vendor_id=7662) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=ExpressionEngine)]
   - Version disclosed from the footer and rss link (generator tag)
-- Kentico CMS - Need to provide personal details / register to DL the latest free version [[Hotfixes](http://devnet.kentico.com/download/hotfixes)]
+- Kentico CMS - Need to provide personal details / register to DL the latest free version [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=kentico) | [Hotfixes](http://devnet.kentico.com/download/hotfixes)]
   - Version disclosed from /CMSHelp/ (main version in title tag)
-- SharePoint - Not free / couldn't find a free or CE edition
+- SharePoint - Not free / couldn't find a free or CE edition [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=sharepoint)]
   - Version disclosed from /_vti_pvt/service.cnf (Not verified)
-- Sitecore CMS - Need to be registered, not sure if all versions would then be available to DL [[Security Advisories](https://kb.sitecore.net/SearchResults#fltr=t3,p2&slider=0,11&pg=1) | [Latest Version Numbers](https://dev.sitecore.net/en/Downloads/Sitecore_Experience_Platform.aspx) | [Version numbers & revisions](https://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%207/Update/7_0_rev_130424.aspx)]
+- Sitecore CMS - Need to be registered, not sure if all versions would then be available to DL [[CVEs](http://www.cvedetails.com/product/17161/Sitecore-CMS.html?vendor_id=9609) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=sitecore) | [Security Advisories](https://kb.sitecore.net/SearchResults#fltr=t3,p2&slider=0,11&pg=1) | [Latest Version Numbers](https://dev.sitecore.net/en/Downloads/Sitecore_Experience_Platform.aspx) | [Version numbers & revisions](https://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%207/Update/7_0_rev_130424.aspx)]
   - Version disclosed from
     - /sitecore/login
     - /sitecore/shell/sitecore.version.xml
