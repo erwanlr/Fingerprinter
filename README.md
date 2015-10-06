@@ -28,9 +28,9 @@ $ bundle install
 - Mediaelement [Experimental] [[CVEs](http://www.cvedetails.com/product/27053/Mediaelementjs-Mediaelement.js.html?vendor_id=13110)]
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
 - PrestaShop [Experimental] [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
-- PunBB [Experimental] [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)
+- PunBB [Experimental] [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)]
 - TinyMCE [[CVEs](http://www.cvedetails.com/vendor/11716/Tinymce.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=tinymce)]
-- Umbraco [Experimental] [[CVEs](http://www.cvedetails.com/product/30682/Umbraco-Umbraco-Cms.html?vendor_id=15064) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=umbraco)]]
+- Umbraco [Experimental] [[CVEs](http://www.cvedetails.com/product/30682/Umbraco-Umbraco-Cms.html?vendor_id=15064) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=umbraco)]
 - WordPress [[CVEs](http://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=wordpress) | [WP Vuln DB](https://wpvulndb.com/)]
   - Version disclosed from:
     - / (meta generator, stylesheet numbers: ?ver=)
