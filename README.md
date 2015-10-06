@@ -13,15 +13,15 @@ $ bundle install
 
 #### Currently Supported Apps (along with some location/s of versions being disclosed)
 - Apache Icons
-- CKEditor
-- CMS Made Simple [Experimental]
-- Concrete5
-- Django CMS
+- CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
+- CMS Made Simple [Experimental] [[CVEs](http://www.cvedetails.com/vendor/3206/Cmsmadesimple.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=cms+made+simple)]
+- Concrete5 [[CVEs](http://www.cvedetails.com/vendor/11506/Concrete5.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=concrete5)]
+- Django CMS [[CVEs](http://www.cvedetails.com/product/18211/Djangoproject-Django.html?vendor_id=10199)]
   - Version disclosed when logged as a privileged user (editor, Page Owner etc): ```<div class="cms_toolbar-item cms_toolbar-item-logo"><a href="/" title="---VERSION---">django CMS</a></div>```
-- DNN CMS (DotNetNuke) [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center)]
-- Drupal [[Security Advisories](https://www.drupal.org/security) | [CVEs](http://www.cvedetails.com/product/2387/Drupal-Drupal.html?vendor_id=1367)]
+- DNN CMS (DotNetNuke) [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center) | [CVEs](http://www.cvedetails.com/product/4306/Dotnetnuke-Dotnetnuke.html?vendor_id=2486) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=dotnetnuke)]
+- Drupal [[Security Advisories](https://www.drupal.org/security) | [CVEs](http://www.cvedetails.com/product/2387/Drupal-Drupal.html?vendor_id=1367) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=drupal)]
   - Version disclosed from /CHANGELOG.txt
-- FCKeditor
+- FCKeditor [[CVEs](http://www.cvedetails.com/vendor/2724/Fckeditor.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=fckeditor)]
 - Joomla [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]
 - Liferay
 - Magento Community Edition [Experimental]
