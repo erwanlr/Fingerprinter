@@ -11,14 +11,16 @@ $ gem install bundler
 $ bundle install
 ```
 
-#### Currently Supported Apps
+#### Currently Supported Apps (along with some location/s of versions being disclosed)
 - Apache Icons
 - CKEditor
 - CMS Made Simple [Experimental]
 - Concrete5
 - Django CMS
-- DNN CMS (DotNetNuke CMS) [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center)]
-- Drupal
+  - Version disclosed when logged as a privileged user (editor, Page Owner etc): ```<div class="cms_toolbar-item cms_toolbar-item-logo"><a href="/" title="---VERSION---">django CMS</a></div>```
+- DNN CMS (DotNetNuke) [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center)]
+- Drupal [[Security Advisories](https://www.drupal.org/security) | [CVEs](http://www.cvedetails.com/product/2387/Drupal-Drupal.html?vendor_id=1367)]
+  - Version disclosed from /CHANGELOG.txt
 - FCKeditor
 - Joomla [Experimental] [[Version History](https://docs.joomla.org/Category:Version_History)]
 - Liferay
@@ -30,6 +32,22 @@ $ bundle install
 - TinyMCE
 - Umbraco [Experimental]
 - WordPress
+  - Version disclosed from:
+    - / (meta generator, stylesheet numbers: ?ver=)
+    - Generator tag in /feed/, /feed/rdf/, /feed/atom/, /sitemap.xml(.gz) , /wp-links-opml.php
+    - /readme.html
+
+#### Unsupported Apps (along with the reason, some useful links & location/s of versions being disclosed)
+- ExpressionEngine - Need to be registered to download the latest free core version. No versions archive to DL them all.
+  - Version disclosed from the footer and rss link (generator tag)
+- Kentico CMS - Need to provide personal details / register to DL the latest free version [[Hotfixes](http://devnet.kentico.com/download/hotfixes)]
+  - Version disclosed from /CMSHelp/ (main version in title tag)
+- SharePoint - Not free / couldn't find a free or CE edition
+  - Version disclosed from /_vti_pvt/service.cnf (Not verified)
+- Sitecore CMS - Need to be registered, not sure if all versions would then be available to DL [[Security Advisories](https://kb.sitecore.net/SearchResults#fltr=t3,p2&slider=0,11&pg=1) | [Latest Version Numbers](https://dev.sitecore.net/en/Downloads/Sitecore_Experience_Platform.aspx) | [Version numbers & revisions](https://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%207/Update/7_0_rev_130424.aspx)]
+  - Version disclosed from
+    - /sitecore/login
+    - /sitecore/shell/sitecore.version.xml
 
 #### Basic Usage Examples
 ##### Using all the Fingerprints
