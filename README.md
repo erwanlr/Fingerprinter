@@ -37,7 +37,7 @@ $ bundle install
     - Generator tag in /feed/, /feed/rdf/, /feed/atom/, /sitemap.xml(.gz) , /wp-links-opml.php
     - /readme.html
 
-#### Unsupported Apps (along with the reason, some useful links & location/s of versions being disclosed)
+#### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
 - ExpressionEngine - Need to be registered to download the latest free core version. No page to DL them all.
   - Version disclosed from the footer and rss link (generator tag)
 - Kentico CMS - Need to provide personal details / register to DL the latest free version [[Hotfixes](http://devnet.kentico.com/download/hotfixes)]
