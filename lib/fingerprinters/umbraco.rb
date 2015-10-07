@@ -1,7 +1,6 @@
 
 # Umbraco
 class Umbraco < Fingerprinter
-  include Experimental
   include IgnorePattern::ASP
 
   def site_url
