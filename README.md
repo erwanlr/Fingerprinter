@@ -47,12 +47,12 @@ $ bundle install
   - Version disclosed from the footer and rss link (generator tag)
 - jQuery - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/11031/Jquery-Jquery.html?vendor_id=6538)]
   - Version disclosed from:
-    - filename of filepath
+    - Filename of filepath
     - In the Comments at the top of the file
     - By submitting $().jquery or jQuery().jquery in the Web Dev console of the Web browser on a page where the lib is loaded
 - jQuery UI - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/31126/Jquery-Jquery-Ui.html?vendor_id=6538)]
   - Version disclosed from:
-    - filename of filepath
+    - Filename of filepath
     - In the Comments at the top of the file
     - By submitting $.fn.jquery or jQuery.fn.jquery in the Web Dev console of the Web browser on a page where the lib is loaded
 - Kentico CMS - Need to provide personal details / register to DL the latest free version [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=kentico) | [Hotfixes](http://devnet.kentico.com/download/hotfixes)]
