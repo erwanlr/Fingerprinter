@@ -38,10 +38,27 @@ $ bundle install
     - /readme.html
 
 #### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
+- AngularJS - Fingerprints not needed for that (see below) [[Payloads](https://code.google.com/p/mustache-security/wiki/AngularJS)]
+  - Version disclosed from:
+    - filename or filepath
+    - In the comments at the top of the file
+    - By submitting angular.version in the Web Dev console of the Web browser on a page where the lib is loaded
 - ExpressionEngine - Need to be registered to download the latest free core version. No page to DL them all. [[CVEs](http://www.cvedetails.com/product/12972/Expressionengine-Expressionengine.html?vendor_id=7662) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=ExpressionEngine)]
   - Version disclosed from the footer and rss link (generator tag)
+- jQuery - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/11031/Jquery-Jquery.html?vendor_id=6538)]
+  - Version disclosed from:
+    - filename of filepath
+    - In the Comments at the top of the file
+    - By submitting $().jquery or jQuery().jquery in the Web Dev console of the Web browser on a page where the lib is loaded
+- jQuery UI - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/31126/Jquery-Jquery-Ui.html?vendor_id=6538)]
+  - Version disclosed from:
+    - filename of filepath
+    - In the Comments at the top of the file
+    - By submitting $.fn.jquery or jQuery.fn.jquery in the Web Dev console of the Web browser on a page where the lib is loaded
 - Kentico CMS - Need to provide personal details / register to DL the latest free version [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=kentico) | [Hotfixes](http://devnet.kentico.com/download/hotfixes)]
   - Version disclosed from /CMSHelp/ (main version in title tag)
+- PrettyPhoto - Fingerprints no needed for that (see below) [[CVEs](http://www.cvedetails.com/product/26726/No-margin-for-errors-Prettyphoto.html?vendor_id=13006)]
+  - Version disclosed from the comments at the top of the file
 - SharePoint - Not free / couldn't find a free or CE edition [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=sharepoint)]
   - Version disclosed from /_vti_pvt/service.cnf (Not verified)
 - Sitecore CMS - Need to be registered, not sure if all versions would then be available to DL [[CVEs](http://www.cvedetails.com/product/17161/Sitecore-CMS.html?vendor_id=9609) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=sitecore) | [Security Advisories](https://kb.sitecore.net/SearchResults#fltr=t3,p2&slider=0,11&pg=1) | [Latest Version Numbers](https://dev.sitecore.net/en/Downloads/Sitecore_Experience_Platform.aspx) | [Version numbers & revisions](https://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%207/Update/7_0_rev_130424.aspx)]
