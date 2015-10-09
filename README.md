@@ -26,6 +26,7 @@ $ bundle install
 - Liferay [[CVEs](http://www.cvedetails.com/vendor/2114/Liferay.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=liferay)]
 - Magento Community Edition [Experimental] [[CVEs](http://www.cvedetails.com/vendor/15393/Magento.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=magento) | [Exploits](http://www.magentoexploit.com/)]
 - Mediaelement [Experimental] [[CVEs](http://www.cvedetails.com/product/27053/Mediaelementjs-Mediaelement.js.html?vendor_id=13110)]
+- Orchard (beware that backporting is used) [[CVEs](http://www.cvedetails.com/product/23837/Orchardproject-Orchard.html?vendor_id=12571) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=orchard)]
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
 - PrestaShop [Experimental] [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
 - PunBB [Experimental] [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)]
