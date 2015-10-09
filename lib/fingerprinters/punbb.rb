@@ -1,7 +1,6 @@
 
 # PunBB
 class Punbb < Fingerprinter
-  include Experimental
   include IgnorePattern::PHP
 
   def downloadable_versions

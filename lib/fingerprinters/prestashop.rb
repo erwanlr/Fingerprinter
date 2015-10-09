@@ -1,7 +1,6 @@
 
 # Prestashop
 class Prestashop < Fingerprinter
-  include Experimental
   include IgnorePattern::PHP
 
   def downloadable_versions

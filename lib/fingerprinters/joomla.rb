@@ -2,7 +2,6 @@
 # Joomla!
 class Joomla < Fingerprinter
   include GithubHosted
-  include Experimental
   include IgnorePattern::PHP
 
   def downloadable_versions
