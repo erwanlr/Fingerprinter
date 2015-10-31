@@ -1,6 +1,6 @@
 SUPPORTED_APPS = %w(
   apache-icons ckeditor cms-made-simple concrete5 django-cms dnn-cms drupal fckeditor joomla liferay
-  magento-ce mediaelement orchard phpmyadmin prestashop punbb tinymce umbraco wordpress
+  magento-ce mantisbt mediaelement orchard phpmyadmin prestashop punbb tinymce umbraco wordpress
 )
 
 require 'fingerprinter'

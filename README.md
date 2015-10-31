@@ -25,6 +25,7 @@ $ bundle install
 - Joomla [[Version History](https://docs.joomla.org/Category:Version_History) | [Security Centre](http://developer.joomla.org/security-centre.html) | [CVEs](http://www.cvedetails.com/product/6129/Joomla-Joomla.html?vendor_id=3496) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=joomla)]
 - Liferay [[CVEs](http://www.cvedetails.com/vendor/2114/Liferay.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=liferay)]
 - Magento Community Edition [Experimental] [[CVEs](http://www.cvedetails.com/vendor/15393/Magento.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=magento) | [Exploits](http://www.magentoexploit.com/)]
+- Mantis Bug Tracker [Experimental] [[CVEs](http://www.cvedetails.com/vulnerability-list/vendor_id-1245/product_id-2160/Mantis-Mantis.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=mantis) | [Releases](https://www.mantisbt.org/forums/viewforum.php?f=5)]
 - Mediaelement [Experimental] [[CVEs](http://www.cvedetails.com/product/27053/Mediaelementjs-Mediaelement.js.html?vendor_id=13110)]
 - Orchard (beware that backporting is used) [[CVEs](http://www.cvedetails.com/product/23837/Orchardproject-Orchard.html?vendor_id=12571) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=orchard)]
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
@@ -118,7 +119,7 @@ Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
         --cookies-string, --cs COOKIE/S                The cookies string to use in requests
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, dnn-cms drupal, fckeditor, joomla, liferay, magento-ce, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, dnn-cms drupal, fckeditor, joomla, liferay, magento-ce, mantisbt, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
