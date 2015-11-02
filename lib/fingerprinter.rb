@@ -52,10 +52,6 @@ class Fingerprinter
     fail NotImplementedError
   end
 
-  def web_page_md5(url)
-    Digest::MD5.hexdigest(Typhoeus.get(url, request_options).body)
-  end
-
   protected
 
   def request_options

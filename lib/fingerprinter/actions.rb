@@ -137,6 +137,10 @@ class Fingerprinter
     results
   end
 
+  def verbose_format
+    '%i - %s - %s'
+  end
+
   # @param [ String ] url
   # @param [ Hash ] opts
   #   :unique
@@ -150,29 +154,41 @@ class Fingerprinter
     bar               = ProgressBar.create(total: fingerprints.size, title: 'Fingerprinting -', format: '%t %a <%B> (%c / %C) %P%% %e')
 
     fingerprints.each do |path, f|
-      bar.progress += 1
-
-      url    = uri.merge(URI.encode(path)).to_s
-      md5sum = web_page_md5(url)
-
-      next unless f.key?(md5sum)
-
+      url      = uri.merge(URI.encode(path)).to_s
+      res      = Typhoeus.get(url, request_options)
+      md5sum   = Digest::MD5.hexdigest(res.body)
+      verb_msg = nil
       versions = f[md5sum]
 
-      if versions.size == 1
-        puts
-        puts "Unique Match found for v#{versions.first}:"
-        puts " - #{url} -> #{md5sum}"
-        return
-      else
+      if versions
         detected_versions << versions
+
+        if versions.size == 1
+          bar.log("Unique Match! v#{versions.first} - #{url} -> #{md5sum}")
+        else
+          verb_msg = format(verbose_format, res.code, "Matches: #{versions.join(', ')}", url)
+        end
+      else
+        verb_msg = format(verbose_format, res.code, 'No Match', url)
       end
+
+      bar.log(verb_msg) if opts[:verbose] && verb_msg
+      bar.increment
     end
 
-    if detected_versions.empty?
-      puts 'No match found'
+    puts
+    puts potential_version(detected_versions)
+  end
+
+  def potential_version(versions)
+    versions = versions.inject(:&)
+
+    if versions.nil?
+      'No match found'
+    elsif versions.size == 1
+      "Very likely to be v#{versions.first}"
     else
-      puts "Potential versions: #{detected_versions.inject(:&).join(', ')}"
+      "Potential versions: #{versions.join(', ')}"
     end
   end
 end
