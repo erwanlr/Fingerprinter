@@ -193,7 +193,7 @@ class Fingerprinter
     elsif !versions.empty?
       "Potential versions: #{versions.join(', ')}"
     else
-      'Inconsistency detected, versions were found but their intersection is empty , use -v for details'
+      'Inconsistency detected, versions were found but their intersection is empty, use -v for details'
     end
   end
 end
