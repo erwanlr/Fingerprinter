@@ -175,7 +175,10 @@ class Fingerprinter
       bar.log(verb_msg) if opts[:verbose] && verb_msg
       bar.increment
     end
-
+  rescue Interrupt
+    bar.stop
+    puts 'Canceled'
+  ensure
     puts
     puts potential_version(detected_versions)
   end
@@ -187,8 +190,10 @@ class Fingerprinter
       'No match found'
     elsif versions.size == 1
       "Very likely to be v#{versions.first}"
-    else
+    elsif !versions.empty?
       "Potential versions: #{versions.join(', ')}"
+    else
+      'Inconsistency detected, versions were found but their intersection is empty , use -v for details'
     end
   end
 end
