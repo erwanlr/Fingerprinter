@@ -29,6 +29,7 @@ $ bundle install
    - Version disclosed from footer (if enabled): 'Powered By MantisBT x.x.x'
    - If the copyright year in the footer is not the current yer, then the version is < 1.2.13 ([related commit](https://github.com/mantisbt/mantisbt/commit/6e51d86d3c83e96f38d6f1be77f2521689005b51#diff-b1c667913de013265f22c582987aa38c))
 - Mediaelement [Experimental] [[CVEs](http://www.cvedetails.com/product/27053/Mediaelementjs-Mediaelement.js.html?vendor_id=13110)]
+- OpenCart [[CVEs](http://www.cvedetails.com/product/17142/Opencart-Opencart.html?vendor_id=9599) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=opencart)]
 - Orchard (beware that backporting is used) [[CVEs](http://www.cvedetails.com/product/23837/Orchardproject-Orchard.html?vendor_id=12571) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=orchard)]
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
 - PrestaShop [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
