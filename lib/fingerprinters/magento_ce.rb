@@ -18,7 +18,7 @@ class MagentoCe < Fingerprinter
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get(download_page).body)
 
-    page.css('div.release-download div.col2 select').each do |select|
+    page.css('div.release-download div.col-sm-12 select').each do |select|
       next unless select['id'].strip =~ /\Acat_([0-9]+)_files\z/i
 
       cat_id = Regexp.last_match[1]
