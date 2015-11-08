@@ -27,6 +27,13 @@ class Fingerprinter
                      'LEFT JOIN paths on path_id = paths.id ' \
                      'ORDER BY version DESC'
 
+  PATH_FINGERPRINTS = 'SELECT md5_hash, versions.number AS version ' \
+                      'FROM fingerprints '\
+                      'LEFT JOIN versions ON version_id = versions.id ' \
+                      'LEFT JOIN paths on path_id = paths.id ' \
+                      'WHERE paths.value = ? ' \
+                      'ORDER BY version DESC'
+
   def auto_update
     puts 'Retrieving remote version numbers ...'
 
@@ -71,7 +78,7 @@ class Fingerprinter
   # @param [ String ] archive_dir
   # @return [ Void ]
   def compute_fingerprints(version_number, archive_dir)
-    db_version  = Version.create(number: version_number)
+    db_version = Version.create(number: version_number)
 
     puts 'Processing Fingerprints'
     Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exist?(f) }.each do |filename|
@@ -216,7 +223,9 @@ class Fingerprinter
       path         = uri.path.sub(target.uri.path, '')
       fingerprints = path_fingerprints(path)
 
-      unless fingerprints.empty?
+      if fingerprints.empty?
+        bar.log("Path not in the DB for #{url}") if opts[:verbose]
+      else
         # the url will contain the query string, not sure if it should be deleted or not
         res      = Typhoeus.get(url, request_options)
         md5sum   = Digest::MD5.hexdigest(res.body)
@@ -253,13 +262,10 @@ class Fingerprinter
   # @return [ Hash ]
   def path_fingerprints(path)
     results = {}
-    pa      = Path.first(value: path)
 
-    return results unless pa
-
-    Fingerprint.all(path_id: pa.id).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
+    repository(:default).adapter.select(PATH_FINGERPRINTS, path).each do |f|
       results[f.md5_hash] ||= []
-      results[f.md5_hash] << f.version.number
+      results[f.md5_hash] << f.version
     end
 
     results
