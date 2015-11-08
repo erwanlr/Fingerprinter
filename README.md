@@ -3,7 +3,7 @@ Fingerprinter
 
 This script goal is to try to find the version of the remote application/third party script etc by using a fingerprint approach.
 
-#### Installation
+##### Installation
 Inside the cloned repo directory:
 
 ```
@@ -11,7 +11,7 @@ $ gem install bundler
 $ bundle install
 ```
 
-#### Currently Supported Apps (along with some location/s of versions being disclosed)
+##### Currently Supported Apps (along with some location/s of versions being disclosed)
 - Apache Icons
 - CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
 - CMS Made Simple [Experimental] [[CVEs](http://www.cvedetails.com/vendor/3206/Cmsmadesimple.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=cms+made+simple)]
@@ -71,26 +71,26 @@ $ bundle install
     - /sitecore/login
     - /sitecore/shell/sitecore.version.xml
 
-#### Basic Usage Examples
-##### Using all the Fingerprints
+##### Basic Usage Examples
+###### Using all the Fingerprints
 ```
 ./fingerprinter.rb --app-name wordpress --fingerprint http://target.com/blog/
 ```
 
-##### Using unique Fingerprints
+###### Using unique Fingerprints
 With this mode, only the unique Fingerprints (across all the application's versions files) will be tested.
 This mode is faster than the previous one, and more reliable. However it is possible that an application's version does not have any unique fingerprints (like Apache Icons, which only has 2 unique fingerprints for the version 2.4.4, and none for the others)
 ```
 ./fingerprinter.rb --app-name wordpress --unique-fingerprint http://target.com/blog/
 ```
 
-##### Using passive fingerprinting mode
+###### Using passive fingerprinting mode
 In this mode, the homepage of the target is scanned for included ressources such as JavaScript files, Images etc which are then checked against the DB.
 ```
 ./fingerprinter.rb --app-name wordpress --passive-fingerprint http://target.com/blog/
 ```
 
-#### Options
+##### Options
 ```
 -p, --proxy PROXY                   Proxy to use during the fingerprinting
     --timeout SECONDS               The number of seconds for the request to be performed, default 20s
@@ -110,7 +110,7 @@ Example: Add the file fingerprints from /tmp/test into the Liferay DB for the v6
 ./fingerprinter -a liferay --update --manual /tmp/test --version 6.2
 ```
 
-#### Search the Application Database
+##### Search the Application Database
 Along with the --app-name option (or -a), the database can be searched:
 ```
 --list-version, --lv                       List all the known versions in the DB for the given app
@@ -123,7 +123,7 @@ Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 ./fingerprinter.rb -a wordpress --suf 3.8.1
 ```
 
-#### --help
+##### --help
 ```
 Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
