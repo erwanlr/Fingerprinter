@@ -141,6 +141,7 @@ Usage: ./fingerprinter.rb [options]
         --search-file, --sf FILE                       Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
         --fingerprint URL                              Fingerprint the app-name at the given URL using all fingerprints
         --unique-fingerprint, --uf URL                 Fingerprint the app-name at the given URL using unique fingerprints
+        --passive-fingerprint, --pf URL                Passively fingerprint the URL
         --db-verbose, --dbv                            Database Verbose Mode
     -v, --verbose                                      Verbose Mode
 ```
