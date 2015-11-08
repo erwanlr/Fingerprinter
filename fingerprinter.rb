@@ -52,7 +52,13 @@ begin
 
   f.search_file(@options[:file]) if @options[:file]
 
-  f.fingerprint(@options[:app_url], @options) if @options[:app_url]
+  if @options[:target]
+    if @options[:passive]
+      f.passive_fingerprint(@options[:target], @options)
+    else
+      f.fingerprint(@options[:target], @options)
+    end
+  end
 rescue => e
   puts e.message
   puts e.backtrace.join("\n")

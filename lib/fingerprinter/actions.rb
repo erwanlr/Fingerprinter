@@ -3,6 +3,7 @@ require 'readline'
 require 'nokogiri'
 require 'ignore_pattern'
 require 'ruby-progressbar'
+require 'cms_scanner'
 
 # Fingerprinter Actions
 class Fingerprinter
@@ -25,6 +26,7 @@ class Fingerprinter
                      'LEFT JOIN versions ON version_id = versions.id ' \
                      'LEFT JOIN paths on path_id = paths.id ' \
                      'ORDER BY version DESC'
+
   def auto_update
     puts 'Retrieving remote version numbers ...'
 
@@ -121,7 +123,7 @@ class Fingerprinter
     puts 'No Results' if paths.empty?
   end
 
-  # @param [ Boolean ] version
+  # @param [ Boolean ] unique
   #
   # @return [ Hash ]
   def fingerprints(unique = false)
@@ -137,24 +139,28 @@ class Fingerprinter
     results
   end
 
+  # @param [ Hash ] opts
+  #
+  # @return [ ProgressBar::Base ]
+  def progress_bar(opts = {})
+    ProgressBar.create({ format: '%t %a <%B> (%c / %C) %P%% %e' }.merge(opts))
+  end
+
   def verbose_format
     '%i - %s - %s'
   end
 
-  # @param [ String ] url
+  # @param [ CMSScanner::Target ] target
   # @param [ Hash ] opts
   #   :unique
   #   :verbose
-  def fingerprint(url, opts = {})
-    url += '/' if url[-1, 1] != '/'
-
-    uri               = URI.parse(url)
+  def fingerprint(target, opts = {})
     detected_versions = []
     fingerprints      = fingerprints(opts[:unique])
-    bar               = ProgressBar.create(total: fingerprints.size, title: 'Fingerprinting -', format: '%t %a <%B> (%c / %C) %P%% %e')
+    bar               = progress_bar(total: fingerprints.size, title: 'Fingerprinting -')
 
     fingerprints.each do |path, f|
-      url      = uri.merge(URI.encode(path)).to_s
+      url      = target.url(path)
       res      = Typhoeus.get(url, request_options)
       md5sum   = Digest::MD5.hexdigest(res.body)
       verb_msg = nil
@@ -195,5 +201,67 @@ class Fingerprinter
     else
       'Inconsistency detected, versions were found but their intersection is empty, use -v for details'
     end
+  end
+
+  # @param [ CMSScanner::Target ] target
+  # @param [ Hash ] opts
+  #   :verbose
+  def passive_fingerprint(target, opts = {})
+    urls              = target.in_scope_urls(Typhoeus.get(target.url))
+    bar               = progress_bar(total: urls.size, title: 'Passively Fingerprinting -')
+    detected_versions = []
+
+    urls.each do |url|
+      uri          = Addressable::URI.parse(url)
+      path         = uri.path.sub(target.uri.path, '')
+      fingerprints = path_fingerprints(path)
+
+      unless fingerprints.empty?
+        # the url will contain the query string, not sure if it should be deleted or not
+        res      = Typhoeus.get(url, request_options)
+        md5sum   = Digest::MD5.hexdigest(res.body)
+        verb_msg = nil
+        versions = fingerprints[md5sum]
+
+        if versions
+          detected_versions << versions
+
+          if versions.size == 1
+            bar.log("Unique Match! v#{versions.first} - #{url} -> #{md5sum}")
+          else
+            verb_msg = format(verbose_format, res.code, "Matches: #{versions.join(', ')}", url)
+          end
+        else
+          verb_msg = format(verbose_format, res.code, 'No Match', url)
+        end
+
+        bar.log(verb_msg) if opts[:verbose] && verb_msg
+      end
+
+      bar.increment
+    end
+  rescue Interrupt
+    bar.stop
+    puts 'Canceled'
+  ensure
+    puts
+    puts potential_version(detected_versions)
+  end
+
+  # @param [ String ] path
+  #
+  # @return [ Hash ]
+  def path_fingerprints(path)
+    results = {}
+    pa      = Path.first(value: path)
+
+    return results unless pa
+
+    Fingerprint.all(path_id: pa.id).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
+      results[f.md5_hash] ||= []
+      results[f.md5_hash] << f.version.number
+    end
+
+    results
   end
 end

@@ -71,13 +71,18 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:file] = file
   end
 
-  opts.on('--fingerprint URL', 'Fingerprint the app-name at the given URL using all fingerprints') do |url|
-    @options[:app_url] = url
+  opts.on('--fingerprint URL', '-f', 'Fingerprint the app-name at the given URL using all fingerprints') do |url|
+    @options[:target] = CMSScanner::Target.new(url)
   end
 
   opts.on('--unique-fingerprint URL', '--uf', 'Fingerprint the app-name at the given URL using unique fingerprints') do |url|
-    @options[:app_url] = url
-    @options[:unique]  = true
+    @options[:target] = CMSScanner::Target.new(url)
+    @options[:unique] = true
+  end
+
+  opts.on('--passive-fingerprint URL', '--pf', 'Passively fingerprinting the URL') do |url|
+    @options[:target]  = CMSScanner::Target.new(url)
+    @options[:passive] = true
   end
 
   opts.on('--db-verbose', '--dbv', 'Database Verbose Mode') do
