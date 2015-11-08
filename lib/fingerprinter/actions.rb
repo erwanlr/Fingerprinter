@@ -210,6 +210,20 @@ class Fingerprinter
     end
   end
 
+  # @param [ String ] path
+  #
+  # @return [ Hash ]
+  def path_fingerprints(path)
+    results = {}
+
+    repository(:default).adapter.select(PATH_FINGERPRINTS, path).each do |f|
+      results[f.md5_hash] ||= []
+      results[f.md5_hash] << f.version
+    end
+
+    results
+  end
+
   # @param [ CMSScanner::Target ] target
   # @param [ Hash ] opts
   #   :verbose
@@ -255,19 +269,5 @@ class Fingerprinter
   ensure
     puts
     puts potential_version(detected_versions)
-  end
-
-  # @param [ String ] path
-  #
-  # @return [ Hash ]
-  def path_fingerprints(path)
-    results = {}
-
-    repository(:default).adapter.select(PATH_FINGERPRINTS, path).each do |f|
-      results[f.md5_hash] ||= []
-      results[f.md5_hash] << f.version
-    end
-
-    results
   end
 end
