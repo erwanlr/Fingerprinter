@@ -80,7 +80,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:unique] = true
   end
 
-  opts.on('--passive-fingerprint URL', '--pf', 'Passively fingerprinting the URL') do |url|
+  opts.on('--passive-fingerprint URL', '--pf', 'Passively fingerprint the URL') do |url|
     @options[:target]  = CMSScanner::Target.new(url)
     @options[:passive] = true
   end
