@@ -204,6 +204,7 @@ class Fingerprinter
     elsif versions.size == 1
       "Very likely to be v#{versions.first}"
     elsif !versions.empty?
+      versions.sort! { |a, b| compare_version(a, b)
       "Potential versions: #{versions.join(', ')}"
     else
       'Inconsistency detected, versions were found but their intersection is empty, use -v for details'
