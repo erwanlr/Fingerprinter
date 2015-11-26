@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'addressable', '~> 2.3.8'
 gem 'typhoeus', '~> 0.8.0'
-gem 'nokogiri', '~> 1.6.0'
+gem 'nokogiri', '~> 1.6.6.4'
 gem 'dearchiver', '~> 0.0'
 gem 'json', '~> 1.8.0'
 gem 'activesupport', '~> 4.2.0'
