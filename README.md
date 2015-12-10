@@ -27,7 +27,7 @@ $ bundle install
 - Magento Community Edition [Experimental] [[CVEs](http://www.cvedetails.com/vendor/15393/Magento.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=magento) | [Exploits](http://www.magentoexploit.com/)]
 - Mantis Bug Tracker [Experimental] [[CVEs](http://www.cvedetails.com/vulnerability-list/vendor_id-1245/product_id-2160/Mantis-Mantis.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=mantis) | [Releases](https://www.mantisbt.org/forums/viewforum.php?f=5)]
    - Version disclosed from footer (if enabled): 'Powered By MantisBT x.x.x'
-   - If the copyright year in the footer is not the current yer, then the version is < 1.2.13 ([related commit](https://github.com/mantisbt/mantisbt/commit/6e51d86d3c83e96f38d6f1be77f2521689005b51#diff-b1c667913de013265f22c582987aa38c))
+   - If the copyright year in the footer is not the current year, then the version is < 1.2.13 ([related commit](https://github.com/mantisbt/mantisbt/commit/6e51d86d3c83e96f38d6f1be77f2521689005b51#diff-b1c667913de013265f22c582987aa38c))
 - Mediaelement [Experimental] [[CVEs](http://www.cvedetails.com/product/27053/Mediaelementjs-Mediaelement.js.html?vendor_id=13110)]
 - OpenCart [[CVEs](http://www.cvedetails.com/product/17142/Opencart-Opencart.html?vendor_id=9599) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=opencart)]
 - Orchard (beware that backporting is used) [[CVEs](http://www.cvedetails.com/product/23837/Orchardproject-Orchard.html?vendor_id=12571) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=orchard)]
