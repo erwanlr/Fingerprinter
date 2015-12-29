@@ -97,11 +97,12 @@ In this mode, the homepage of the target is scanned for included ressources such
     --connect-timeout SECONDS       The number of seconds for the connection to be established before timeout, default 5s
     --cookies-file, --cf FILE-PATH  The cookies file to use during the fingerprinting
     --cookies-string, --cs COOKIE/S The cookies string to use in requests
+    --user-agent, --ua UA           User-Agent to use in all fingerprinting requests
 -d, --db PATH-TO-DB                 Path to the db of the app-name (default is db/<app-name>.db)
 -u, --update                        Update the db of the app-name
 -m, --manual DIRECTORY-PATH         To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
     --version                       Used with --manual to set the version of the processed fingerprints
-    --update-all, --ua              Update all the apps
+    --update-all,                   Update all the apps
     --db-verbose, --dbv             Database Verbose Mode
 -v, --verbose                       Verbose Mode
 ```
@@ -127,14 +128,16 @@ Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
 ```
 Usage: ./fingerprinter.rb [options]
     -p, --proxy PROXY                                  Proxy to use during the fingerprinting
+        --timeout SECONDS                              The number of seconds for the request to be performed, default 20s
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
         --cookies-string, --cs COOKIE/S                The cookies string to use in requests
+        --user-agent, --ua UA                          User-Agent to use in all fingerprinting requests
     -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, dnn-cms drupal, fckeditor, joomla, liferay, magento-ce, mantisbt, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
         --version VERSION                              Used with --manual to set the version of the processed fingerprints
-        --update-all, --ua                             Update all the apps
+        --update-all,                                  Update all the apps
         --list-versions, --lv                          List all the known versions in the DB for the given app
         --show-unique-fingerprints, --suf VERSION      Output the unique file hashes for the given version of the app-name
         --search-hash, --sh HASH                       Search the hash and output the app-name versions & file
