@@ -24,6 +24,8 @@ begin
 
   fail 'No app-name supplied' unless @options[:app]
 
+  Typhoeus::Config.user_agent = @options[:user_agent]
+
   f = Fingerprinter.load(@options[:app], @options)
 
   if f.respond_to?(:experimental?)

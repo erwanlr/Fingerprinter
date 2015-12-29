@@ -229,7 +229,7 @@ class Fingerprinter
   # @param [ Hash ] opts
   #   :verbose
   def passive_fingerprint(target, opts = {})
-    urls              = target.in_scope_urls(Typhoeus.get(target.url, followlocation: true))
+    urls              = target.in_scope_urls(Typhoeus.get(target.url, request_options.merge(followlocation: true)))
     bar               = progress_bar(total: urls.size, title: 'Passively Fingerprinting -')
     detected_versions = []
 

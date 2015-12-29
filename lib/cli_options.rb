@@ -7,7 +7,8 @@ require 'optparse'
   update_all:     false,
   list_versions:  false,
   timeout:        20,
-  connecttimeout: 5
+  connecttimeout: 5,
+  user_agent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0'
 }
 
 OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
@@ -31,6 +32,10 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:cookies_string] = string
   end
 
+  opts.on('--user-agent UA', '--ua', 'User-Agent to use in all fingerprinting requests') do |ua|
+    @options[:user_agent] = ua
+  end
+
   opts.on('--app-name APPLICATION', '-a', "The application to fingerprint. Currently supported: #{SUPPORTED_APPS.join(', ')}") do |app|
     @options[:app] = app
   end
@@ -51,7 +56,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:manual_version] = version
   end
 
-  opts.on('--update-all', '--ua', 'Update all the apps') do
+  opts.on('--update-all', 'Update all the apps') do
     @options[:update_all] = true
   end
 
