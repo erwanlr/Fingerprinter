@@ -70,7 +70,7 @@ $ bundle install
   - Version disclosed from
     - /sitecore/login
     - /sitecore/shell/sitecore.version.xml
-- vBulletin - Not free [[Sucuri](https://blog.sucuri.net/tag/vbulletin-security) | [Security Announcements](http://www.vbulletin.com/forum/search?q=Security&searchFields[title_only]=1&searchFields[channel][]=28&searchJSON={%22keywords%22%3A%22Security%22%2C%22title_only%22%3A1%2C%22channel%22%3A[%2228%22]})]
+- vBulletin - Not free [[Sucuri](https://blog.sucuri.net/tag/vbulletin-security) | [Security Announcements](http://www.vbulletin.com/forum/search?q=Security&searchFields[title_only]=1&searchFields[channel][]=28&searchJSON={%22keywords%22%3A%22Security%22%2C%22title_only%22%3A1%2C%22channel%22%3A[%2228%22]}) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=vBulletin)]
   - Version disclosed from:
     - generator meta tagand footer copyright in all pages
     - /clientscript/vbulletin_global.js
