@@ -34,6 +34,9 @@ $ bundle install
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
 - PrestaShop [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
 - PunBB [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)]
+- Simple Machines Forum [[CVEs](http://www.cvedetails.com/vulnerability-list/vendor_id-9338/product_id-16560/Simplemachines-SMF.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=simple+machines+forum)]
+  - Version disclosed from:
+    - Footer copyright
 - TinyMCE [[CVEs](http://www.cvedetails.com/vendor/11716/Tinymce.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=tinymce)]
 - Umbraco [[CVEs](http://www.cvedetails.com/product/30682/Umbraco-Umbraco-Cms.html?vendor_id=15064) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=umbraco)]
 - WordPress [[CVEs](http://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=wordpress) | [WP Vuln DB](https://wpvulndb.com/)]
