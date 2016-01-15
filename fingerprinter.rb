@@ -48,6 +48,11 @@ begin
     exit(1)
   end
 
+  if @options[:list_files]
+    f.list_files(@options[:list_files])
+    exit(1)
+  end
+
   f.show_unique_fingerprints(@options[:version]) if @options[:version]
 
   f.search_hash(@options[:hash]) if @options[:hash]

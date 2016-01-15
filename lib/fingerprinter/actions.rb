@@ -74,6 +74,18 @@ class Fingerprinter
     end
   end
 
+  def list_files(version_number)
+    version = Version.first(number: version_number)
+
+    if version
+      puts "Results for #{version.number}:"
+
+      version.fingerprints.each { |f| puts f.path.value }
+    else
+      puts "The version supplied: '#{version_number}' is not in the database"
+    end
+  end
+
   # @param [ String ] version_number
   # @param [ String ] archive_dir
   # @return [ Void ]

@@ -6,6 +6,7 @@ require 'optparse'
   update:         false,
   update_all:     false,
   list_versions:  false,
+  list_files:     nil,
   timeout:        20,
   connecttimeout: 5,
   user_agent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0'
@@ -62,6 +63,10 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
 
   opts.on('--list-versions', '--lv', 'List all the known versions in the DB for the given app') do
     @options[:list_versions] = true
+  end
+
+  opts.on('--list-files VERSION', '--lf', 'List all files related to the version for the given app') do |version|
+    @options[:list_files] = version
   end
 
   opts.on('--show-unique-fingerprints VERSION', '--suf', 'Output the unique file hashes for the given version of the app-name') do |version|
