@@ -106,7 +106,7 @@ class Fingerprinter
   end
 
   # @param [ String ] version_number
-  def show_unique_fingerprints(version_number)
+  def list_unique_fingerprints(version_number)
     version = Version.first(number: version_number)
 
     if version

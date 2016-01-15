@@ -53,7 +53,7 @@ begin
     exit(1)
   end
 
-  f.show_unique_fingerprints(@options[:version]) if @options[:version]
+  f.list_unique_fingerprints(@options[:list_unique_fingerprints]) if @options[:list_unique_fingerprints]
 
   f.search_hash(@options[:hash]) if @options[:hash]
 

@@ -125,7 +125,8 @@ Example: Add the file fingerprints from /tmp/test into the Liferay DB for the v6
 Along with the --app-name option (or -a), the database can be searched:
 ```
 --list-version, --lv                       List all the known versions in the DB for the given app
---show-unique-fingerprints, --suf VERSION  Output the unique file hashes for the given version of the app-name
+--list-files, --lf VERSION                 List all files related to the version for the given app
+--list-unique-fingerprints, --luf VERSION  List the unique hashes related to the files for the supplied version of the app
 --search-hash, --sh HASH                   Search the hash and output the app-name versions & file
 --search-file, --sf FILE                   Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
 ```
@@ -149,7 +150,8 @@ Usage: ./fingerprinter.rb [options]
         --version VERSION                              Used with --manual to set the version of the processed fingerprints
         --update-all,                                  Update all the apps
         --list-versions, --lv                          List all the known versions in the DB for the given app
-        --show-unique-fingerprints, --suf VERSION      Output the unique file hashes for the given version of the app-name
+        --list-files, --lf VERSION                     List all files related to the version for the given app
+        --list-unique-fingerprints, --luf VERSION      List the unique hashes related to the files for the supplied version of the app
         --search-hash, --sh HASH                       Search the hash and output the app-name versions & file
         --search-file, --sf FILE                       Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
         --fingerprint URL                              Fingerprint the app-name at the given URL using all fingerprints
