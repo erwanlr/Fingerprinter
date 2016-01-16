@@ -42,11 +42,6 @@ class Fingerprinter
       format('https://github.com/%s/releases', repository)
     end
 
-    # @return [ String ]
-    def release_download_url(repository, version)
-      format('https://github.com/%s/archive/%s.zip', repository, version)
-    end
-
     # @return [ Nokogiri::HTML, nil ] The next release page if any, or nil
     def next_release_page(current_page)
       link = current_page.search('div.pagination a:nth-child(2)').first
