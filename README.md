@@ -13,6 +13,7 @@ $ bundle install
 
 #### Currently Supported Apps (along with some location/s of versions being disclosed)
 - Apache Icons
+- Chamiloa LMS [[CVEs](http://www.cvedetails.com/product/26528/Chamilo-Chamilo-Lms.html?vendor_id=12983) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=chamilo+lms) | [Security Issues](https://support.chamilo.org/projects/chamilo-18/wiki/Security_issues)]
 - CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
 - CMS Made Simple [Experimental] [[CVEs](http://www.cvedetails.com/vendor/3206/Cmsmadesimple.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=cms+made+simple)]
 - Concrete5 [[CVEs](http://www.cvedetails.com/vendor/11506/Concrete5.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=concrete5)]
@@ -143,7 +144,7 @@ Usage: ./fingerprinter.rb [options]
         --cookies-file, --cf FILE-PATH                 The cookies file to use during the fingerprinting
         --cookies-string, --cs COOKIE/S                The cookies string to use in requests
         --user-agent, --ua UA                          User-Agent to use in all fingerprinting requests
-    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, ckeditor, cms-made-simple, concrete5, django-cms, dnn-cms drupal, fckeditor, joomla, liferay, magento-ce, mantisbt, mediaelement, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
+    -a, --app-name APPLICATION                         The application to fingerprint. Currently supported: apache-icons, chamilo-lms, ckeditor, cms-made-simple, concrete5, django-cms, dnn-cms drupal, fckeditor, joomla, liferay, magento-ce, mantisbt, mediaelement, moodle, phpmyadmin, prestashop, punbb, tinymce, umbraco, wordpress
     -d, --db PATH-TO-DB                                Path to the db of the app-name
     -u, --update                                       Update the db of the app-name
         --manual DIRECTORY-PATH                        To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
