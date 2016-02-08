@@ -69,8 +69,8 @@ $ bundle install
   - Version disclosed from /CMSHelp/ (main version in title tag)
 - PrettyPhoto - Fingerprints no needed for that (see below) [[CVEs](http://www.cvedetails.com/product/26726/No-margin-for-errors-Prettyphoto.html?vendor_id=13006)]
   - Version disclosed from the comments at the top of the file
-- SharePoint - Not free / couldn't find a free or CE edition [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=sharepoint)]
-  - Version disclosed from /_vti_pvt/service.cnf (Not verified)
+- SharePoint - Not free / couldn't find a free or CE edition [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=sharepoint) | [Version numbers (not up-to-date)](http://www.sharepointdesignerstepbystep.com/blog/SitePages/SharePoint%20versions.aspx)]
+  - Version disclosed from /_vti_pvt/service.cnf
 - Sitecore CMS - Need to be registered, not sure if all versions would then be available to DL [[CVEs](http://www.cvedetails.com/product/17161/Sitecore-CMS.html?vendor_id=9609) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=sitecore) | [Security Advisories](https://kb.sitecore.net/SearchResults#fltr=t3,p2&slider=0,11&pg=1) | [Latest Version Numbers](https://dev.sitecore.net/en/Downloads/Sitecore_Experience_Platform.aspx) | [Version numbers & revisions](https://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%207/Update/7_0_rev_130424.aspx)]
   - Version disclosed from
     - /sitecore/login
