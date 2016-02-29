@@ -2,16 +2,16 @@
 # LifeRay (http://sourceforge.net/projects/lportal/ & https://www.liferay.com/)
 class Liferay < Fingerprinter
   def root_url
-    'http://sourceforge.net/projects/lportal/files/Liferay%20Portal/'
+    'https://sourceforge.net/projects/lportal/files/Liferay%20Portal/'
   end
 
   def download_url(version, filename)
-    "http://downloads.sourceforge.net/project/lportal/Liferay%20Portal/#{URI.encode(version)}/#{URI.encode(filename)}"
+    "https://downloads.sourceforge.net/project/lportal/Liferay%20Portal/#{URI.encode(version)}/#{URI.encode(filename)}"
   end
 
   def downloadable_versions
     versions = {}
-    page     = Nokogiri::HTML(Typhoeus.get(root_url).body)
+    page     = Nokogiri::HTML(Typhoeus.get(root_url, cookie: 'FreedomCookie=true').body)
 
     page.css('a.name').each do |link|
       version = link.text.strip
@@ -20,7 +20,7 @@ class Liferay < Fingerprinter
 
       version_url = "#{root_url}#{URI.encode(version)}/"
 
-      Nokogiri::HTML(Typhoeus.get(version_url).body).css('a.name').each do |node|
+      Nokogiri::HTML(Typhoeus.get(version_url, cookie: 'FreedomCookie=true').body).css('a.name').each do |node|
         file = node.text.strip
 
         # TODO: Merge those two into one regex
