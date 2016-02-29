@@ -10,7 +10,7 @@ class MagentoCe < Fingerprinter
 
   # Valid session is required
   def cookie
-    #'frontend=aaaaa'
+    # 'frontend=aaaaa'
     nil
   end
 
