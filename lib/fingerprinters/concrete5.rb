@@ -11,7 +11,7 @@ class Concrete5 < Fingerprinter
     versions = legacy_versions
 
     # Adds the latest version (from the get started page)
-    node = Nokogiri::HTML(Typhoeus.get('https://www.concrete5.org/get-started').body).css('div.content-left p a').first
+    node = Nokogiri::HTML(Typhoeus.get('https://www.concrete5.org/download').body).css('div.col-sm-6 p a').first
 
     version = node.text.strip[/Download ([0-9\.]+)\z/i, 1]
     dl_path = node['href'].strip
