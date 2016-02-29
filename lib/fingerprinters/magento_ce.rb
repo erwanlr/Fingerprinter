@@ -73,7 +73,7 @@ class MagentoCe < Fingerprinter
     super(archive_path, dest)
 
     # Deletes directories that can not be accessible due to .htaccess
-    %w(app dev includes lib shell var).each do |dir|
+    %w(app dev includes lib update phpserver shell var vendor).each do |dir|
       FileUtils.rm_rf(File.join(dest, dir), secure: true)
     end
   end
