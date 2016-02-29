@@ -208,18 +208,24 @@ class Fingerprinter
     puts potential_version(detected_versions)
   end
 
+  # @param [ Array<String> ] versions
+  #
+  # @return [ String ]
   def potential_version(versions)
-    versions = versions.inject(:&)
+    intersected_versions = versions.inject(:&)
 
-    if versions.nil?
+    if intersected_versions.nil?
       'No match found'
-    elsif versions.size == 1
-      "Very likely to be v#{versions.first}"
-    elsif !versions.empty?
-      versions.sort! { |a, b| compare_version(a, b) }
-      "Potential versions: #{versions.join(', ')}"
+    elsif intersected_versions.size == 1
+      "Very likely to be v#{intersected_versions.first}"
+    elsif !intersected_versions.empty?
+      intersected_versions.sort! { |a, b| compare_version(a, b) }
+      "Potential versions: #{intersected_versions.join(', ')}"
     else
-      'Inconsistency detected, versions were found but their intersection is empty, use -v for details'
+      s = 'Inconsistency detected, versions were found but their intersection is empty. Detected version arrays:'
+      versions.uniq.sort_by(&:size).each { |v| s += "\n#{v.join(', ')}" }
+
+      s
     end
   end
 
