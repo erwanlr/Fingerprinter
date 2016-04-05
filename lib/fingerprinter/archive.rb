@@ -37,7 +37,7 @@ class Fingerprinter
 
     a.extract_to(dest)
 
-    fail 'No files extracted' if Dir[File.join(dest, '*.*')].empty?
+    fail 'No files extracted' if Dir[File.join(dest, '**', '*.*')].empty?
 
     # If the archive had a directory containing the files
     # we move all the files at the root of dest
