@@ -66,7 +66,9 @@ $ bundle install
     - In the Comments at the top of the file
     - By submitting $.fn.jquery or jQuery.fn.jquery in the Web Dev console of the Web browser on a page where the lib is loaded
 - Kentico CMS - Need to provide personal details / register to DL the latest free version [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=kentico) | [Hotfixes](http://devnet.kentico.com/download/hotfixes)]
-  - Version disclosed from /CMSHelp/ (main version in title tag)
+  - Main version disclosed from
+    - /CMSHelp/ (in title tag)
+    - /CMSPages/GetDocLink.ashx (in the Location header)
 - PrettyPhoto - Fingerprints no needed for that (see below) [[CVEs](http://www.cvedetails.com/product/26726/No-margin-for-errors-Prettyphoto.html?vendor_id=13006)]
   - Version disclosed from the comments at the top of the file
 - SharePoint - Not free / couldn't find a free or CE edition [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=sharepoint) | [Version numbers (not up-to-date)](http://www.sharepointdesignerstepbystep.com/blog/SitePages/SharePoint%20versions.aspx)]
