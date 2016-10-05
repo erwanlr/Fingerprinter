@@ -133,9 +133,9 @@ Along with the --app-name option (or -a), the database can be searched:
 --search-hash, --sh HASH                   Search the hash and output the app-name versions & file
 --search-file, --sf FILE                   Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
 ```
-Example: Search all the unique Fingerprints for the version 3.8.1 of WordPress
+Example: List all the unique Fingerprints for the version 3.8.1 of WordPress
 ```
-./fingerprinter.rb -a wordpress --suf 3.8.1
+./fingerprinter.rb -a wordpress --luf 3.8.1
 ```
 
 #### --help
