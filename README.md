@@ -36,6 +36,9 @@ $ bundle install
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
 - PrestaShop [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
 - PunBB [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)]
+- Roundcubemail [[CVEs](http://www.cvedetails.com/vulnerability-list/vendor_id-8905/Roundcube.html)]
+  - Version disclosed from:
+    - /CHANGELOG
 - Simple Machines Forum [[CVEs](http://www.cvedetails.com/vulnerability-list/vendor_id-9338/product_id-16560/Simplemachines-SMF.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=simple+machines+forum)]
   - Version disclosed from:
     - Footer copyright

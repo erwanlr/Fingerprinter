@@ -13,15 +13,14 @@ class Fingerprinter
     #
     # @yield version, release_download_url
     # @return [ Hash ] version => release_download_url
-    def github_releases(repository, version_pattern = /v?([0-9\.]+)\.zip\z/i)
-      versions    = {}
-      page        = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
-      tag_pattern = %r{/archive/#{version_pattern}}i
+    def github_releases(repository, version_pattern = %r{/archive/v?([0-9\.]+)\.zip\z}i)
+      versions = {}
+      page     = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
 
       loop do
         page.css('ul.release-downloads a, ul.tag-references a').each do |node|
           href    = node['href']
-          version = href[tag_pattern, 1]
+          version = href[version_pattern, 1]
 
           next unless version
 
