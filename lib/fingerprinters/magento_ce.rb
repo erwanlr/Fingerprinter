@@ -5,7 +5,7 @@ class MagentoCe < Fingerprinter
   include IgnorePattern::PHP
 
   def download_page
-    'https://www.magentocommerce.com/download'
+    'https://magento.com/tech-resources/download'
   end
 
   # Valid session is required
@@ -38,7 +38,7 @@ class MagentoCe < Fingerprinter
   # @return [ String ]
   def download_url(file_id, cat_id)
     format(
-      'https://www.magentocommerce.com/products/downloads/magento/downloadFile/file_id/%i/file_category/%i/store_id/1/form_key/',
+      'https://magento.com/tech-resources/downloads/magento/downloadFile/file_id/%i/file_category/%i/store_id/1/form_key/',
       file_id,
       cat_id
     )
