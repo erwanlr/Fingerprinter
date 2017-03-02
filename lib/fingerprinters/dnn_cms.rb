@@ -2,6 +2,20 @@
 # DotNetNuke CMS
 class DnnCms < Fingerprinter
   include IgnorePattern::ASP
+  include GithubHosted
+
+  def downloadable_versions
+    # Revision digits are ignored
+    github_releases('dnnsoftware/Dnn.Platform', /DNN_Platform_(\d+\.\d+\.\d+)(?:\.\d+)?_Install\.zip\z/i)
+  end
+end
+
+=begin
+
+# Old Implementation, before moving to GitHub, just in case it's needed
+# DotNetNuke CMS
+class DnnCms < Fingerprinter
+  include IgnorePattern::ASP
 
   def downloadable_versions
     # Get the latest and known versions
@@ -89,3 +103,4 @@ class DnnCms < Fingerprinter
     '.zip'
   end
 end
+=end
