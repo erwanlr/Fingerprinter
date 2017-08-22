@@ -9,7 +9,7 @@ class Phpmyadmin < Fingerprinter
   end
 
   #
-  ## Debian Versions
+  ## Debian Versions (not used)
   #
   def debian_versions
     versions = {}
@@ -35,25 +35,24 @@ class Phpmyadmin < Fingerprinter
   #
   def manual_installation_versions
     versions = {}
-    page     = Nokogiri::HTML(Typhoeus.get('http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/').body)
+    page     = Nokogiri::HTML(Typhoeus.get('https://www.phpmyadmin.net/files/').body)
 
-    page.css('a.name').each do |link|
-      version = link.text.strip
-      if version =~ /\A[0-9\.]+\z/
-        versions["#{version}-all"] = "http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/#{version}/phpMyAdmin-#{version}-all-languages.tar.gz"
-      end
+    page.css('td a').each do |link|
+      version = link.text.strip[/phpMyAdmin\-([0-9\.]+)\-all\-languages\.zip\z/, 1]
+
+      versions["#{version}-all"] = link.attr('href') if version
     end
 
     versions.merge(manual_installation_fixed_links)
   end
 
-  # 4 Versions have differents download links
   def manual_installation_fixed_links
     {
-      '1.1.0-all' => 'http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/1.1.0/phpMyAdmin_1.1.0.tar.gz',
-      '1.3.0-all' => 'http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/1.3.0/phpmyadmin_1.3.0.tar.gz',
-      '2.0.1-all' => 'http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/2.1.0/phpMyAdmin-2.1.0-php3.tar.gz',
-      '2.0.5-all' => 'http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/2.0.5/phpMyAdmin-2.0.5-php3.tar.gz'
+      '1.1.0-all' => 'https://files.phpmyadmin.net/phpMyAdmin/1.1.0/phpMyAdmin_1.1.0.tar.gz',
+      '1.3.0-all' => 'https://files.phpmyadmin.net/phpMyAdmin/1.3.0/phpmyadmin_1.3.0.tar.gz',
+      '2.0.5-all' => 'https://files.phpmyadmin.net/phpMyAdmin/2.0.5/phpMyAdmin-2.0.5-php3.tar.gz',
+      '2.1.0-all' => 'https://files.phpmyadmin.net/phpMyAdmin/2.1.0/phpMyAdmin-2.1.0-php3.tar.gz',
+      '2.2.0-all' => 'https://files.phpmyadmin.net/phpMyAdmin/2.2.0/phpMyAdmin-2.1.0-php.zip'
     }
   end
 end
