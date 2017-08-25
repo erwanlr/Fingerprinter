@@ -15,7 +15,10 @@ class Umbraco < Fingerprinter
       version = node.text.strip
 
       if version =~ /\A[0-9\.]+\z/
-        versions[version] = download_link("#{site_url}#{node.attr('href')}")
+        # rescue next is to skip releases w/o proper doanload link,
+        # ie those removed because of critial issues like https://our.umbraco.org/contribute/releases/755/
+        # Todo: find a better way to handle them
+        versions[version] = download_link("#{site_url}#{node.attr('href')}") rescue next
       end
     end
 
@@ -25,7 +28,7 @@ class Umbraco < Fingerprinter
   protected
 
   def download_link(url)
-    href = Nokogiri::HTML(Typhoeus.get(url).body).css('div[class~="get-release"] div[class~="release"] h3 a').attr('href')
+    href = Nokogiri::HTML(Typhoeus.get(url).body).css('div.get-release div.release h3 a').attr('href')
 
     "#{site_url}#{href}"
   end
