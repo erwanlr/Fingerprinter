@@ -5,9 +5,9 @@ class Prestashop < Fingerprinter
 
   def downloadable_versions
     versions = {}
-    page = Nokogiri::HTML(Typhoeus.get('https://www.prestashop.com/en/versions-developpeurs').body)
+    page = Nokogiri::HTML(Typhoeus.get('https://www.prestashop.com/en/previous-versions').body)
 
-    page.css('a.btn-more').each do |link|
+    page.css('a.btn.btn-ghost-pink').each do |link|
       href = link['href'].strip
 
       next unless href =~ /prestashop_([0-9.]+)\.zip$/ # Only stable releases
