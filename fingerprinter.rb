@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
 require 'bundler/setup'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
@@ -12,7 +11,7 @@ begin
   require 'cli_options'
 
   if @options[:update_all]
-    SUPPORTED_APPS.each do|app|
+    SUPPORTED_APPS.each do |app|
       begin
         puts "Updating #{app}:"
         Fingerprinter.load(app, @options).auto_update
