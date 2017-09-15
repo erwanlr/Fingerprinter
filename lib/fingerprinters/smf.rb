@@ -37,6 +37,6 @@ class Smf < Fingerprinter
 
     `wget -q -np -O #{dest.shellescape} --header='Cookie: #{cookies}' #{download_url.shellescape} > /dev/null`
 
-    fail 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
+    raise 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end
 end

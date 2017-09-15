@@ -52,28 +52,30 @@ class MagentoCe < Fingerprinter
 
     `wget -q -np -O #{dest.shellescape} --header='Cookie: #{cookie}' #{archive_url.shellescape} > /dev/null`
 
-    fail 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
+    raise 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end
 
   # @param [ Nokogiri::HTML ] page
   #
   # @return [ String, nil]
   def form_key
-    fail 'A valid session cookie is required to donwload the version.' \
-         ' Please supply it in lib/fingerprinters/magento_ce.rb#cookie' unless cookie
+    unless cookie
+      raise 'A valid session cookie is required to donwload the version.' \
+           ' Please supply it in lib/fingerprinters/magento_ce.rb#cookie'
+    end
 
     Nokogiri::HTML(Typhoeus.get(download_page, cookie: cookie).body).css('script').each do |script_tag|
       return Regexp.last_match[1] if script_tag.text.strip =~ /formKey = '([a-zA-Z0-9]+)';/
     end
 
-    fail 'Unable to get the formKey'
+    raise 'Unable to get the formKey'
   end
 
   def extract_archive(archive_path, dest)
     super(archive_path, dest)
 
     # Deletes directories that can not be accessible due to .htaccess
-    %w(app dev includes lib update phpserver shell var vendor).each do |dir|
+    %w[app dev includes lib update phpserver shell var vendor].each do |dir|
       FileUtils.rm_rf(File.join(dest, dir), secure: true)
     end
   end

@@ -23,7 +23,7 @@ class Fingerprinter
   def download_archive(archive_url, dest)
     `wget -q -np -O #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
 
-    fail 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
+    raise 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end
 
   # @param [ String ] archive_path The archive file path
@@ -33,11 +33,11 @@ class Fingerprinter
     FileUtils.mkdir_p(dest)
 
     a = Dearchiver.new(filename: archive_path)
-    fail 'CRC Error' unless a.crc_ok?
+    raise 'CRC Error' unless a.crc_ok?
 
     a.extract_to(dest)
 
-    fail 'No files extracted' if Dir[File.join(dest, '**', '*.*')].empty?
+    raise 'No files extracted' if Dir[File.join(dest, '**', '*.*')].empty?
 
     # If the archive had a directory containing the files
     # we move all the files at the root of dest

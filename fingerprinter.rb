@@ -24,7 +24,7 @@ begin
     exit(1)
   end
 
-  fail 'No app-name supplied' unless @options[:app]
+  raise 'No app-name supplied' unless @options[:app]
 
   Typhoeus::Config.user_agent = @options[:user_agent]
 

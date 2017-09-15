@@ -20,12 +20,12 @@ class Joomla < Fingerprinter
     super(archive_path, dest)
 
     # Delete Dev folders
-    %w(build tests).each do |dir|
+    %w[build tests].each do |dir|
       FileUtils.rm_rf(File.join(dest, dir), secure: true)
     end
 
     # Delete Dev files
-    %w(build.xml composer.json composer.lock CONTRIBUTING.md phpunit.xml.dist travisci-phpunit.xml).each do |file|
+    %w[build.xml composer.json composer.lock CONTRIBUTING.md phpunit.xml.dist travisci-phpunit.xml].each do |file|
       FileUtils.rm_f(File.join(dest, file))
     end
   end

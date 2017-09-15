@@ -14,12 +14,15 @@ class Umbraco < Fingerprinter
     page.css('div h5 a').each do |node|
       version = node.text.strip
 
-      if version =~ /\A[0-9\.]+\z/
-        # rescue next is to skip releases w/o proper doanload link,
-        # ie those removed because of critial issues like https://our.umbraco.org/contribute/releases/755/
-        # Todo: find a better way to handle them
-        versions[version] = download_link("#{site_url}#{node.attr('href')}") rescue next
-      end
+      next unless version =~ /\A[0-9\.]+\z/
+      # rescue next is to skip releases w/o proper doanload link,
+      # ie those removed because of critial issues like https://our.umbraco.org/contribute/releases/755/
+      # Todo: find a better way to handle them
+      versions[version] = begin
+                              download_link("#{site_url}#{node.attr('href')}")
+                            rescue
+                              next
+                            end
     end
 
     versions

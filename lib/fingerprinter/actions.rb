@@ -17,7 +17,7 @@ class Fingerprinter
                         'LEFT JOIN paths on path_id = paths.id ' \
                         'WHERE md5_hash IN ' \
                         '(SELECT md5_hash FROM fingerprints GROUP BY md5_hash HAVING COUNT(*) = 1) ' \
-                        'ORDER BY version DESC'
+                        'ORDER BY version DESC'.freeze
 
   ALL_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, ' \
                      'versions.number AS version,' \
@@ -25,14 +25,14 @@ class Fingerprinter
                      'FROM fingerprints ' \
                      'LEFT JOIN versions ON version_id = versions.id ' \
                      'LEFT JOIN paths on path_id = paths.id ' \
-                     'ORDER BY version DESC'
+                     'ORDER BY version DESC'.freeze
 
   PATH_FINGERPRINTS = 'SELECT md5_hash, versions.number AS version ' \
                       'FROM fingerprints '\
                       'LEFT JOIN versions ON version_id = versions.id ' \
                       'LEFT JOIN paths on path_id = paths.id ' \
                       'WHERE paths.value = ? ' \
-                      'ORDER BY version DESC'
+                      'ORDER BY version DESC'.freeze
 
   def auto_update
     puts 'Retrieving remote version numbers ...'
@@ -55,7 +55,7 @@ class Fingerprinter
   end
 
   def manual_update(opts = {})
-    fail 'The --version option has to be supplied' unless opts[:manual_version]
+    raise 'The --version option has to be supplied' unless opts[:manual_version]
 
     if !Version.first(number: opts[:manual_version])
       begin

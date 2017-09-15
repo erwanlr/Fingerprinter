@@ -19,7 +19,7 @@ class Fingerprinter
     if SUPPORTED_APPS.include?(app_name.downcase)
       Object.const_get(app_name.downcase.tr('-', '_').camelize).new(options)
     else
-      fail "The application #{app_name} is not supported. Currently supported: #{SUPPORTED_APPS.join(', ')}"
+      raise "The application #{app_name} is not supported. Currently supported: #{SUPPORTED_APPS.join(', ')}"
     end
   end
 
@@ -48,7 +48,7 @@ class Fingerprinter
 
   # @return [ Hash ] The versions and their download urls
   def downloadable_versions
-    fail NotImplementedError
+    raise NotImplementedError
   end
 
   protected
@@ -63,7 +63,7 @@ class Fingerprinter
       connecttimeout: @connect_timeout
     }
     # The option cookiefile of Typhoeus does not work, so we use the cookie one
-    opts.merge!(cookie: File.read(@cookies_file)) if @cookies_file
+    opts[:cookie] = File.read(@cookies_file) if @cookies_file
     opts
   end
 end
