@@ -1,4 +1,5 @@
 require 'db'
+require 'json'
 require 'typhoeus'
 require 'addressable/uri'
 require 'active_support/inflector'
