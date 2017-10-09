@@ -19,10 +19,10 @@ class Umbraco < Fingerprinter
       # ie those removed because of critial issues like https://our.umbraco.org/contribute/releases/755/
       # Todo: find a better way to handle them
       versions[version] = begin
-                              download_link("#{site_url}#{node.attr('href')}")
-                            rescue
-                              next
-                            end
+                            download_link("#{site_url}#{node.attr('href')}")
+                          rescue StandardError
+                            next
+                          end
     end
 
     versions

@@ -15,7 +15,7 @@ begin
       begin
         puts "Updating #{app}:"
         Fingerprinter.load(app, @options).auto_update
-      rescue => e
+      rescue StandardError => e
         puts "An error occured: #{e.message}, skipping the app"
       ensure
         puts
@@ -68,7 +68,7 @@ begin
       f.fingerprint(@options[:target], @options)
     end
   end
-rescue => e
+rescue StandardError => e
   puts e.message
   puts e.backtrace.join("\n")
 end
