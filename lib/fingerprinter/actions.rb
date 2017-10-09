@@ -45,7 +45,7 @@ class Fingerprinter
       if !Version.first(number: version_number)
         begin
           compute_fingerprints(version_number, download_and_extract(version_number, download_url))
-        rescue => e
+        rescue StandardError => e
           puts "An error occured: #{e.message}, skipping the version"
         end
       else
@@ -60,7 +60,7 @@ class Fingerprinter
     if !Version.first(number: opts[:manual_version])
       begin
         compute_fingerprints(opts[:manual_version], opts[:manual])
-      rescue => e
+      rescue StandardError => e
         puts "An error occured: #{e.message}, skipping the version"
       end
     else

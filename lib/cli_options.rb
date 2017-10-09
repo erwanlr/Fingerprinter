@@ -40,6 +40,10 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:app] = app
   end
 
+  opts.on('--app-params PARAMS', "Additionnal Parameters to give to the app. Used to provide the plugin name along with the wordpress-plugin app") do |params|
+    @options[:app_params] = params
+  end
+
   opts.on('--db PATH-TO-DB', '-d', 'Path to the db of the app-name') do |db|
     @options[:db] = db
   end

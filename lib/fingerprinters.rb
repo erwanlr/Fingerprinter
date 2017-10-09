@@ -1,7 +1,7 @@
 SUPPORTED_APPS = %w[
   apache-icons chamilo-lms ckeditor cms-made-simple concrete5 django-cms dnn-cms drupal fckeditor joomla liferay
   magento-ce mantisbt mediaelement moodle open-cart orchard phpmyadmin prestashop punbb roundcubemail smf tinymce
-  umbraco wordpress
+  umbraco wordpress wordpress-plugin
 ].freeze
 
 require 'fingerprinter'

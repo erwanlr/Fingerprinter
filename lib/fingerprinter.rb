@@ -28,19 +28,22 @@ class Fingerprinter
   #   :db
   #   :db_verbose
   #   :cookies_file
+  #   :app_params
   def initialize(options = {})
-    db = options[:db] || File.join(DB_DIR, "#{app_name}.db")
+    @options = options
+
+    init_db(db_path, options[:db_verbose])
+  end
+
+  def db_path
+    return @db_path if @db_path
+
+    @db_path = @options[:db] || File.join(DB_DIR, "#{app_name}.db")
     # If the db is not an absolute path, we need to get the abslute path
     # otherwise, DataMapper will not be able to find the db
-    db = File.expand_path(File.join(Dir.pwd, db)) unless absolute_path?(db)
+    @db_path = File.expand_path(File.join(Dir.pwd, @db_path)) unless absolute_path?(@db_path)
 
-    init_db(db, options[:db_verbose])
-
-    @proxy           = options[:proxy]
-    @cookies_file    = options[:cookies_file]
-    @cookies_string  = options[:cookies_string]
-    @timeout         = options[:timeout]
-    @connect_timeout = options[:connecttimeout]
+    @db_path
   end
 
   def app_name
@@ -54,17 +57,37 @@ class Fingerprinter
 
   protected
 
+  def proxy
+    @options[:proxy]
+  end
+
+  def cookies_file
+    @options[:cookies_file]
+  end
+
+  def cookies_string
+    @options[:cookies_string]
+  end
+
+  def timeout
+    @options[:timeout]
+  end
+
+  def connect_timeout
+    @options[:connecttimeout]
+  end
+
   def request_options
     opts = {
-      proxy: @proxy,
+      proxy: proxy,
       ssl_verifypeer: false,
       ssl_verifyhost: 2,
-      cookie: @cookies_string,
-      timeout: @timeout,
-      connecttimeout: @connect_timeout
+      cookie: cookies_string,
+      timeout: timeout,
+      connecttimeout: connect_timeout
     }
     # The option cookiefile of Typhoeus does not work, so we use the cookie one
-    opts[:cookie] = File.read(@cookies_file) if @cookies_file
+    opts[:cookie] = File.read(cookies_file) if cookies_file
     opts
   end
 end
