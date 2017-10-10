@@ -1,4 +1,3 @@
-# require 'db'
 require 'json'
 require 'typhoeus'
 require 'addressable/uri'
@@ -11,8 +10,6 @@ require 'fingerprinter/github_hosted'
 
 # Fingerprinter
 class Fingerprinter
-  # include DB
-
   # @param [ String ] app_name
   # @param [ Hash ] options See #new
   #

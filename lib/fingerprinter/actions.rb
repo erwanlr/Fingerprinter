@@ -134,14 +134,12 @@ class Fingerprinter
 
     results = {}
 
-    # quite sure the below can be done via a .select
     db.each do |file_path, fingerprints|
       fingerprints.each do |md5sum, versions|
         next unless versions.size == 1
 
         results[file_path] ||= {}
-        results[file_path][md5sum] ||= []
-        results[file_path][md5sum] << versions.flatten
+        results[file_path][md5sum] = versions
       end
     end
 
