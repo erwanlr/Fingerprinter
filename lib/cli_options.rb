@@ -98,10 +98,6 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:passive] = true
   end
 
-  opts.on('--db-verbose', '--dbv', 'Database Verbose Mode') do
-    @options[:db_verbose] = true
-  end
-
   opts.on('--verbose', '-v', 'Verbose Mode') do
     @options[:verbose] = true
   end

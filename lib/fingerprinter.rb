@@ -1,16 +1,17 @@
-require 'db'
+# require 'db'
 require 'json'
 require 'typhoeus'
 require 'addressable/uri'
 require 'active_support/inflector'
 require 'experimental'
+require 'fingerprinter/db'
 require 'fingerprinter/archive'
 require 'fingerprinter/actions'
 require 'fingerprinter/github_hosted'
 
 # Fingerprinter
 class Fingerprinter
-  include DB
+  # include DB
 
   # @param [ String ] app_name
   # @param [ Hash ] options See #new
@@ -26,24 +27,10 @@ class Fingerprinter
 
   # @param [ Hash ] options
   #   :db
-  #   :db_verbose
   #   :cookies_file
   #   :app_params
   def initialize(options = {})
     @options = options
-
-    init_db(db_path, options[:db_verbose])
-  end
-
-  def db_path
-    return @db_path if @db_path
-
-    @db_path = @options[:db] || File.join(DB_DIR, "#{app_name}.db")
-    # If the db is not an absolute path, we need to get the abslute path
-    # otherwise, DataMapper will not be able to find the db
-    @db_path = File.expand_path(File.join(Dir.pwd, @db_path)) unless absolute_path?(@db_path)
-
-    @db_path
   end
 
   def app_name

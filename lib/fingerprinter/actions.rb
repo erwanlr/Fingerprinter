@@ -9,31 +9,6 @@ require 'cms_scanner'
 class Fingerprinter
   include IgnorePattern::None
 
-  UNIQUE_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, ' \
-                        'versions.number AS version,' \
-                        'paths.value AS path ' \
-                        'FROM fingerprints ' \
-                        'LEFT JOIN versions ON version_id = versions.id ' \
-                        'LEFT JOIN paths on path_id = paths.id ' \
-                        'WHERE md5_hash IN ' \
-                        '(SELECT md5_hash FROM fingerprints GROUP BY md5_hash HAVING COUNT(*) = 1) ' \
-                        'ORDER BY version DESC'.freeze
-
-  ALL_FINGERPRINTS = 'SELECT md5_hash, path_id, version_id, ' \
-                     'versions.number AS version,' \
-                     'paths.value AS path ' \
-                     'FROM fingerprints ' \
-                     'LEFT JOIN versions ON version_id = versions.id ' \
-                     'LEFT JOIN paths on path_id = paths.id ' \
-                     'ORDER BY version DESC'.freeze
-
-  PATH_FINGERPRINTS = 'SELECT md5_hash, versions.number AS version ' \
-                      'FROM fingerprints '\
-                      'LEFT JOIN versions ON version_id = versions.id ' \
-                      'LEFT JOIN paths on path_id = paths.id ' \
-                      'WHERE paths.value = ? ' \
-                      'ORDER BY version DESC'.freeze
-
   def auto_update
     puts 'Retrieving remote version numbers ...'
 
@@ -42,7 +17,7 @@ class Fingerprinter
     puts "#{remote_versions.size} remote version numbers retrieved"
 
     remote_versions.each do |version_number, download_url|
-      if !Version.first(number: version_number)
+      if !db_versions.include?(version_number)
         begin
           compute_fingerprints(version_number, download_and_extract(version_number, download_url))
         rescue StandardError => e
@@ -57,7 +32,7 @@ class Fingerprinter
   def manual_update(opts = {})
     raise 'The --version option has to be supplied' unless opts[:manual_version]
 
-    if !Version.first(number: opts[:manual_version])
+    if !db_versions.include?(opts[:manual_version])
       begin
         compute_fingerprints(opts[:manual_version], opts[:manual])
       rescue StandardError => e
@@ -69,18 +44,20 @@ class Fingerprinter
   end
 
   def list_versions
-    Version.all.sort { |a, b| compare_version(a.number, b.number) }.each do |version|
-      puts version.number
-    end
+    db_versions.each { |number| puts number }
   end
 
   def list_files(version_number)
-    version = Version.first(number: version_number)
+    if db_versions.include?(version_number)
+      puts "Results for #{version_number}:"
 
-    if version
-      puts "Results for #{version.number}:"
+      db.each do |file_path, fingerprints|
+        fingerprints.each_value do |versions|
+          next unless versions.include?(version_number)
 
-      version.fingerprints.each { |f| puts f.path.value }
+          puts file_path
+        end
+      end
     else
       puts "The version supplied: '#{version_number}' is not in the database"
     end
@@ -90,30 +67,37 @@ class Fingerprinter
   # @param [ String ] archive_dir
   # @return [ Void ]
   def compute_fingerprints(version_number, archive_dir)
-    db_version = Version.create(number: version_number)
+    # Duppe the DB and save it when everything went well
+    # so that if an exception is raised here, there is no partial
+    # fingerprints in the DB
+    dupped_db = db.dup
 
     puts 'Processing Fingerprints'
+    # TODO: Maybe use Pathname ?
     Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exist?(f) }.each do |filename|
-      hash        = Digest::MD5.file(filename).hexdigest
+      md5sum      = Digest::MD5.file(filename).hexdigest
       file_path   = filename.gsub(archive_dir, '')
-      db_path     = Path.first_or_create(value: file_path)
-      fingerprint = Fingerprint.create(path_id: db_path.id, md5_hash: hash)
 
-      db_version.fingerprints << fingerprint
+      dupped_db[file_path] ||= {}
+      dupped_db[file_path][md5sum] ||= []
+      dupped_db[file_path][md5sum] << version_number
     end
-    db_version.save
+
+    save_db(dupped_db)
     FileUtils.rm_rf(archive_dir, secure: true)
   end
 
   # @param [ String ] version_number
   def list_unique_fingerprints(version_number)
-    version = Version.first(number: version_number)
+    if db_versions.include?(version_number)
+      puts "Results for #{version_number}:"
 
-    if version
-      puts "Results for #{version.number}:"
+      db.each do |file_path, fingerprints|
+        fingerprints.each do |md5sum, versions|
+          next unless versions == [version_number]
 
-      repository(:default).adapter.select(UNIQUE_FINGERPRINTS).each do |f|
-        puts "#{f.md5_hash} #{f.path}" if f.version_id == version.id
+          puts "#{md5sum} #{file_path}"
+        end
       end
     else
       puts "The version supplied: '#{version_number}' is not in the database"
@@ -123,36 +107,42 @@ class Fingerprinter
   def search_hash(hash)
     puts "Results for #{hash}:"
 
-    Fingerprint.all(md5_hash: hash).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
-      puts "  #{f.version.number} #{f.path.value}"
+    db.each do |file_path, fingerprints|
+      fingerprints.each do |md5sum, versions|
+        next unless md5sum == hash
+
+        versions.each { |number| puts "  #{number} #{file_path}" }
+      end
     end
   end
 
+  # TODO: how to have the previous behaviour with the like ?
+  # to be able to search partial filename like read*
   def search_file(file)
-    paths = Path.all(:value.like => file)
+    puts "Results for #{file}:"
 
-    paths.each do |path|
-      puts "Results for #{path.value}:"
-
-      Fingerprint.all(path_id: path.id).sort { |a, b| compare_version(a.version.number, b.version.number) }.each do |f|
-        puts "  #{f.md5_hash} #{f.version.number}"
-      end
+    db[file].each do |md5sum, versions|
+      versions.each { |number| puts "  #{md5sum} #{number}" }
     end
-
-    puts 'No Results' if paths.empty?
   end
 
   # @param [ Boolean ] unique
   #
   # @return [ Hash ]
   def fingerprints(unique = false)
-    query   = unique ? UNIQUE_FINGERPRINTS : ALL_FINGERPRINTS
+    return db unless unique
+
     results = {}
 
-    repository(:default).adapter.select(query).each do |f|
-      results[f.path] ||= {}
-      results[f.path][f.md5_hash] ||= []
-      results[f.path][f.md5_hash] << f.version
+    # quite sure the below can be done via a .select
+    db.each do |file_path, fingerprints|
+      fingerprints.each do |md5sum, versions|
+        next unless versions.size == 1
+
+        results[file_path] ||= {}
+        results[file_path][md5sum] ||= []
+        results[file_path][md5sum] << versions.flatten
+      end
     end
 
     results
@@ -229,20 +219,6 @@ class Fingerprinter
     end
   end
 
-  # @param [ String ] path
-  #
-  # @return [ Hash ]
-  def path_fingerprints(path)
-    results = {}
-
-    repository(:default).adapter.select(PATH_FINGERPRINTS, path).each do |f|
-      results[f.md5_hash] ||= []
-      results[f.md5_hash] << f.version
-    end
-
-    results
-  end
-
   # @param [ CMSScanner::Target ] target
   # @param [ Hash ] opts
   #   :verbose
@@ -254,7 +230,7 @@ class Fingerprinter
     urls.each do |url|
       uri          = Addressable::URI.parse(url)
       path         = uri.path.sub(target.uri.path, '')
-      fingerprints = path_fingerprints(path)
+      fingerprints = db[path]
 
       if fingerprints.empty?
         bar.log("Path not in the DB for #{url}") if opts[:verbose]
