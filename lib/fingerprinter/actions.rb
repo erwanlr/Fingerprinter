@@ -67,10 +67,11 @@ class Fingerprinter
   # @param [ String ] archive_dir
   # @return [ Void ]
   def compute_fingerprints(version_number, archive_dir)
-    # Duppe the DB and save it when everything went well
+    # Duppe the DB and save it if everything went well
     # so that if an exception is raised here, there is no partial
-    # fingerprints in the DB
-    dupped_db = db.dup
+    # fingerprints in the DB. As a result, the DB has to be reloaded each time
+    # (hence the (true))
+    dupped_db = db(true).dup
 
     puts 'Processing Fingerprints'
     # TODO: Maybe use Pathname ?

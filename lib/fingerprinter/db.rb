@@ -9,8 +9,10 @@ class Fingerprinter
     @db_path
   end
 
-  def db
-    File.exist?(db_path) ? JSON.parse(File.read(db_path)) || {} : {}
+  def db(reload = false)
+    return @db if @db && !reload
+
+    @db = File.exist?(db_path) ? JSON.parse(File.read(db_path)) || {} : {}
   end
 
   # return [ Array ] The sorted version numbers from the DB
