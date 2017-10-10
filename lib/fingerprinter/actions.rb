@@ -51,12 +51,8 @@ class Fingerprinter
     if db_versions.include?(version_number)
       puts "Results for #{version_number}:"
 
-      db.each do |file_path, fingerprints|
-        fingerprints.each_value do |versions|
-          next unless versions.include?(version_number)
-
-          puts file_path
-        end
+      db.select { |_, fingerprints| fingerprints.values.flatten.include?(version_number) }.each_key do |file_path|
+        puts file_path
       end
     else
       puts "The version supplied: '#{version_number}' is not in the database"
@@ -94,9 +90,7 @@ class Fingerprinter
       puts "Results for #{version_number}:"
 
       db.each do |file_path, fingerprints|
-        fingerprints.each do |md5sum, versions|
-          next unless versions == [version_number]
-
+        fingerprints.select { |_, versions| versions == [version_number] }.each_key do |md5sum|
           puts "#{md5sum} #{file_path}"
         end
       end
