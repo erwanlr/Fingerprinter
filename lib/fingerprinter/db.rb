@@ -25,6 +25,6 @@ class Fingerprinter
   end
 
   def save_db(data)
-    File.write(db_path, JSON.pretty_generate(JSON.parse(data.to_json)))
+    File.write(db_path, data.to_json)
   end
 end
