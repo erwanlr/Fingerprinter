@@ -31,6 +31,8 @@ class WordpressPlugin < Fingerprinter
   def downloadable_versions
     versions = {}
 
+    return {} if plugin_data.nil? # Case when the plugin has been removed from WP
+    
     versions[plugin_data['version']] = plugin_data['download_link']
 
     plugin_data['versions'].each do |version, download_link|
