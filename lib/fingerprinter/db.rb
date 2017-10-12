@@ -1,5 +1,6 @@
 # Fingerprinter DB
 class Fingerprinter
+  # TODO: Maybe create a DB class for all this stuff ?
   def db_path
     return @db_path if @db_path
 
@@ -17,6 +18,8 @@ class Fingerprinter
 
   # return [ Array ] The sorted version numbers from the DB
   # quite sure there is a shorter way to do that
+  # TODO: optimise that, given that when the DB is huge (eg with chamilo-lms)
+  #       it takes ages to just list the versions (--lv)
   def db_versions
     return @db_versions if @db_versions
 
@@ -24,7 +27,7 @@ class Fingerprinter
 
     db.each_value { |h| versions += h.values.flatten }
 
-    @db_versions = versions.uniq.sort.reverse
+    @db_versions = versions.uniq.sort { |a, b| compare_version(a, b) }
   end
 
   def save_db(data)

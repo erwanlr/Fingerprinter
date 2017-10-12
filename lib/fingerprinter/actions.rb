@@ -60,7 +60,7 @@ class Fingerprinter
     if db_versions.include?(version_number)
       puts "Results for #{version_number}:"
 
-      db.select { |_, fingerprints| fingerprints.values.flatten.include?(version_number) }.each_key do |file_path|
+      db.select { |_, fp| fp.select { |_, versions| versions.include?(version_number) } }.each_key do |file_path|
         puts file_path
       end
     else
@@ -115,7 +115,7 @@ class Fingerprinter
       fingerprints.each do |md5sum, versions|
         next unless md5sum == hash
 
-        versions.each { |number| puts "  #{number} #{file_path}" }
+        versions.sort { |a, b| compare_version(a, b) }.each { |number| puts "  #{number} #{file_path}" }
       end
     end
   end
@@ -125,8 +125,16 @@ class Fingerprinter
   def search_file(file)
     puts "Results for #{file}:"
 
+    results = {}
+
     db[file].each do |md5sum, versions|
-      versions.each { |number| puts "  #{md5sum} #{number}" }
+      versions.each do |version|
+        results[version] = md5sum
+      end
+    end
+
+    results.keys.sort { |a, b| compare_version(a, b) }.each do |version|
+      puts "#{results[version]} #{version}"
     end
   end
 
