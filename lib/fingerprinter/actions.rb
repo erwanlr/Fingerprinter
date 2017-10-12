@@ -28,6 +28,9 @@ class Fingerprinter
           puts "Version #{version_number} already in DB, skipping"
         end
       end
+
+      # Resort and save the data
+      db_sort_and_save
     rescue StandardError => e
       puts "Error: #{e.message}"
     end
@@ -39,6 +42,8 @@ class Fingerprinter
     if !db_versions.include?(opts[:manual_version])
       begin
         compute_fingerprints(opts[:manual_version], opts[:manual])
+
+        db_sort_and_save
       rescue StandardError => e
         puts "An error occured: #{e.message}, skipping the version"
       end
