@@ -33,7 +33,18 @@ class WordpressPlugin < Fingerprinter
 
     raise 'No data from WP API about this plugin (probably removed or disabled)' if plugin_data.nil?
 
-    versions[plugin_data['version']] = plugin_data['download_link']
+    latest_version = plugin_data['version']
+
+    # Some version from the 'version' field can be malformed, like 'v1.2.0' and '.0.2.3'
+    # So we try to fix them before adding them
+    case latest_version[0]
+    when '.'
+      latest_version = "0#{latest_version}"
+    when 'v'
+      latest_version = latest_version[1..-1]
+    end
+
+    versions[latest_version] = plugin_data['download_link']
 
     plugin_data['versions'].each do |version, download_link|
       next unless version =~ /\A[0-9\.]+\z/ # Only Stables
