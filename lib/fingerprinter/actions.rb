@@ -12,20 +12,24 @@ class Fingerprinter
   def auto_update
     puts 'Retrieving remote version numbers ...'
 
-    remote_versions = Hash[downloadable_versions.to_a.sort { |a, b| compare_version(a.first, b.first) }]
+    begin
+      remote_versions = Hash[downloadable_versions.to_a.sort { |a, b| compare_version(a.first, b.first) }]
 
-    puts "#{remote_versions.size} remote version numbers retrieved"
+      puts "#{remote_versions.size} remote version numbers retrieved"
 
-    remote_versions.each do |version_number, download_url|
-      if !db_versions.include?(version_number)
-        begin
-          compute_fingerprints(version_number, download_and_extract(version_number, download_url))
-        rescue StandardError => e
-          puts "An error occured: #{e.message}, skipping the version"
+      remote_versions.each do |version_number, download_url|
+        if !db_versions.include?(version_number)
+          begin
+            compute_fingerprints(version_number, download_and_extract(version_number, download_url))
+          rescue StandardError => e
+            puts "An error occured: #{e.message}, skipping the version"
+          end
+        else
+          puts "Version #{version_number} already in DB, skipping"
         end
-      else
-        puts "Version #{version_number} already in DB, skipping"
       end
+    rescue StandardError => e
+      puts "Error: #{e.message}"
     end
   end
 
