@@ -44,7 +44,7 @@ class WordpressPlugin < Fingerprinter
       latest_version = latest_version[1..-1]
     end
 
-    versions[latest_version] = plugin_data['download_link']
+    versions[latest_version] = plugin_data['download_link'] if latest_version =~ /\A[0-9\.]+\z/
 
     plugin_data['versions'].each do |version, download_link|
       next unless version =~ /\A[0-9\.]+\z/ # Only Stables
