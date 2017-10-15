@@ -2,6 +2,51 @@ require 'dearchiver'
 require 'fileutils'
 require 'shellwords'
 
+# ToDO: Send PR to fix those
+module Dearchiver
+  # @author Juan Pablo Genovese
+  #
+  class Processor
+
+    def initialize(options = {})
+      @filename = options[:filename]
+      raise ArgumentError, "Processor: :filename required!" if @filename.nil? or @filename.empty?
+      raise RuntimeError, 'Processor: :filename does not exist!' unless File.exist?(@filename)
+
+      if options[:archive_type].nil? or options[:archive_type].empty?
+        @archive_type = File.extname(@filename) if valid_file_type?
+      end
+      @archive_type ||= options[:archive_type]
+      raise ArgumentError, "Processor: :archive_type required. :filename does not contain a recognizable extension!" if @archive_type.nil? or @archive_type.empty?
+    end
+
+    def crc_ok?
+      result = execute_command(archive_options[@archive_type][:crc_check].gsub("<filename>", filename.shellescape))
+      result.include?(archive_options[@archive_type][:crc_ok]) ? true : false
+    end
+
+    def extract_to(destination)
+      raise ArgumentError, "Processor: destination is required!" if destination.nil? or destination.empty?
+      raise RuntimeError, "destination directory is not valid" unless Dir.exists?(destination)
+
+      @list_of_files = []
+
+      result = execute_command(archive_options[@archive_type][:decompress].gsub("<filename>", filename.shellescape).gsub("<extractdir>", destination.shellescape))
+      result.scan(archive_options[@archive_type][:file_list_regex]).each do |slice|
+        # The gsub("\b","") is a hack to make the list file for unrar work.
+        @list_of_files << slice.first.gsub("\b","").strip
+      end
+      @list_of_files
+    end
+
+    def execute_command(command)
+      @executed_command = command
+      
+      @execution_output = %x[#{command}].encode('UTF-8', invalid: :replace, undef: :replace)
+    end
+  end
+end
+
 # Fingerprinter Archive methods
 class Fingerprinter
   # @return [ String ] The directory path where the version has been extracted
