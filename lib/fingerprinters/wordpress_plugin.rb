@@ -12,31 +12,30 @@ class WordpressPlugin < Fingerprinter
   end
 
   def app_name
-    "wordpress_plugin/#{plugin_slug}"
+    "wordpress_plugin/#{item_slug}"
   end
 
-  def plugin_slug
+  def item_slug
     @options[:app_params]
   end
 
-  def plugin_data
-    @plugin_data ||= JSON.parse(
-      Typhoeus.get(
-        format(
-          'https://api.wordpress.org/plugins/info/1.1/?action=plugin_information&request[slug]=%s',
-          plugin_slug
-        ),
-        timeout: 20
-      ).body
+  def api_url
+    format(
+      'https://api.wordpress.org/plugins/info/1.1/?action=plugin_information&request[slug]=%s',
+      item_slug
     )
+  end
+
+  def item_data
+    @item_data ||= JSON.parse(Typhoeus.get(api_url, timeout: 20).body)
   end
 
   def downloadable_versions
     versions = {}
 
-    raise 'No data from WP API about this plugin (probably removed or disabled)' if plugin_data.nil?
+    raise 'No data from WP API about this plugin (probably removed or disabled)' if item_data.nil?
 
-    latest_version = plugin_data['version']
+    latest_version = item_data['version']
 
     # Some version from the 'version' field can be malformed, like 'v1.2.0' and '.0.2.3'
     # So we try to fix them before adding them
@@ -47,9 +46,9 @@ class WordpressPlugin < Fingerprinter
       latest_version = latest_version[1..-1]
     end
 
-    versions[latest_version] = plugin_data['download_link'] if latest_version =~ VERSION_PATTERN
+    versions[latest_version] = item_data['download_link'] if latest_version =~ VERSION_PATTERN
 
-    plugin_data['versions'].each do |version, download_link|
+    item_data['versions'].each do |version, download_link|
       next unless version =~ VERSION_PATTERN
 
       versions[version] = download_link
