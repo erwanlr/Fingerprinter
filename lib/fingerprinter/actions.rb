@@ -22,7 +22,7 @@ class Fingerprinter
           begin
             compute_fingerprints(version_number, download_and_extract(version_number, download_url))
           rescue StandardError => e
-            puts "An error occured: #{e.message}, skipping the version"
+            puts "An error occurred: #{e.message}, skipping the version"
           end
         else
           puts "Version #{version_number} already in DB, skipping"
@@ -45,7 +45,7 @@ class Fingerprinter
 
         db_sort_and_save
       rescue StandardError => e
-        puts "An error occured: #{e.message}, skipping the version"
+        puts "An error occurred: #{e.message}, skipping the version"
       end
     else
       puts "Version #{opts[:manual_version]} already in DB, skipping"
