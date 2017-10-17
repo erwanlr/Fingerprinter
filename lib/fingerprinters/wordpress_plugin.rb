@@ -33,7 +33,7 @@ class WordpressPlugin < Fingerprinter
   def downloadable_versions
     versions = {}
 
-    raise 'No data from WP API about this plugin (probably removed or disabled)' if item_data.nil?
+    raise 'No data from WP API about this item (probably removed or disabled)' unless item_data
 
     latest_version = item_data['version']
 
