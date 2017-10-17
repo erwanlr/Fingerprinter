@@ -1,7 +1,7 @@
 # WordPress Plugin
 class WordpressPlugin < Fingerprinter
   include IgnorePattern::PHP
-  
+
   VERSION_PATTERN = /\A[0-9\.\-]+[a-z]*\z/i
 
   def initialize(options = {})
@@ -25,7 +25,8 @@ class WordpressPlugin < Fingerprinter
         format(
           'https://api.wordpress.org/plugins/info/1.1/?action=plugin_information&request[slug]=%s',
           plugin_slug
-        )
+        ),
+        timeout: 20
       ).body
     )
   end
