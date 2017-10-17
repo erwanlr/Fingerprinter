@@ -10,7 +10,7 @@ require 'fingerprinter/github_hosted'
 
 # Helps when network issues
 Typhoeus.on_complete do |res|
-  raise Typhoeus::Errors::TyphoeusError, "#{res.effective_url} - #{res.code} (#{res.return_message})" unless res.code == 200
+  raise Typhoeus::Errors::TyphoeusError, "#{res.effective_url} - #{res.code} (#{res.return_message})" if res.code == 0
 end
 
 # Fingerprinter
