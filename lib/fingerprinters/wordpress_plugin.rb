@@ -15,6 +15,10 @@ class WordpressPlugin < Fingerprinter
     "wordpress_plugin/#{item_slug}"
   end
 
+  def db_dir
+    File.join(DB_DIR, 'wordpress_plugin').to_s
+  end
+
   def item_slug
     @options[:app_params]
   end
@@ -28,6 +32,11 @@ class WordpressPlugin < Fingerprinter
 
   def item_data
     @item_data ||= JSON.parse(Typhoeus.get(api_url, timeout: 20).body)
+  end
+
+  # returns a list of versions to ignore due to 404 no existent zips
+  def ignore_list
+    @ignore_list ||= JSON.parse(File.read(File.join(db_dir, '.ignore.json')))[item_slug] || []
   end
 
   def downloadable_versions
@@ -50,9 +59,14 @@ class WordpressPlugin < Fingerprinter
 
     item_data['versions'].each do |version, download_link|
       next unless version =~ VERSION_PATTERN
+      next if ignore_list.include?(version)
 
       versions[version] = download_link
     end
+
+    p versions
+
+    exit
 
     versions
   end
