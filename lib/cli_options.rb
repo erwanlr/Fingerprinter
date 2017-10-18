@@ -16,7 +16,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:proxy] = proxy
   end
 
-  opts.on('--timeout SECONDS', 'The number of seconds for the request to be performed, default 20s') do |timeout|
+  opts.on('--timeout SECONDS', 'The number of seconds for the requests to be performed, default 20s') do |timeout|
     @options[:timeout] = timeout
   end
 
@@ -24,15 +24,15 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:connecttimeout] = timeout
   end
 
-  opts.on('--cookies-file FILE-PATH', '--cf', 'The cookies file to use during the fingerprinting') do |file_path|
+  opts.on('--cookies-file FILE-PATH', '--cf', 'The cookies file to use in fingerprinting requests') do |file_path|
     @options[:cookies_file] = file_path
   end
 
-  opts.on('--cookies-string COOKIE/S', '--cs', 'The cookies string to use in requests') do |string|
+  opts.on('--cookies-string COOKIE/S', '--cs', 'The cookies string to use in fingerprinting requests') do |string|
     @options[:cookies_string] = string
   end
 
-  opts.on('--user-agent UA', '--ua', 'User-Agent to use in all fingerprinting requests') do |ua|
+  opts.on('--user-agent UA', '--ua', 'User-Agent to use in fingerprinting requests') do |ua|
     @options[:user_agent] = ua
   end
 
@@ -40,7 +40,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:app] = app
   end
 
-  opts.on('--app-params PARAMS', "Additionnal Parameters to give to the app. Used to provide the plugin name along with the wordpress-plugin app") do |params|
+  opts.on('--app-params PARAMS', "Additionnal Parameters to give to the app. Used to provide the plugin/theme name along with the wordpress-plugin/wordpress-theme app") do |params|
     @options[:app_params] = params
   end
 
