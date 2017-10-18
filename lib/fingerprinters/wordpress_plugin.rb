@@ -64,10 +64,6 @@ class WordpressPlugin < Fingerprinter
       versions[version] = download_link
     end
 
-    p versions
-
-    exit
-
     versions
   end
 end
