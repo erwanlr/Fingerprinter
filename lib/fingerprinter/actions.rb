@@ -127,14 +127,18 @@ class Fingerprinter
 
     results = {}
 
-    db[file].each do |md5sum, versions|
-      versions.each do |version|
-        results[version] = md5sum
+    if (fingerprints = db[file])
+      fingerprints.each do |md5sum, versions|
+        versions.each do |version|
+          results[version] = md5sum
+        end
       end
-    end
 
-    results.keys.sort { |a, b| compare_version(a, b) }.each do |version|
-      puts "#{results[version]} #{version}"
+      results.keys.sort { |a, b| compare_version(a, b) }.each do |version|
+        puts "#{results[version]} #{version}"
+      end
+    else
+      puts 'Nothing found'
     end
   end
 
@@ -242,7 +246,7 @@ class Fingerprinter
       path         = uri.path.sub(target.uri.path, '')
       fingerprints = db[path]
 
-      if fingerprints.empty?
+      if fingerprints.nil? || fingerprints.empty?
         bar.log("Path not in the DB for #{url}") if opts[:verbose]
       else
         # the url will contain the query string, not sure if it should be deleted or not
