@@ -11,7 +11,7 @@ begin
   require 'cli_options'
 
   if @options[:update_all]
-    SUPPORTED_APPS.each do |app|
+    (SUPPORTED_APPS - %w[wordpress-plugin wordpress-theme]).each do |app|
       begin
         puts "Updating #{app}:"
         Fingerprinter.load(app, @options).auto_update
