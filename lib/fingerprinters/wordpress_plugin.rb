@@ -59,11 +59,10 @@ class WordpressPlugin < Fingerprinter
 
     item_data['versions'].each do |version, download_link|
       next unless version =~ VERSION_PATTERN
-      next if ignore_list.include?(version)
 
       versions[version] = download_link
     end
 
-    versions
+    versions.delete_if { |v, _link| ignore_list.include?(v) }
   end
 end
