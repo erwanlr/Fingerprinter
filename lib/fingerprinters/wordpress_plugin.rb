@@ -50,7 +50,7 @@ class WordpressPlugin < Fingerprinter
       # Some version can be malformed, like 'v1.2.0', '.0.2.3', '0.2 Beta'
       # So we try to fix them before adding them
 
-      version = version.tr(' ', '\-')
+      version = version.to_s.tr(' ', '\-')
 
       case version[0]
       when '.'
