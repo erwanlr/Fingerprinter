@@ -47,8 +47,11 @@ class WordpressPlugin < Fingerprinter
     # When empty, the 'versions' field is an array, but is a hash otherwise
     # Hence the .to_h
     { item_data['version'] => item_data['download_link'] }.merge(item_data['versions'].to_h).each do |version, download_link|
-      # Some version can be malformed, like 'v1.2.0' and '.0.2.3'
+      # Some version can be malformed, like 'v1.2.0', '.0.2.3', '0.2 Beta'
       # So we try to fix them before adding them
+
+      version = version.tr(' ', '\-')
+
       case version[0]
       when '.'
         version = "0#{version}"
@@ -56,8 +59,7 @@ class WordpressPlugin < Fingerprinter
         version = version[1..-1]
       end
 
-      next unless version =~ VERSION_PATTERN
-      next if ignore_list.include?(version)
+      next if version !~ VERSION_PATTERN || ignore_list.include?(version)
 
       versions[version] = download_link
     end
