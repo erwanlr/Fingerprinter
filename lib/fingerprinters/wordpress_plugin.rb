@@ -2,7 +2,8 @@
 class WordpressPlugin < Fingerprinter
   include IgnorePattern::PHP
 
-  VERSION_PATTERN = /\A[0-9\.\-]+[a-z]*\z/i
+  # VERSION_PATTERN = /\A[0-9\.\-]+[a-z]*\z/i
+  VERSION_PATTERN = /\A[\d]\.[\da-z\.\-]+\z/i
 
   def initialize(options = {})
     # Create additional required dirs if needed
@@ -47,23 +48,25 @@ class WordpressPlugin < Fingerprinter
     # When empty, the 'versions' field is an array, but is a hash otherwise
     # Hence the .to_h
     { item_data['version'] => item_data['download_link'] }.merge(item_data['versions'].to_h).each do |version, download_link|
-      # Some version can be malformed, like 'v1.2.0', '.0.2.3', '0.2 Beta'
-      # So we try to fix them before adding them
+      cleaned = clean_version(version.to_s.dup)
 
-      version = version.to_s.tr(' ', '\-')
+      next if cleaned !~ VERSION_PATTERN || ignore_list.include?(cleaned)
 
-      case version[0]
-      when '.'
-        version = "0#{version}"
-      when 'v'
-        version = version[1..-1]
-      end
-
-      next if version !~ VERSION_PATTERN || ignore_list.include?(version)
-
-      versions[version] = download_link
+      versions[cleaned] = download_link
     end
 
     versions
+  end
+
+  # Some version can be malformed, like 'v1.2.0', '.0.2.3', '0.2 Beta'
+  # So we try to fix them before adding them
+  def clean_version(version)
+    version.gsub!(/\A(?:version|v)\s*/i, '') # deletes leading v or version, eg: 'v1.2.3', 'Version 1.2'
+    version.gsub!(/\s+/, '-') # replaces all spaces by '-'
+    version.gsub!(/[\.]{2,}/, '.') # replaces more than one consecutive dots by one dot, eg: '0..2.1'
+
+    version = "0#{version}" if version[0] == '.' # adds leading 0 if first char is a dot, eg: '.2.3'
+
+    version
   end
 end
