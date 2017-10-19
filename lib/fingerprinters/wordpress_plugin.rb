@@ -44,25 +44,24 @@ class WordpressPlugin < Fingerprinter
 
     raise 'No data from WP API about this item (probably removed or disabled)' unless item_data
 
-    latest_version = item_data['version']
+    # When empty, the 'versions' field is an array, but is a hash otherwise
+    # Hence the .to_h
+    { item_data['version'] => item_data['download_link'] }.merge(item_data['versions'].to_h).each do |version, download_link|
+      # Some version can be malformed, like 'v1.2.0' and '.0.2.3'
+      # So we try to fix them before adding them
+      case version[0]
+      when '.'
+        version = "0#{version}"
+      when 'v'
+        version = version[1..-1]
+      end
 
-    # Some version from the 'version' field can be malformed, like 'v1.2.0' and '.0.2.3'
-    # So we try to fix them before adding them
-    case latest_version[0]
-    when '.'
-      latest_version = "0#{latest_version}"
-    when 'v'
-      latest_version = latest_version[1..-1]
-    end
-
-    versions[latest_version] = item_data['download_link'] if latest_version =~ VERSION_PATTERN
-
-    item_data['versions'].each do |version, download_link|
       next unless version =~ VERSION_PATTERN
+      next if ignore_list.include?(version)
 
       versions[version] = download_link
     end
 
-    versions.delete_if { |v, _link| ignore_list.include?(v) }
+    versions
   end
 end
