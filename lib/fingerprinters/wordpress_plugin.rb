@@ -2,7 +2,7 @@
 class WordpressPlugin < Fingerprinter
   include IgnorePattern::PHP
 
-  VERSION_PATTERN = /\A[\d][\da-z\.\-]+\z/i
+  VERSION_PATTERN = /\A[\d][\da-z\.\-]*\z/i
 
   def initialize(options = {})
     # Create additional required dirs if needed
