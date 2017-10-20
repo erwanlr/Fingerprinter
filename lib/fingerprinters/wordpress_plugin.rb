@@ -52,7 +52,7 @@ class WordpressPlugin < Fingerprinter
 
       next if cleaned !~ VERSION_PATTERN || ignore_list.include?(cleaned)
 
-      versions[cleaned] = download_link
+      versions[cleaned] = download_link.gsub(/[\r\n]/, '')
     end
 
     versions
@@ -62,6 +62,7 @@ class WordpressPlugin < Fingerprinter
   # So we try to fix them before adding them
   def clean_version(version)
     version.gsub!(/\A(?:version|v)\s*/i, '') # deletes leading v or version, eg: 'v1.2.3', 'Version 1.2'
+    version.gsub!(/[\r\n]/, '') # deletes new lines chars
     version.gsub!(/\s+/, '-') # replaces all spaces by '-'
     version.gsub!(/[\.]{2,}/, '.') # replaces more than one consecutive dots by one dot, eg: '0..2.1'
 
