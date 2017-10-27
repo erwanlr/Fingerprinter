@@ -17,17 +17,20 @@ class Fingerprinter
   end
 
   # return [ Array ] The sorted version numbers from the DB
-  # quite sure there is a shorter way to do that
-  # TODO: optimise that, given that when the DB is huge (eg with chamilo-lms)
-  #       it takes ages to just list the versions (--lv)
   def db_versions
     return @db_versions if @db_versions
 
-    versions = []
+    @db_versions = []
 
-    db.each_value { |h| versions += h.values.flatten }
+    db.each_value do |fp|
+      fp.each_value do |versions|
+        versions.each do |version|
+          @db_versions << version unless @db_versions.include?(version)
+        end
+      end
+    end
 
-    @db_versions = versions.uniq.sort { |a, b| compare_version(a, b) }
+    @db_versions.sort! { |a, b| compare_version(a, b) }
   end
 
   def save_db(data)
