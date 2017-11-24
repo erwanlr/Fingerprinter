@@ -187,13 +187,15 @@ class Fingerprinter
       res      = Typhoeus.get(url, request_options)
       md5sum   = Digest::MD5.hexdigest(res.body)
       verb_msg = nil
-      versions = f[md5sum]
 
-      if versions
+      if (versions = f[md5sum])
         detected_versions << versions
+        intersection = detected_versions.inject(:&)
 
         if versions.size == 1
           bar.log("Unique Match! v#{versions.first} - #{url} -> #{md5sum}")
+        elsif intersection.size == 1
+          bar.log("Intersection of potential versions returned only one version v#{intersection.first}")
         else
           verb_msg = format(verbose_format, res.code, "Matches: #{versions.join(', ')}", url)
         end
@@ -253,13 +255,15 @@ class Fingerprinter
         res      = Typhoeus.get(url, request_options)
         md5sum   = Digest::MD5.hexdigest(res.body)
         verb_msg = nil
-        versions = fingerprints[md5sum]
 
-        if versions
+        if (versions = fingerprints[md5sum])
           detected_versions << versions
+          intersection = detected_versions.inject(:&)
 
           if versions.size == 1
             bar.log("Unique Match! v#{versions.first} - #{url} -> #{md5sum}")
+          elsif intersection.size == 1
+            bar.log("Intersection of potential versions returned only one version v#{intersection.first}")
           else
             verb_msg = format(verbose_format, res.code, "Matches: #{versions.join(', ')}", url)
           end
