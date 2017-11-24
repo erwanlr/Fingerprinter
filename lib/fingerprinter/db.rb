@@ -39,10 +39,14 @@ class Fingerprinter
 
   # Sort the fingerpints by occurence of uniqueness
   # Meaning that files with the most amount of unique hashes
-  # will be on top and checked first
+  # will be on top and checked first. Versions are also sorted
   def db_sort_and_save
-    save_db(
-      db(true).sort_by { |_path, fp| fp.values.select { |v| v.size == 1 }.size }.reverse.to_h
-    )
+    fingerprints = db(true).sort_by { |_path, fp| fp.values.select { |v| v.size == 1 }.size }.reverse.to_h
+
+    fingerprints.each_value do |hashes|
+      hashes.each_value { |versions| versions.sort! { |a, b| compare_version(a, b) } }
+    end
+
+    save_db(fingerprints)
   end
 end
