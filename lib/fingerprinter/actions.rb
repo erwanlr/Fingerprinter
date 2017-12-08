@@ -80,7 +80,7 @@ class Fingerprinter
 
     puts 'Processing Fingerprints'
     # TODO: Maybe use Pathname ?
-    Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exist?(f) }.each do |filename|
+    Dir[File.join(archive_dir, '**', '*')].reject { |f| f =~ ignore_pattern || Dir.exist?(f) || !File.size?(f) }.each do |filename|
       md5sum      = Digest::MD5.file(filename).hexdigest
       file_path   = filename.gsub(archive_dir, '')
 
