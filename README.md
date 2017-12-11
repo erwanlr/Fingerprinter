@@ -85,7 +85,7 @@ $ bundle install
     - /sitecore/shell/sitecore.version.xml
 - vBulletin - Not free [[Sucuri](https://blog.sucuri.net/tag/vbulletin-security) | [Security Announcements](http://www.vbulletin.com/forum/search?q=Security&searchFields[title_only]=1&searchFields[channel][]=28&searchJSON={%22keywords%22%3A%22Security%22%2C%22title_only%22%3A1%2C%22channel%22%3A[%2228%22]}) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=vBulletin)]
   - Version disclosed from:
-    - generator meta tagand footer copyright in all pages
+    - generator meta tag and footer copyright in all pages
     - /clientscript/vbulletin_global.js
     - /clientscript/vbulletin_menu.js
     - /clientscript/vbulletin-core.js
@@ -104,7 +104,7 @@ This mode is faster than the previous one, and more reliable. However it is poss
 ```
 
 ##### Using passive fingerprinting mode
-In this mode, the homepage of the target is scanned for included ressources such as JavaScript files, Images etc which are then checked against the DB.
+In this mode, the homepage of the target is scanned for included ressources such as JavaScript files, Images and so on which are then checked against the DB.
 ```
 ./fingerprinter.rb --app-name wordpress --passive-fingerprint http://target.com/blog/
 ```
