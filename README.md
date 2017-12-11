@@ -49,8 +49,8 @@ $ bundle install
     - / (meta generator, stylesheet numbers: ?ver=)
     - Generator tag in /feed/, /feed/rdf/, /feed/atom/, /sitemap.xml(.gz) , /wp-links-opml.php
     - /readme.html
-- Wordpress Plugins (using -a wordpress-plugin along with --app-name <plugin-slug>)
-- Wordpress Themes (using -a wordpress-theme along with --app-name <theme-slug>)
+- Wordpress Plugins (using -a wordpress-plugin along with --app-params <plugin-slug>)
+- Wordpress Themes (using -a wordpress-theme along with --app-params <theme-slug>)
 
 #### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
 - AngularJS - Fingerprints not needed for that (see below) [[Payloads](https://code.google.com/p/mustache-security/wiki/AngularJS)]
