@@ -39,11 +39,11 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:app] = app
   end
 
-  opts.on('--app-params PARAMS', "Additionnal Parameters to give to the app. Used to provide the plugin/theme name along with the wordpress-plugin/wordpress-theme app") do |params|
+  opts.on('--app-params PARAMS', 'Additionnal Parameters to give to the app. Used to provide the plugin/theme name along with the wordpress-plugin/wordpress-theme app') do |params|
     @options[:app_params] = params
   end
 
-  opts.on('--db PATH-TO-DB', '-d', 'Path to the db of the app-name') do |db|
+  opts.on('--db PATH-TO-DB', '-d', 'Path to the db of the app-name (default is db/<app-name>.json)') do |db|
     @options[:db] = db
   end
 
@@ -59,7 +59,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:manual_version] = version
   end
 
-  opts.on('--update-all', 'Update all the apps') do
+  opts.on('--update-all', 'Update all the apps, except the wordpress plugins and themes') do
     @options[:update_all] = true
   end
 
@@ -79,7 +79,7 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
     @options[:hash] = hash
   end
 
-  opts.on('--search-file FILE', '--sf', 'Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes') do |file|
+  opts.on('--search-file FILE', '--sf', 'Search the file (ie --sf read will return aread.txt, readme.html etc) and output the app-name versions & hashes') do |file|
     @options[:file] = file
   end
 

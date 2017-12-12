@@ -120,14 +120,15 @@ class Fingerprinter
     end
   end
 
-  # TODO: how to have the previous behaviour with the like ?
-  # to be able to search partial filename like read*
   def search_file(file)
-    puts "Results for #{file}:"
+    results = nil
 
-    results = {}
+    db.each do |path, fingerprints|
+      next unless path.include?(file)
 
-    if (fingerprints = db[file])
+      results = {}
+      puts "Results for #{path}:"
+
       fingerprints.each do |md5sum, versions|
         versions.each do |version|
           results[version] = md5sum
@@ -135,11 +136,11 @@ class Fingerprinter
       end
 
       results.keys.sort { |a, b| compare_version(a, b) }.each do |version|
-        puts "#{results[version]} #{version}"
+        puts "   #{results[version]} #{version}"
       end
-    else
-      puts 'Nothing found'
     end
+
+    puts 'Nothing found' unless results
   end
 
   # @param [ Boolean ] unique

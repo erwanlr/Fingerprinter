@@ -117,11 +117,11 @@ In this mode, the homepage of the target is scanned for included ressources such
     --cookies-file, --cf FILE-PATH  The cookies file to use during the fingerprinting
     --cookies-string, --cs COOKIE/S The cookies string to use in requests
     --user-agent, --ua UA           User-Agent to use in all fingerprinting requests
--d, --db PATH-TO-DB                 Path to the db of the app-name (default is db/<app-name>.db)
+-d, --db PATH-TO-DB                 Path to the db of the app-name (default is db/<app-name>.json)
 -u, --update                        Update the db of the app-name
 -m, --manual DIRECTORY-PATH         To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
     --version                       Used with --manual to set the version of the processed fingerprints
-    --update-all,                   Update all the apps
+    --update-all,                   Update all the apps, except the wordpress plugins and themes
 -v, --verbose                       Verbose Mode
 ```
 Example: Add the file fingerprints from /tmp/test into the Liferay DB for the v6.2
@@ -136,7 +136,7 @@ Along with the --app-name option (or -a), the database can be searched:
 --list-files, --lf VERSION                 List all files related to the version for the given app
 --list-unique-fingerprints, --luf VERSION  List the unique hashes related to the files for the supplied version of the app
 --search-hash, --sh HASH                   Search the hash and output the app-name versions & file
---search-file, --sf FILE                   Search the file using a LIKE method (so % can be used, e.g: readme%) and output the app-name versions & hashes
+--search-file, --sf FILE                   Search the file (ie --sf read will return aread.txt, readme.html etc) and output the app-name versions & hashes
 ```
 Example: List all the unique Fingerprints for the version 3.8.1 of WordPress
 ```
