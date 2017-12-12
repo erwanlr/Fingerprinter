@@ -122,7 +122,6 @@ In this mode, the homepage of the target is scanned for included ressources such
 -m, --manual DIRECTORY-PATH         To be used along with the --update and --version options. Process the (local) DIRECTORY-PATH and compute the file fingerprints
     --version                       Used with --manual to set the version of the processed fingerprints
     --update-all,                   Update all the apps
-    --db-verbose, --dbv             Database Verbose Mode
 -v, --verbose                       Verbose Mode
 ```
 Example: Add the file fingerprints from /tmp/test into the Liferay DB for the v6.2

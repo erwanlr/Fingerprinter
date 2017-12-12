@@ -2,7 +2,6 @@ require 'optparse'
 
 @options = {
   verbose:        false,
-  db_verbose:     false,
   update:         false,
   update_all:     false,
   list_versions:  false,
