@@ -50,8 +50,8 @@ $ bundle install
     - Generator tag in /feed/, /feed/rdf/, /feed/atom/, /sitemap.xml(.gz) , /wp-links-opml.php
     - /readme.html (for < 4.7, otherwise only the major version is given. ie 4.7, 4.8, 4.9)
     - Use [WPScan v3](https://github.com/wpscanteam/wpscan-v3) with the --wp-version-all option to scan  them all
-- Wordpress Plugins (using -a wordpress-plugin along with --app-params <plugin-slug>) [[WP Vuln DB](https://wpvulndb.com/plugins)]
-- Wordpress Themes (using -a wordpress-theme along with --app-params <theme-slug>)[[WP Vuln DB](https://wpvulndb.com/themes)]
+- Wordpress Plugins (using -a wordpress-plugin along with --app-params plugin-slug) [[WP Vuln DB](https://wpvulndb.com/plugins)]
+- Wordpress Themes (using -a wordpress-theme along with --app-params theme-slug)[[WP Vuln DB](https://wpvulndb.com/themes)]
 
 #### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
 - AngularJS - Fingerprints not needed for that (see below) [[Payloads](https://code.google.com/p/mustache-security/wiki/AngularJS)]
