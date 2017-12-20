@@ -6,9 +6,9 @@ class Smf < Fingerprinter
 
   def downloadable_versions
     versions = {}
-    res      = Typhoeus.get('http://download.simplemachines.org/?archive')
+    res      = Typhoeus.get('https://download.simplemachines.org/?archive')
 
-    Nokogiri::HTML(res.body).css('select#version option').each do |option|
+    Nokogiri::HTML(res.body).css('ul.langlist li a').each do |option|
       version = option.text.strip[/\A([0-9.]+)\z/, 1]
 
       # Despite being listed, the 1.0.12 can not be downloaded: http://download.simplemachines.org/?archive;version=30
@@ -21,7 +21,9 @@ class Smf < Fingerprinter
   end
 
   def download_url(version)
-    "http://download.simplemachines.org/index.php?thanks;filename=smf_#{version.tr('.', '-')}_install.zip"
+    v = version.gsub(/\.0\z/, '').tr('.', '-')
+
+    "https://download.simplemachines.org/index.php?thanks;filename=smf_#{v}_install.zip"
   end
 
   # @param [ String ] archive_url

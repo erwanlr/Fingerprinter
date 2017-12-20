@@ -18,7 +18,7 @@ class Fingerprinter
       page     = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
 
       loop do
-        page.css('ul.release-downloads a, ul.tag-references a').each do |node|
+        page.css('ul a').each do |node|
           href    = node['href']
           version = href[version_pattern, 1]
 
