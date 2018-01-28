@@ -43,6 +43,7 @@ class WordpressPlugin < Fingerprinter
     versions = {}
 
     raise 'No data from WP API about this item (probably removed or disabled)' unless item_data
+    raise item_data['error'] if item_data['error']
 
     # When empty, the 'versions' field is an array, but is a hash otherwise
     # Hence the .to_h
