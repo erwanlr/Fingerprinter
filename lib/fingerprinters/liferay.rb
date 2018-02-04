@@ -13,14 +13,14 @@ class Liferay < Fingerprinter
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get(root_url, cookie: 'FreedomCookie=true').body)
 
-    page.css('a.name').each do |link|
-      version = link.text.strip
+    page.css('span.name').each do |span|
+      version = span.text.strip
 
       next if version =~ /\A[0-9.]+ ?(?:A|B|M|RC)[0-9]?\z/i # Only keep the stables
 
       version_url = "#{root_url}#{URI.encode(version)}/"
 
-      Nokogiri::HTML(Typhoeus.get(version_url, cookie: 'FreedomCookie=true').body).css('a.name').each do |node|
+      Nokogiri::HTML(Typhoeus.get(version_url, cookie: 'FreedomCookie=true').body).css('span.name').each do |node|
         file = node.text.strip
 
         # TODO: Merge those two into one regex
