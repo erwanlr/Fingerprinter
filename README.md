@@ -13,6 +13,7 @@ $ bundle install
 
 #### Currently Supported Apps (along with some location/s of versions being disclosed)
 - Apache Icons
+- Anchor CMS [[CVEs](https://www.cvedetails.com/product/30426/Anchorcms-Anchor-Cms.html?vendor_id=14995) | [DB Password in error logs](https://twitter.com/finnwea/status/965279233030393856)]
 - Chamilo LMS [[CVEs](http://www.cvedetails.com/product/26528/Chamilo-Chamilo-Lms.html?vendor_id=12983) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=chamilo+lms) | [Security Issues](https://support.chamilo.org/projects/chamilo-18/wiki/Security_issues)]
 - CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
 - CMS Made Simple [Experimental] [[CVEs](http://www.cvedetails.com/vendor/3206/Cmsmadesimple.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=cms+made+simple)]
