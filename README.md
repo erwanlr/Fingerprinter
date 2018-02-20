@@ -23,6 +23,7 @@ $ bundle install
 - DNN CMS (DotNetNuke) [[Releases](https://dotnetnuke.codeplex.com/releases) | [Security Center](http://www.dnnsoftware.com/platform/manage/security-center) | [CVEs](http://www.cvedetails.com/product/4306/Dotnetnuke-Dotnetnuke.html?vendor_id=2486) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=dotnetnuke)]
 - Drupal [[Security Advisories](https://www.drupal.org/security) | [CVEs](http://www.cvedetails.com/product/2387/Drupal-Drupal.html?vendor_id=1367) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=drupal)]
   - Version disclosed from /CHANGELOG.txt
+- Flatcore CMS [[CVEs](https://www.cvedetails.com/product/38240/Flatcore-Flatcore.html?vendor_id=16353)]
 - FCKeditor [[CVEs](http://www.cvedetails.com/vendor/2724/Fckeditor.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=fckeditor)]
 - Joomla [[Version History](https://docs.joomla.org/Category:Version_History) | [Security Centre](http://developer.joomla.org/security-centre.html) | [CVEs](http://www.cvedetails.com/product/6129/Joomla-Joomla.html?vendor_id=3496) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=joomla)]
 - Liferay [[CVEs](http://www.cvedetails.com/vendor/2114/Liferay.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=liferay)]
