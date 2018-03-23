@@ -1,32 +1,4 @@
 {
-   "harrys-gravatar-cache": [
-      "1.4.2.2",
-      "1.1.2",
-      "1.1.1",
-      "1.1"
-   ],
-   "easy-registration-forms":[
-      "1.1.1",
-      "1.1.2",
-      "1.1.3",
-      "1.1.4",
-      "1.1.5",
-      "1.1.6",
-      "1.1.7",
-      "1.1.9",
-      "1.2.0"
-   ],
-   "toolshot-player": [
-      "1.0",
-      "1.1",
-      "1.2",
-      "1.3",
-      "2.0",
-      "2.1",
-      "2.2",
-      "2.2.1",
-      "2.2.2"
-   ],
    "daily-verse" : [
       "1.0"
    ],
@@ -193,9 +165,6 @@
    "easycode" : [
       "1.2"
    ],
-   "floating-links" : [
-      "1.3.0"
-   ],
    "hubble-panel" : [
       "1.1"
    ],
@@ -229,10 +198,6 @@
    "woocommerce-rtl" : [
       "1.0.1",
       "1.0.0"
-   ],
-   "easyazon" : [
-      "4.0.12",
-      "4.0.11"
    ],
    "amazon-s3-simple-upload-form" : [
       "1.0.3"
@@ -458,9 +423,6 @@
    ],
    "shopp-clockwork" : [
       "1.0"
-   ],
-   "admin-category-search" : [
-      "0.5"
    ],
    "bookmark-it" : [
       "0.1.zip"
@@ -800,9 +762,6 @@
    "mhm-forceimagemagick" : [
       "1.0.1",
       "1.0"
-   ],
-   "ninja-tables" : [
-      "1.1.3"
    ],
    "multilocation-google-map" : [
       "1.0"
@@ -1159,9 +1118,6 @@
    "signature-caldera-forms-online-contract-add-on" : [
       "1.5.1"
    ],
-   "translation-connectors" : [
-      "1.0.4"
-   ],
    "promote-extensions" : [
       "1.0.1"
    ],
@@ -1438,12 +1394,6 @@
    "export2pdf" : [
       "1.0.1"
    ],
-   "email-list-builder-by-social-intents" : [
-      "1.2.48",
-      "1.1.11",
-      "1.3.20",
-      "1.3.28"
-   ],
    "realty-portal" : [
       "0.3.1"
    ],
@@ -1499,9 +1449,6 @@
    "insta-type-gallery" : [
       "0.1.3"
    ],
-   "multilist-subscribe-for-sendy" : [
-      "0.1"
-   ],
    "wp-custom-widget" : [
       "1.0.3"
    ],
@@ -1525,9 +1472,6 @@
    ],
    "mobilekit" : [
       "0.2-beta"
-   ],
-   "form-forms" : [
-      "1.1.5"
    ],
    "watchmyback24" : [
       "0.7.5.4"
@@ -1742,9 +1686,6 @@
    "mapnavigator" : [
       "1.0.3"
    ],
-   "persian-woocommerce-sms" : [
-      "3.6.4"
-   ],
    "indiasan-user-or-author-image" : [
       "1.0.2"
    ],
@@ -1876,9 +1817,6 @@
    ],
    "post-read-limited-by-category" : [
       "1.1.0"
-   ],
-   "bbpress" : [
-      "2.6-rc-5"
    ],
    "plugins-stats-dashboard" : [
       "1.0.0"
