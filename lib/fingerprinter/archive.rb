@@ -2,7 +2,10 @@ require 'dearchiver'
 require 'fileutils'
 require 'shellwords'
 
-# ToDO: Send PR to fix those
+# PR Sent, but no new version released:
+# https://github.com/eljuanchosf/dearchiver/pull/2
+# https://github.com/eljuanchosf/dearchiver/pull/3
+# https://github.com/eljuanchosf/dearchiver/pull/4
 module Dearchiver
   # @author Juan Pablo Genovese
   #
@@ -41,7 +44,7 @@ module Dearchiver
 
     def execute_command(command)
       @executed_command = command
-      
+
       @execution_output = %x[#{command}].encode('UTF-8', invalid: :replace, undef: :replace)
     end
   end
