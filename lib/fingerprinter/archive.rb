@@ -2,7 +2,7 @@ require 'dearchiver'
 require 'fileutils'
 require 'shellwords'
 
-# PR Sent, but no new version released:
+# PRs related to the below sent & merged, but no new version released:
 # https://github.com/eljuanchosf/dearchiver/pull/2
 # https://github.com/eljuanchosf/dearchiver/pull/3
 # https://github.com/eljuanchosf/dearchiver/pull/4
@@ -71,7 +71,9 @@ class Fingerprinter
   def download_archive(archive_url, dest)
     `wget -q -np -O #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
 
-    raise 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
+    exit_status = $CHILD_STATUS.exitstatus
+
+    raise "Download error (Exit Status: #{exit_status})" unless exit_status == 0 && File.exist?(dest)
   end
 
   # @param [ String ] archive_path The archive file path

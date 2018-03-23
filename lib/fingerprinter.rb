@@ -1,3 +1,4 @@
+require 'English' # fot $CHILD_STATUS
 require 'json'
 require 'typhoeus'
 require 'addressable/uri'
