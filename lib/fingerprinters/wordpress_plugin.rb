@@ -77,7 +77,7 @@ class WordpressPlugin < Fingerprinter
     # Due to some plugins being messed up, including all previous versions in some of their
     # zip files, leading to huge zips (seen some 1/2/3GB ones), zips larger than 100MB will
     # be ignored, and a download error will be raised
-    `curl --max-filesize 1000000 -s -o #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
+    `curl --max-filesize 100000000 -s -o #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
 
     raise 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
   end
