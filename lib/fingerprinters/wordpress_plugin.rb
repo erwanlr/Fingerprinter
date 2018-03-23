@@ -79,8 +79,6 @@ class WordpressPlugin < Fingerprinter
     # be ignored, and a download error will be raised
     `curl --max-filesize 100000000 -s -o #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
 
-    exit_status = $CHILD_STATUS.exitstatus
-
-    raise "Download error (Exit Status: #{exit_status})" unless exit_status == 0 && File.exist?(dest)
+    check_downloaded_file(dest)
   end
 end

@@ -10,7 +10,7 @@ class MagentoCe < Fingerprinter
 
   # Valid session is required
   def cookie
-    # 'frontend=aaaa'
+    # 'frontend=aaa'
     nil
   end
 
@@ -52,7 +52,7 @@ class MagentoCe < Fingerprinter
 
     `wget -q -np -O #{dest.shellescape} --header='Cookie: #{cookie}' #{archive_url.shellescape} > /dev/null`
 
-    raise 'Download error' unless $CHILD_STATUS != 0 && File.exist?(dest)
+    check_downloaded_file(dest)
   end
 
   # @param [ Nokogiri::HTML ] page

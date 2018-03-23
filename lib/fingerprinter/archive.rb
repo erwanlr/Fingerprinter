@@ -71,6 +71,10 @@ class Fingerprinter
   def download_archive(archive_url, dest)
     `wget -q -np -O #{dest.shellescape} #{archive_url.shellescape} > /dev/null`
 
+    check_downloaded_file(dest)
+  end
+
+  def check_downloaded_file(dest)
     exit_status = $CHILD_STATUS.exitstatus
 
     raise "Download error (Exit Status: #{exit_status})" unless exit_status == 0 && File.exist?(dest)
