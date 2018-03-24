@@ -9,7 +9,7 @@ class Umbraco < Fingerprinter
 
   def downloadable_versions
     versions = {}
-    page     = Nokogiri::HTML(Typhoeus.get("#{site_url}/contribute/releases").body)
+    page     = Nokogiri::HTML(Typhoeus.get("#{site_url}/download/releases").body)
 
     page.css('div h5 a').each do |node|
       version = node.text.strip
