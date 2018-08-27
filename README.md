@@ -27,7 +27,7 @@ $ bundle install
 - FCKeditor [[CVEs](http://www.cvedetails.com/vendor/2724/Fckeditor.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=fckeditor)]
 - Joomla [[Version History](https://docs.joomla.org/Category:Version_History) | [Security Centre](http://developer.joomla.org/security-centre.html) | [CVEs](http://www.cvedetails.com/product/6129/Joomla-Joomla.html?vendor_id=3496) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=joomla)]
 - Liferay [[CVEs](http://www.cvedetails.com/vendor/2114/Liferay.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=liferay)]
-- Magento Community Edition [Experimental] [[CVEs](http://www.cvedetails.com/vendor/15393/Magento.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=magento) | [Exploits](http://www.magentoexploit.com/)]
+- Magento Community Edition/Open Source [Experimental] [[CVEs](http://www.cvedetails.com/vendor/15393/Magento.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=magento) | [Security Center](https://magento.com/security)]
 - Mantis Bug Tracker [Experimental] [[CVEs](http://www.cvedetails.com/vulnerability-list/vendor_id-1245/product_id-2160/Mantis-Mantis.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=mantis) | [Releases](https://www.mantisbt.org/forums/viewforum.php?f=5)]
    - Version disclosed from footer (if enabled): 'Powered By MantisBT x.x.x'
    - If the copyright year in the footer is not the current year, then the version is < 1.2.13 ([related commit](https://github.com/mantisbt/mantisbt/commit/6e51d86d3c83e96f38d6f1be77f2521689005b51#diff-b1c667913de013265f22c582987aa38c))

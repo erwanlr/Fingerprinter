@@ -24,7 +24,7 @@ class MagentoCe < Fingerprinter
       cat_id = Regexp.last_match[1]
 
       select.css('option').each do |option|
-        next unless option.text.strip =~ /\A(?:Magento Community Edition |magento\-)([0-9\.]+)\.zip/i
+        next unless option.text.strip =~ /\A(?:Magento (?:Community Edition|Open Source) |magento\-)([0-9\.]+)\.zip/i
 
         file_id = option['value'].strip
 
