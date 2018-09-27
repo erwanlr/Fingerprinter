@@ -4,7 +4,7 @@ class Umbraco < Fingerprinter
   include IgnorePattern::ASP
 
   def site_url
-    'https://our.umbraco.org'
+    'https://our.umbraco.com'
   end
 
   def downloadable_versions
@@ -15,7 +15,8 @@ class Umbraco < Fingerprinter
       version = node.text.strip
 
       next unless version =~ /\A[0-9\.]+\z/
-      # rescue next is to skip releases w/o proper doanload link,
+
+      # rescue next is to skip releases w/o proper download link,
       # ie those removed because of critial issues like https://our.umbraco.org/contribute/releases/755/
       # Todo: find a better way to handle them
       versions[version] = begin

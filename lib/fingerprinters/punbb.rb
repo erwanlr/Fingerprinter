@@ -7,7 +7,7 @@ class Punbb < Fingerprinter
     versions = {}
 
     ['http://punbb.informer.com/download/museum/', 'http://punbb.informer.com/download/'].each do |repo|
-      Nokogiri::HTML(Typhoeus.get(repo).body).css('td a').each do |node|
+      Nokogiri::HTML(Typhoeus.get(repo).body).css('a').each do |node|
         href = node['href'].strip
 
         next unless href =~ /\Apunbb-([0-9\.]+)\.zip\z/i
