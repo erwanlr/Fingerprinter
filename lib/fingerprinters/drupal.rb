@@ -6,8 +6,8 @@ class Drupal < Fingerprinter
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get(release_url).body)
 
-    page.xpath('//a[starts-with(@href, "drupal")]/@href').each do |node|
-      version = node.text.strip[/\Adrupal-([0-9.]+)\.tar\.gz\z/i, 1]
+    page.xpath('//a[starts-with(@href, "drupal-")]/@href').each do |node|
+      version = node.text.strip[/\Adrupal\-([\d\.]+)\.tar\.gz\z/i, 1]
 
       versions[version] = "#{release_url}#{node.text.strip}" if version
     end
