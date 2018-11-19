@@ -3,19 +3,25 @@ class Drupal < Fingerprinter
   include IgnorePattern::PHP
 
   def downloadable_versions
+    base_url = 'https://www.drupal.org/node/3060/release?&page=%i'
+    page_id  = 0
     versions = {}
-    page     = Nokogiri::HTML(Typhoeus.get(release_url).body)
 
-    page.xpath('//a[starts-with(@href, "drupal-")]/@href').each do |node|
-      version = node.text.strip[/\Adrupal\-([\d\.]+)\.tar\.gz\z/i, 1]
+    loop do
+      page = Nokogiri::HTML(Typhoeus.get(format(base_url, page_id),
+                                         headers: { 'User-Agent' => 'curl/7.54.0' }).body)
 
-      versions[version] = "#{release_url}#{node.text.strip}" if version
+      page.css('span.file a').each do |node|
+        version = node.text.strip[/\Adrupal\-([\d.]+)\.tar\.gz\z/i, 1]
+
+        versions[version] = "https://ftp.drupal.org/files/projects/#{node.text.strip}" if version
+      end
+
+      break if page.css('li.pager-next').empty?
+
+      page_id += 1
     end
 
     versions
-  end
-
-  def release_url
-    @release_url ||= 'https://ftp.drupal.org/files/projects/'
   end
 end
