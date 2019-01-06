@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'activesupport', '~> 5.1'
+gem 'activesupport', '~> 5.1.6'
 gem 'addressable', '~> 2.5'
 gem 'bundler', '~> 1.6'
 gem 'cms_scanner', '~> 0.0.41.1'
