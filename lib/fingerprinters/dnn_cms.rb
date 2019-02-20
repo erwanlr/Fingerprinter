@@ -6,7 +6,7 @@ class DnnCms < Fingerprinter
 
   def downloadable_versions
     # Revision digits are ignored
-    github_releases('dnnsoftware/Dnn.Platform', /DNN_Platform_(\d+\.\d+\.\d+)(?:\.\d+)?_Install\.zip\z/i)
+    github_releases('dnnsoftware/Dnn.Platform', /DNN_Platform_(?<v>\d+\.\d+\.\d+)(?:\.\d+)?_Install\.zip\z/i)
   end
 end
 
