@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'bundler' # Fixes Bundler issue with Ruby 2.6.1, see https://www.reddit.com/r/ruby/comments/an5bfk/requiring_bundlersetup_gets_wrong_version_of/
 require 'bundler/setup'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
