@@ -2,6 +2,7 @@
 class Drupal < Fingerprinter
   include IgnorePattern::PHP
 
+  # There is also a github repo, at https://github.com/drupal/core
   def downloadable_versions
     base_url = 'https://www.drupal.org/node/3060/release?&page=%i'
     page_id  = 0
