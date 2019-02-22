@@ -1,4 +1,3 @@
-
 # FCKeditor
 # Seems Like it's now discontinued as it returns a 403 from SourceForge
 class Fckeditor < Fingerprinter
