@@ -16,11 +16,11 @@ OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   end
 
   opts.on('--timeout SECONDS', 'The number of seconds for the requests to be performed, default 20s') do |timeout|
-    @options[:timeout] = timeout
+    @options[:timeout] = timeout.to_i
   end
 
   opts.on('--connect-timeout SECONDS', 'The number of seconds for the connection to be established before timeout, default 5s') do |timeout|
-    @options[:connecttimeout] = timeout
+    @options[:connecttimeout] = timeout.to_i
   end
 
   opts.on('--cookies-file FILE-PATH', '--cf', 'The cookies file to use in fingerprinting requests') do |file_path|

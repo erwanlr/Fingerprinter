@@ -1,5 +1,6 @@
 SUPPORTED_APPS = %w[
   apache-icons anchor-cms
+  bolt
   chamilo-lms ckeditor cms-made-simple concrete5
   django-cms dnn-cms drupal
   flatcore-cms fckeditor
