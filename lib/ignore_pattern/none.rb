@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgnorePattern
   # No files ignored
   module None

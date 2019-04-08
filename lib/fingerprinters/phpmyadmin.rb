@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # PHPMyAdmin
 class Phpmyadmin < Fingerprinter
@@ -18,9 +19,7 @@ class Phpmyadmin < Fingerprinter
     page.css('a').each do |link|
       version = link.text.strip[/\Aphpmyadmin_([0-9.-]+)_all.deb\z/, 1]
 
-      if version
-        versions["#{version.gsub('-', 'deb')}-all"] = "#{debian_url}#{link.text}"
-      end
+      versions["#{version.gsub('-', 'deb')}-all"] = "#{debian_url}#{link.text}" if version
     end
 
     versions

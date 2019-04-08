@@ -1,4 +1,8 @@
+AllCops:
+  TargetRubyVersion: 2.4
 LineLength:
+  Enabled: false
+Lint/UriEscapeUnescape:
   Enabled: false
 MethodLength:
   Max: 25

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Django CMS
 class DjangoCms < Fingerprinter

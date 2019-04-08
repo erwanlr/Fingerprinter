@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Bolt CMS
 class Bolt < Fingerprinter
   include GithubHosted

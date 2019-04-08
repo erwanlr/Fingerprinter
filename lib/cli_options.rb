@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'optparse'
 
 @options = {
-  verbose:        false,
-  update:         false,
-  update_all:     false,
-  list_versions:  false,
-  timeout:        20,
+  verbose: false,
+  update: false,
+  update_all: false,
+  list_versions: false,
+  timeout: 20,
   connecttimeout: 5,
   user_agent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0'
 }

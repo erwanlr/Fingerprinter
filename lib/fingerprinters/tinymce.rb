@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Tiny MCE
 class Tinymce < Fingerprinter

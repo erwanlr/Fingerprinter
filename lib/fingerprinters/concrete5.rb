@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Concrete5
 class Concrete5 < Fingerprinter

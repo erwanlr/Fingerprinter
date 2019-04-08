@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Open Cart
 class OpenCart < Fingerprinter
   include GithubHosted

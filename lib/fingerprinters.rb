@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 SUPPORTED_APPS = %w[
   apache-icons anchor-cms
   bolt

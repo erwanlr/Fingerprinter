@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Magento Community Edition
 class MagentoCe < Fingerprinter

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'English' # fot $CHILD_STATUS
 require 'json'
 require 'typhoeus'

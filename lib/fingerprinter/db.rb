@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fingerprinter DB
 class Fingerprinter
   # TODO: Maybe create a DB class for all this stuff ?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # WordPress Theme
 class WordpressTheme < WordpressPlugin
   def initialize(options = {})

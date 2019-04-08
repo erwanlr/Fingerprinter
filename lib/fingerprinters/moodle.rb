@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Moodle
 class Moodle < Fingerprinter

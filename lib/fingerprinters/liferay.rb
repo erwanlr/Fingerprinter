@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # LifeRay (http://sourceforge.net/projects/lportal/ & https://www.liferay.com/)
 class Liferay < Fingerprinter

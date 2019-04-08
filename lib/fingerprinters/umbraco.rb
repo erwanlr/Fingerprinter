@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Umbraco
 class Umbraco < Fingerprinter

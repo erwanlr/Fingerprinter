@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class Fingerprinter
   # Provides some methods to retrieve the release' versions and links

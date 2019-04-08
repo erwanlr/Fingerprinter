@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 # WordPress Plugin
 class WordpressPlugin < Fingerprinter
   include IgnorePattern::PHP
 
-  VERSION_PATTERN = /\A[\d][\da-z\.\-]*\z/i
+  VERSION_PATTERN = /\A[\d][\da-z\.\-]*\z/i.freeze
 
   def initialize(options = {})
     # Create additional required dirs if needed

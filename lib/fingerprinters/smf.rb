@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Simple Machines Forum
 class Smf < Fingerprinter

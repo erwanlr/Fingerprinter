@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # CMS Made Simple
 class CmsMadeSimple < Fingerprinter

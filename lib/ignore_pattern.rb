@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'ignore_pattern/asp'
 require 'ignore_pattern/none'
