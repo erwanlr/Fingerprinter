@@ -6,7 +6,7 @@ class BigTreeCms < Fingerprinter
   include IgnorePattern::PHP
 
   def downloadable_versions
-    github_releases('bigtreecms/BigTree-CMS') # , %r{/download/v?(?<v>[\d\.]+)/bolt\-v?[\d\.]+\.zip}i)
+    github_releases('bigtreecms/BigTree-CMS')
   end
 
   def extract_archive(archive_path, dest)
