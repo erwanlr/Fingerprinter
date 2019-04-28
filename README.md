@@ -14,6 +14,8 @@ $ bundle install
 #### Currently Supported Apps (along with some location/s of versions being disclosed)
 - Apache Icons
 - Anchor CMS [[CVEs](https://www.cvedetails.com/product/30426/Anchorcms-Anchor-Cms.html?vendor_id=14995) | [DB Password in error logs](https://twitter.com/finnwea/status/965279233030393856)]
+- Big Tree CMS [[CVEs](https://www.cvedetails.com/product/25767/Bigtreecms-Bigtree-Cms.html?vendor_id=12804)]
+  - Version may be disclosed in the admin login page at /admin or /admin/login
 - Bolt [[CVEs](https://www.cvedetails.com/vulnerability-list/vendor_id-15663/product_id-38817/Bolt-Bolt-Cms.html)]
 - Chamilo LMS [[CVEs](http://www.cvedetails.com/product/26528/Chamilo-Chamilo-Lms.html?vendor_id=12983) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=chamilo+lms) | [Security Issues](https://support.chamilo.org/projects/chamilo-18/wiki/Security_issues)]
 - CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
