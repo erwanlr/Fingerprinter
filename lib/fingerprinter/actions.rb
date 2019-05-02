@@ -186,8 +186,16 @@ class Fingerprinter
     bar               = progress_bar(total: fingerprints.size, title: 'Fingerprinting -')
 
     fingerprints.each do |path, f|
-      url      = target.url(path)
-      res      = Typhoeus.get(url, request_options)
+      url = target.url(path)
+
+      begin
+        res = Typhoeus.get(url, request_options)
+      rescue Typhoeus::Errors::TyphoeusError => e
+        bar.log("Error: #{e.message}")
+        bar.increment
+        next
+      end
+
       md5sum   = Digest::MD5.hexdigest(res.body)
       verb_msg = nil
 
