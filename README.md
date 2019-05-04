@@ -38,6 +38,7 @@ $ bundle install
 - Moodle [Experimental] [[CVEs](http://www.cvedetails.com/product/3590/Moodle-Moodle.html?vendor_id=2105) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=moodle)]
 - OpenCart [[CVEs](http://www.cvedetails.com/product/17142/Opencart-Opencart.html?vendor_id=9599) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=opencart)]
 - Orchard (beware that backporting is used) [[CVEs](http://www.cvedetails.com/product/23837/Orchardproject-Orchard.html?vendor_id=12571) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=orchard)]
+- osCommerce2 [Experimental] [[CVEs](https://www.cvedetails.com/product/2485/Oscommerce-Oscommerce.html?vendor_id=1437)]
 - PHPMyAdmin (currentlly only the manual installation versions) [[CVEs](http://www.cvedetails.com/vendor/784/Phpmyadmin.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=phpmyadmin)]
 - PrestaShop [[CVEs](http://www.cvedetails.com/vendor/8950/Prestashop.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=prestashop)]
 - PunBB [[CVEs](http://www.cvedetails.com/product/4868/Punbb-Punbb.html?vendor_id=2775) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=punbb)]

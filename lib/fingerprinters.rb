@@ -9,7 +9,7 @@ SUPPORTED_APPS = %w[
   joomla
   liferay
   magento-ce mantisbt mediaelement moodle
-  open-cart orchard
+  open-cart orchard os-commerce2
   phpmyadmin prestashop punbb
   roundcubemail
   smf
