@@ -53,10 +53,6 @@ class Fingerprinter
     @options[:proxy]
   end
 
-  def verify_host
-    @options[:verify_host]
-  end
-
   def cookies_file
     @options[:cookies_file]
   end
@@ -77,7 +73,7 @@ class Fingerprinter
     opts = {
       proxy: proxy,
       ssl_verifypeer: false,
-      ssl_verifyhost: verify_host,
+      ssl_verifyhost: 2,
       cookie: cookies_string,
       timeout: timeout,
       connecttimeout: connect_timeout
