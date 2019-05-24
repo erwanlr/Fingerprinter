@@ -15,7 +15,7 @@ SUPPORTED_APPS = %w[
   smf
   tinymce
   umbraco
-  wordpress wordpress-plugin wordpress-theme
+  web2py wordpress wordpress-plugin wordpress-theme
 ].freeze
 
 require 'fingerprinter'

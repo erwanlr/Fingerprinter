@@ -50,6 +50,7 @@ $ bundle install
     - Footer copyright
 - TinyMCE [[CVEs](http://www.cvedetails.com/vendor/11716/Tinymce.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=tinymce)]
 - Umbraco [[CVEs](http://www.cvedetails.com/product/30682/Umbraco-Umbraco-Cms.html?vendor_id=15064) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=umbraco) | [Compare Versions](http://code.leekelleher.com/umbraco/archive/)]
+- Web2py [[CVEs](https://www.cvedetails.com/product/25171/Web2py-Web2py.html?vendor_id=12701)]
 - WordPress [[CVEs](http://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=wordpress) | [WP Vuln DB](https://wpvulndb.com/)]
   - Version disclosed from:
     - / (meta generator, stylesheet numbers: ?ver=)
