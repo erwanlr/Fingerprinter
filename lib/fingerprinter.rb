@@ -73,7 +73,7 @@ class Fingerprinter
     opts = {
       proxy: proxy,
       ssl_verifypeer: false,
-      ssl_verifyhost: 2,
+      ssl_verifyhost: 0,
       cookie: cookies_string,
       timeout: timeout,
       connecttimeout: connect_timeout
