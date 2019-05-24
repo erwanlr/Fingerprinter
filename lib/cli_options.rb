@@ -7,6 +7,7 @@ require 'optparse'
   update: false,
   update_all: false,
   list_versions: false,
+  verify_host: 2,
   timeout: 20,
   connecttimeout: 5,
   user_agent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0'
@@ -15,6 +16,10 @@ require 'optparse'
 OptionParser.new('Usage: ./fingerprinter.rb [options]', 50) do |opts|
   opts.on('--proxy PROXY', '-p', 'Proxy to use during the fingerprinting') do |proxy|
     @options[:proxy] = proxy
+  end
+
+  opts.on('--insecure', '-k', 'Disable certificate verification when negotiating TLS/SSL connections') do
+    @options[:verify_host] = 0
   end
 
   opts.on('--timeout SECONDS', 'The number of seconds for the requests to be performed, default 20s') do |timeout|
