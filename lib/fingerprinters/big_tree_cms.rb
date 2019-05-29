@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Big Tree CNS
+# Big Tree CMS
 class BigTreeCms < Fingerprinter
   include GithubHosted
   include IgnorePattern::PHP
