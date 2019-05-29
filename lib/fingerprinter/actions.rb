@@ -206,7 +206,7 @@ class Fingerprinter
         if versions.size == 1
           bar.log("Unique Match! v#{versions.first} - #{url} -> #{md5sum}")
         elsif intersection.size == 1
-          bar.log("Intersection of potential versions returned only one version v#{intersection.first}")
+          bar.log("Intersection of potential versions is only one: v#{intersection.first} - #{url} -> #{md5sum}")
         else
           verb_msg = format(verbose_format, res.code, "Matches: #{versions.join(', ')}", url)
         end
@@ -274,7 +274,7 @@ class Fingerprinter
           if versions.size == 1
             bar.log("Unique Match! v#{versions.first} - #{url} -> #{md5sum}")
           elsif intersection.size == 1
-            bar.log("Intersection of potential versions returned only one version v#{intersection.first}")
+            bar.log("Intersection of potential versions is only one: v#{intersection.first} - #{url} -> #{md5sum}")
           else
             verb_msg = format(verbose_format, res.code, "Matches: #{versions.join(', ')}", url)
           end
