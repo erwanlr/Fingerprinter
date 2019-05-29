@@ -7,7 +7,7 @@ SUPPORTED_APPS = %w[
   django-cms dnn-cms drupal
   flatcore-cms fckeditor
   joomla
-  liferay
+  laravel liferay
   magento-ce mantisbt mediaelement moodle
   open-cart orchard os-commerce2
   phpmyadmin prestashop punbb
