@@ -1,14 +1,14 @@
 AllCops:
   TargetRubyVersion: 2.4
-LineLength:
-  Enabled: false
 Lint/UriEscapeUnescape:
   Enabled: false
-MethodLength:
-  Max: 25
 Metrics/AbcSize:
   Max: 22
 Metrics/CyclomaticComplexity:
   Max: 10
+Metrics/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 25
 Metrics/PerceivedComplexity:
   Max: 9
