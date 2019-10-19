@@ -1,4 +1,6 @@
-Fingerprinter
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_popout.svg)](https://inventory.rawsec.ml/)
+
+Fingerprinter 
 =============
 
 This script goal is to try to find the version of the remote application/third party script etc by using a fingerprinting approach.
