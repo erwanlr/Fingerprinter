@@ -20,8 +20,8 @@ $ bundle install
 - Big Tree CMS [[CVEs](https://www.cvedetails.com/product/25767/Bigtreecms-Bigtree-Cms.html?vendor_id=12804)]
   - Version may be disclosed in the admin login page at /admin or /admin/login
 - Bolt [[CVEs](https://www.cvedetails.com/vulnerability-list/vendor_id-15663/product_id-38817/Bolt-Bolt-Cms.html)]
-- Chamilo LMS [[CVEs](http://www.cvedetails.com/product/26528/Chamilo-Chamilo-Lms.html?vendor_id=12983) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=chamilo+lms) | [Security Issues](https://support.chamilo.org/projects/chamilo-18/wiki/Security_issues)]
-- CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exloit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
+- Chamilo LMS [[CVEs](http://www.cvedetails.com/product/26528/Chamilo-Chamilo-Lms.html?vendor_id=12983) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=chamilo+lms) | [Security Issues](https://support.chamilo.org/projects/chamilo-18/wiki/Security_issues)]
+- CKEditor [[CVEs](http://www.cvedetails.com/vendor/12058/Ckeditor.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=ckeditor)]
 - CMS Made Simple [Experimental] [[CVEs](http://www.cvedetails.com/vendor/3206/Cmsmadesimple.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=cms+made+simple)]
 - Concrete5 [[CVEs](http://www.cvedetails.com/vendor/11506/Concrete5.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=concrete5)]
 - Django CMS [[CVEs](http://www.cvedetails.com/product/18211/Djangoproject-Django.html?vendor_id=10199)]
