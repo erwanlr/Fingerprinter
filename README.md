@@ -65,27 +65,40 @@ $ bundle install
 - Wordpress Themes (using ```-a wordpress-theme --app-params <theme-slug>``` [[WP Vuln DB](https://wpvulndb.com/themes)]
 
 #### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
-- AngularJS - Fingerprints not needed for that (see below) [[Payloads](https://code.google.com/p/mustache-security/wiki/AngularJS)]
+- AngularJS - Fingerprints not needed for that (see below) [[Payloads](https://code.google.com/p/mustache-security/wiki/AngularJS) | [Vulns](https://snyk.io/vuln/npm:angular)]
   - Version disclosed from:
     - filename or filepath
     - In the comments at the top of the file
-    - By submitting angular.version in the Web Dev console of the Web browser on a page where the lib is loaded
+    - By submitting `angular.version` in the Web Dev console of the Web browser on a page where the lib is loaded
+- Boostrap - Fingerprints not needed for that (see below) [[CVEs](https://www.cvedetails.com/product/51406/Getbootstrap-Bootstrap.html?vendor_id=19522) | [Vulns](https://snyk.io/vuln/npm:bootstrap)]
+  - Version disclosed from:
+    - Filename of filepath
+    - In the Comments at the top of the file
 - ExpressionEngine - Need to be registered to download the latest free core version. No page to DL them all. [[CVEs](http://www.cvedetails.com/product/12972/Expressionengine-Expressionengine.html?vendor_id=7662) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=ExpressionEngine)]
   - Version disclosed from the footer and rss link (generator tag)
-- jQuery - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/11031/Jquery-Jquery.html?vendor_id=6538)]
+- jQuery - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/11031/Jquery-Jquery.html?vendor_id=6538) | [Vulns](https://snyk.io/vuln/npm:jquery)]
   - Version disclosed from:
     - Filename of filepath
     - In the Comments at the top of the file
-    - By submitting $().jquery or jQuery().jquery in the Web Dev console of the Web browser on a page where the lib is loaded
-- jQuery UI - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/31126/Jquery-Jquery-Ui.html?vendor_id=6538)]
+    - By submitting `$().jquery` or `jQuery().jquery` in the Web Dev console of the Web browser on a page where the lib is loaded
+- jQuery UI - Fingerprints not needed for that (see below) [[CVEs](http://www.cvedetails.com/product/31126/Jquery-Jquery-Ui.html?vendor_id=6538) | [Vulns](https://snyk.io/vuln/npm:jquery-ui)]
   - Version disclosed from:
     - Filename of filepath
     - In the Comments at the top of the file
-    - By submitting $.fn.jquery or jQuery.fn.jquery in the Web Dev console of the Web browser on a page where the lib is loaded
+    - By submitting `$.fn.jquery` or `jQuery.fn.jquery` in the Web Dev console of the Web browser on a page where the lib is loaded
 - Kentico CMS - Need to provide personal details / register to DL the latest free version [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=kentico) | [Hotfixes](http://devnet.kentico.com/download/hotfixes)]
   - Main version disclosed from
     - /CMSHelp/ (in title tag)
     - /CMSPages/GetDocLink.ashx (in the Location header)
+- MustacheJS - Fingerprints not needed for that (see below) [[Vulns](https://snyk.io/vuln/npm:mustache)]
+  - Version disclosed from:
+    - Filename of filepath
+    - Look for `mustache.version` in the file
+- MomentJS - Fingerprints not needed for that (see below) [[Vulns](https://snyk.io/vuln/npm:moment)]
+  - Version disclosed from:
+    - Filename of filepath
+    - Look for `var v,Aj=` in the file
+    - By submitting `moment.version` in the Web Dev console of the Web browser on a page where the lib is loaded
 - PrettyPhoto - Fingerprints no needed for that (see below) [[CVEs](http://www.cvedetails.com/product/26726/No-margin-for-errors-Prettyphoto.html?vendor_id=13006)]
   - Version disclosed from the comments at the top of the file
 - SharePoint - Not free / couldn't find a free or CE edition [[Exploit DB](https://www.exploit-db.com/search/?action=search&description=sharepoint) | [Version numbers (not up-to-date)](http://www.sharepointdesignerstepbystep.com/blog/SitePages/SharePoint%20versions.aspx)]
@@ -151,7 +164,7 @@ Along with the --app-name option (or -a), the database can be searched:
 --search-hash, --sh HASH                   Search the hash and output the app-name versions & file
 --search-file, --sf FILE                   Search the file (ie --sf read will return aread.txt, readme.html etc) and output the app-name versions & hashes
 ```
-Example: List all the unique Fingerprints for the version 3.8.1 of WordPress
+Example: List all the unique Fingerprints for WordPress 3.8.1
 ```
 ./fingerprinter.rb -a wordpress --luf 3.8.1
 ```
