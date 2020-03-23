@@ -14,10 +14,10 @@ class Drupal < Fingerprinter
       page = Nokogiri::HTML(Typhoeus.get(format(base_url, page_id),
                                          headers: { 'User-Agent' => 'curl/7.54.0' }).body)
 
-      page.css('span.file a').each do |node|
-        version = node.text.strip[/\Adrupal\-([\d.]+)\.tar\.gz\z/i, 1]
+      page.css('div.field-item a').each do |node|
+        version = node.text.strip[/\A([\d.]+)\z/i, 1]
 
-        versions[version] = "https://ftp.drupal.org/files/projects/#{node.text.strip}" if version
+        versions[version] = "https://ftp.drupal.org/files/projects/drupal-#{version}.tar.gz" if version
       end
 
       break if page.css('li.pager-next').empty?
