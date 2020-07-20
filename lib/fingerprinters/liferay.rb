@@ -7,7 +7,7 @@ class Liferay < Fingerprinter
   end
 
   def download_url(version, filename)
-    "https://downloads.sourceforge.net/project/lportal/Liferay%20Portal/#{URI.encode(version)}/#{URI.encode(filename)}"
+    "https://downloads.sourceforge.net/project/lportal/Liferay%20Portal/#{Addressable::URI.encode(version)}/#{Addressable::URI.encode(filename)}"
   end
 
   def downloadable_versions
@@ -19,7 +19,7 @@ class Liferay < Fingerprinter
 
       next if version =~ /\A[0-9.]+ ?(?:A|B|M|RC)[0-9]?\z/i # Only keep the stables
 
-      version_url = "#{root_url}#{URI.encode(version)}/"
+      version_url = "#{root_url}#{Addressable::URI.encode(version)}/"
 
       Nokogiri::HTML(Typhoeus.get(version_url, cookie: 'FreedomCookie=true').body).css('span.name').each do |node|
         file = node.text.strip
