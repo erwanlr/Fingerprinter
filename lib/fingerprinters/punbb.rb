@@ -7,7 +7,7 @@ class Punbb < Fingerprinter
   def downloadable_versions
     versions = {}
 
-    ['http://punbb.informer.com/download/museum/', 'http://punbb.informer.com/download/'].each do |repo|
+    ['https://punbb.informer.com/download/museum/', 'https://punbb.informer.com/download/'].each do |repo|
       Nokogiri::HTML(Typhoeus.get(repo).body).css('a').each do |node|
         href = node['href'].strip
 
