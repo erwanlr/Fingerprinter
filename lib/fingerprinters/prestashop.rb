@@ -4,16 +4,22 @@
 class Prestashop < Fingerprinter
   include IgnorePattern::PHP
 
+  def download_page_uri
+    @download_page_uri ||= Addressable::URI.parse('https://www.prestashop.com/en/previous-versions')
+  end
+
   def downloadable_versions
     versions = {}
-    page = Nokogiri::HTML(Typhoeus.get('https://www.prestashop.com/en/previous-versions').body)
+    page = Nokogiri::HTML(Typhoeus.get(download_page_uri.to_s).body)
 
-    page.css('a.btn.btn-ghost-pink').each do |link|
+    page.css('div.views-field-field-release-file a').each do |link|
       href = link['href'].strip
 
-      next unless href =~ /prestashop_([0-9.]+)\.zip$/ # Only stable releases
+      next unless href =~ /prestashop_([0-9-]+)\-zip/ # Only stable releases
 
-      versions[Regexp.last_match[1]] = href
+      version = Regexp.last_match[1].tr('-', '.')
+
+      versions[version] = download_page_uri.join(href).to_s
     end
 
     versions
@@ -27,5 +33,11 @@ class Prestashop < Fingerprinter
     sub_dir = Dir[File.join(dest, '*/')].first
 
     rebase(sub_dir, dest) if sub_dir =~ /\A#{dest}prestashop/i
+  end
+
+  # The Extension is not in the url, so we force it
+  # Otherwise the extraction will fail
+  def archive_extension(_url)
+    '.zip'
   end
 end
