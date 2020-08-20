@@ -2,35 +2,16 @@
 
 # LifeRay (http://sourceforge.net/projects/lportal/ & https://www.liferay.com/)
 class Liferay < Fingerprinter
-  def root_url
-    'https://sourceforge.net/projects/lportal/files/Liferay%20Portal/'
-  end
-
-  def download_url(version, filename)
-    "https://downloads.sourceforge.net/project/lportal/Liferay%20Portal/#{Addressable::URI.encode(version)}/#{Addressable::URI.encode(filename)}"
-  end
+  include GithubHosted
 
   def downloadable_versions
     versions = {}
-    page     = Nokogiri::HTML(Typhoeus.get(root_url, cookie: 'FreedomCookie=true').body)
 
-    page.css('span.name').each do |span|
-      version = span.text.strip
-
-      next if version =~ /\A[0-9.]+ ?(?:A|B|M|RC)[0-9]?\z/i # Only keep the stables
-
-      version_url = "#{root_url}#{Addressable::URI.encode(version)}/"
-
-      Nokogiri::HTML(Typhoeus.get(version_url, cookie: 'FreedomCookie=true').body).css('span.name').each do |node|
-        file = node.text.strip
-
-        # TODO: Merge those two into one regex
-        next if file =~ /jre|jdk/i
-        next unless file =~ /tomcat\-.*\.zip\z/i
-
-        versions[version.gsub(/\s+/, '-')] = download_url(version, file)
-        break
-      end
+    github_releases(
+      'liferay/liferay-portal',
+      %r{/download/(?<v>[\d\.]+\-GA\d+)/liferay\-ce\-portal\-tomcat\-[\d\.]+\-ga\d+\-\d+.(?:tar.gz|zip|7z)}i
+    ) do |version, download_url|
+      versions[version.upcase] = download_url
     end
 
     versions
