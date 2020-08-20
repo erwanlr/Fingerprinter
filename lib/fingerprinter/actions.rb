@@ -11,7 +11,7 @@ require 'cms_scanner'
 class Fingerprinter
   include IgnorePattern::None
 
-  def auto_update
+  def auto_update(display_skipped: true)
     puts 'Retrieving remote version numbers ...'
 
     begin
@@ -26,7 +26,7 @@ class Fingerprinter
           rescue StandardError => e
             puts "An error occurred: #{e.message}, skipping the version"
           end
-        else
+        elsif display_skipped
           puts "Version #{version_number} already in DB, skipping"
         end
       end

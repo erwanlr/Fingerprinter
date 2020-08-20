@@ -16,7 +16,7 @@ begin
     (SUPPORTED_APPS - %w[wordpress-plugin wordpress-theme]).each do |app|
       begin
         puts "Updating #{app}:"
-        Fingerprinter.load(app, @options).auto_update
+        Fingerprinter.load(app, @options).auto_update(display_skipped: false)
       rescue StandardError => e
         puts "An error occured: #{e.message}, skipping the app"
       ensure

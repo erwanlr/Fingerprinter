@@ -12,12 +12,12 @@ class Concrete5 < Fingerprinter
     versions = legacy_versions
 
     # Adds the latest version (from the get started page)
-    node = Nokogiri::HTML(Typhoeus.get('https://www.concrete5.org/download').body).css('div.col-sm-6 p a').first
+    node = Nokogiri::HTML(Typhoeus.get('https://www.concrete5.org/download').body).css('div.col-sm-12 p a').first
 
     version = node.text.strip[/Download ([0-9\.]+)\z/i, 1]
     dl_path = node['href'].strip
 
-    versions[version] = download_page_uri.join(dl_path).to_s
+    versions[version] = download_page_uri.join(dl_path).to_s if version
 
     versions
   end
@@ -29,6 +29,8 @@ class Concrete5 < Fingerprinter
     page.css('div#body-content p a').each do |node|
       version = node.parent.text.strip[/\A([0-9\.]+)\s*\(/i, 1]
       dl_path = node['href'].strip
+
+      next unless version
 
       versions[version] = download_page_uri.join(dl_path).to_s
     end
