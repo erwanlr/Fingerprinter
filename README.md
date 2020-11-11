@@ -1,4 +1,5 @@
 [![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_popout.svg)](https://inventory.rawsec.ml/)
+[![Packaging status](https://repology.org/badge/vertical-allrepos/fingerprinter.svg)](https://repology.org/project/fingerprinter/versions)
 
 Fingerprinter 
 =============
@@ -6,11 +7,18 @@ Fingerprinter
 This script goal is to try to find the version of the remote application/third party script etc by using a fingerprinting approach.
 
 #### Installation
+
 Inside the cloned repo directory:
 
 ```
 $ gem install bundler
 $ bundle install
+```
+
+Install on [BlackArch](https://blackarch.org/):
+
+```
+$ sudo pacman -S fingerprinter
 ```
 
 #### Currently Supported Apps (along with some location/s of versions being disclosed)
