@@ -14,9 +14,13 @@ class Fingerprinter
     #
     # @yield version, release_download_url
     # @return [ Hash ] version => release_download_url
-    def github_releases(repository, version_pattern = %r{/(?:archive/(?:refs/tags/)?v?(?<v>[\d\.]+)|download/v?(?<v>[\d\.]+)/[^\s]+)\.zip\z}i)
+    def github_releases(repository, version_pattern = %r{/(?:archive/(?:refs/tags/)?v?(?<v>[\d.]+)|download/v?(?<v>[\d.]+)/[^\s]+)\.zip\z}i)
       versions = {}
-      page     = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
+      res      = Typhoeus.get(release_page_url(repository))
+
+      raise "#{res.effective_url} is not a 200, got #{res.code}" unless res.code == 200
+
+      page = Nokogiri::HTML(res.body)
 
       loop do
         page.css('ul a, div.Box--condensed a').each do |node|

@@ -7,9 +7,12 @@ class Fckeditor < Fingerprinter
     versions = {}
     page     = Nokogiri::HTML(Typhoeus.get('https://sourceforge.net/projects/fckeditor/files/FCKeditor/', cookie: 'FreedomCookie=true').body)
 
-    page.css('a.name').each do |link|
+    page.css('span.name').each do |link|
       version = link.text.strip
-      versions[version] = "https://downloads.sourceforge.net/project/fckeditor/FCKeditor/#{version}/FCKeditor_#{version}.zip" if version =~ /\A[0-9\.]+\z/ # Only Stables
+
+      next unless version =~ /\A[0-9.]+\z/ # Only Stables
+
+      versions[version] = "https://downloads.sourceforge.net/project/fckeditor/FCKeditor/#{version}/FCKeditor_#{version}.zip"
     end
 
     versions

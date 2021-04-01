@@ -5,7 +5,7 @@ class DjangoCms < Fingerprinter
   include GithubHosted
 
   def downloadable_versions
-    github_releases('divio/django-cms')
+    github_releases('django-cms/django-cms')
   end
 
   def extract_archive(archive_path, dest)

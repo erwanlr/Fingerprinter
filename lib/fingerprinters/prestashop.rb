@@ -5,7 +5,7 @@ class Prestashop < Fingerprinter
   include IgnorePattern::PHP
 
   def download_page_uri
-    @download_page_uri ||= Addressable::URI.parse('https://www.prestashop.com/en/previous-versions')
+    @download_page_uri ||= Addressable::URI.parse('https://www.prestashop.com/en/versions')
   end
 
   def downloadable_versions
@@ -15,7 +15,7 @@ class Prestashop < Fingerprinter
     page.css('div.views-field-field-release-file a').each do |link|
       href = link['href'].strip
 
-      next unless href =~ /prestashop_([0-9-]+)\-zip/ # Only stable releases
+      next unless href =~ /prestashop_([0-9-]+)-zip/ # Only stable releases
 
       version = Regexp.last_match[1].tr('-', '.')
 

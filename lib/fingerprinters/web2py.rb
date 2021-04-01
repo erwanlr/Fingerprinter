@@ -6,7 +6,7 @@ class Web2py < Fingerprinter
   include IgnorePattern::Python
 
   def downloadable_versions
-    github_releases('web2py/web2py', %r{/(?:archive/(?:R\-)?(?<v>[\d\.]+)|download/(?:R\-)?(?<v>[\d\.]+)/[^\s]+)\.zip\z}i)
+    github_releases('web2py/web2py', %r{/(?:archive/refs/tags/(?:R-)?(?<v>[\d.]+)|download/(?:R-)?(?<v>[\d.]+)/[^\s]+)\.zip\z}i)
   end
 
   def extract_archive(archive_path, dest)
