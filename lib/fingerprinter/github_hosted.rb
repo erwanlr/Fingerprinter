@@ -14,7 +14,7 @@ class Fingerprinter
     #
     # @yield version, release_download_url
     # @return [ Hash ] version => release_download_url
-    def github_releases(repository, version_pattern = %r{/(?:archive/v?(?<v>[\d\.]+)|download/v?(?<v>[\d\.]+)/[^\s]+)\.zip\z}i)
+    def github_releases(repository, version_pattern = %r{/(?:archive/(?:refs/tags/)?v?(?<v>[\d\.]+)|download/v?(?<v>[\d\.]+)/[^\s]+)\.zip\z}i)
       versions = {}
       page     = Nokogiri::HTML(Typhoeus.get(release_page_url(repository)).body)
 
