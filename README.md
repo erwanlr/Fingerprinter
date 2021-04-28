@@ -55,14 +55,14 @@ $ bundle install
 - TinyMCE [[CVEs](http://www.cvedetails.com/vendor/11716/Tinymce.html) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=tinymce)]
 - Umbraco [[CVEs](http://www.cvedetails.com/product/30682/Umbraco-Umbraco-Cms.html?vendor_id=15064) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=umbraco) | [Compare Versions](http://code.leekelleher.com/umbraco/archive/)]
 - Web2py [[CVEs](https://www.cvedetails.com/product/25171/Web2py-Web2py.html?vendor_id=12701)]
-- WordPress [[CVEs](http://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=wordpress) | [WP Vuln DB](https://wpvulndb.com/)]
+- WordPress [[CVEs](http://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337) | [Exploit DB](https://www.exploit-db.com/search/?action=search&description=wordpress) | [WPVulnDB/WPScan](https://wpscan.com/)]
   - Version disclosed from:
     - / (meta generator, stylesheet numbers: ?ver=)
     - Generator tag in /feed/, /feed/rdf/, /feed/atom/, /sitemap.xml(.gz) , /wp-links-opml.php
     - /readme.html (for < 4.7, otherwise only the major version is given. ie 4.7, 4.8, 4.9)
-    - Use [WPScan v3](https://github.com/wpscanteam/wpscan-v3) with the --wp-version-all option to scan  them all
-- Wordpress Plugins (using ```-a wordpress-plugin --app-params <plugin-slug>``` [[WP Vuln DB](https://wpvulndb.com/plugins)]
-- Wordpress Themes (using ```-a wordpress-theme --app-params <theme-slug>``` [[WP Vuln DB](https://wpvulndb.com/themes)]
+    - Use [WPScan](https://github.com/wpscanteam/wpscan) with the --wp-version-all option to scan  them all
+- Wordpress Plugins (using ```-a wordpress-plugin --app-params <plugin-slug>``` [[WPVulnDB/WPScan](https://wpscan.com/plugins)]
+- Wordpress Themes (using ```-a wordpress-theme --app-params <theme-slug>``` [[WPVulnDB/WPScan](https://wpscan.com/themes)]
 
 #### Unsupported Apps (along with the reason, useful links & location/s of versions being disclosed)
 - AngularJS - Fingerprints not needed for that (see below) [[Payloads](https://code.google.com/p/mustache-security/wiki/AngularJS) | [Vulns](https://snyk.io/vuln/npm:angular)]
