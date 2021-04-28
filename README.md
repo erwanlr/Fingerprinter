@@ -17,7 +17,7 @@ $ gem install bundler
 $ bundle install
 ```
 
-###### Install on [BlackArch](https://blackarch.org/):
+##### Install on [BlackArch](https://blackarch.org/):
 
 ```
 $ sudo pacman -S fingerprinter
