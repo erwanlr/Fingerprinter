@@ -1,4 +1,4 @@
-[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_popout.svg)](https://inventory.rawsec.ml/)
+[![Rawsec's CyberSecurity Inventory](https://inventory.raw.pm/img/badges/Rawsec-inventoried-FF5050_popout.svg)](https://inventory.raw.pm/)
 [![Packaging status](https://repology.org/badge/vertical-allrepos/fingerprinter.svg)](https://repology.org/project/fingerprinter/versions)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
